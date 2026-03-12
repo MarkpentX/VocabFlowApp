@@ -1,0 +1,22 @@
+'use server'
+
+import {getWordsByTag} from "@/app/tags/actions";
+import Words from "@/app/tags/[slug]/Words";
+
+export default async function Page({params,}: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params
+
+    const userWords = await getWordsByTag(slug)
+
+    if (userWords.length === 0){
+        return (
+            <h1>You dont have any words on this tags: {slug}</h1>
+        )
+    }
+
+    return (
+        <main>
+            <Words words={userWords} slug={slug} />
+        </main>
+    )
+}
