@@ -1,8 +1,8 @@
 'use server'
 
 import React from 'react';
-import {getAllTags} from "@/app/tags/actions";
 import Link from "next/link";
+import {getAllTags} from "@/app/(protected)/tags/actions";
 
 async function Page() {
     const tags = await getAllTags()

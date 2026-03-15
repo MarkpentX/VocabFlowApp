@@ -1,9 +1,9 @@
 'use client'
 import React, {useState} from 'react';
 import {DbWord} from "@/features/words/types";
-import QuizItem from "@/app/tags/_components/QuizItem";
 import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
+import QuizItem from "@/app/(protected)/tags/_components/QuizItem";
 
 interface QuizProps {
     words: DbWord[]

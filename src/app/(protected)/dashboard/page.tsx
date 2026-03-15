@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateWordForm from "@/app/dashboard/_components/CreateWordForm";
+import CreateWordForm from "@/app/(protected)/dashboard/_components/CreateWordForm";
 
 function Page() {
     return (

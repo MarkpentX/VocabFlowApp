@@ -6,7 +6,7 @@ import {CreateWordSchema} from "@/features/words/schemas";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {CreateWord} from "@/features/words/types";
-import {createWordAction} from "@/app/dashboard/actions";
+import {createWordAction} from "@/app/(protected)/dashboard/actions";
 
 function CreateWordForm() {
     const {register, handleSubmit, formState} = useForm<z.infer<typeof CreateWordSchema>>({

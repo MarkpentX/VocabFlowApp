@@ -1,7 +1,7 @@
 'use server'
 
-import {getWordsByTag} from "@/app/tags/actions";
-import Words from "@/app/tags/[slug]/Words";
+import {getWordsByTag} from "@/app/(protected)/tags/actions";
+import Words from "@/app/(protected)/tags/[slug]/Words";
 
 export default async function Page({params,}: { params: Promise<{ slug: string }> }) {
     const { slug } = await params

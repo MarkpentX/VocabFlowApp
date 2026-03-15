@@ -37,3 +37,12 @@ export async function getWordsByTag(tag: string): Promise<DbWord[]>{
         ));
     return userWords;
 }
+
+export async function deleteWordAction(id: string){
+    console.log(id)
+    try {
+        await db.delete(words).where(eq(words.id, id));
+    } catch (error) {
+        console.log(error);
+    }
+}

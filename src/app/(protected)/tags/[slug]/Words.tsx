@@ -2,8 +2,8 @@
 
 import React, {useState} from 'react';
 import {DbWord} from "@/features/words/types";
-import Quiz from "@/app/tags/_components/Quiz";
-import DeleteForm from "@/app/tags/_components/DeleteForm";
+import Quiz from "@/app/(protected)/tags/_components/Quiz";
+import {DeleteForm} from "@/app/(protected)/tags/_components/DeleteForm";
 
 interface WordsProps {
     words: DbWord[]
@@ -22,9 +22,7 @@ function Words({words, slug}: WordsProps) {
         return <Quiz words={words} />
     }
 
-    async function deleteWord(id: string) {
 
-    }
 
     return (
         <>

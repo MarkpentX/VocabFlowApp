@@ -3,8 +3,9 @@ import GoogleSignIn from "@/app/auth/_components/GoogleSignIn";
 
 function Page() {
     return (
-        <main>
-            <h1>Auth Page</h1>
+        <main className="flex flex-col items-center justify-center h-dvh ">
+            <h1 className="text-green-600 text-3xl mb-1 text-center font-bold font-spaceGrotesk md:text-4xl">VocabFlow</h1>
+            <p className="mb-4 text-[rgb(103,126,119)]">Continue to start learning languages </p>
             <GoogleSignIn />
         </main>
     );
