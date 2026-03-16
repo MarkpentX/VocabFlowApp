@@ -10,6 +10,6 @@ export const words = pgTable("words", {
         .$defaultFn(() => crypto.randomUUID()),
     infinitive: text().notNull(),
     meaning: text().notNull(),
-    tag: text(),
+    tag: text().notNull(),
     user_id: text("user_id").references(() => users.id, {onDelete: "cascade"})
 })
