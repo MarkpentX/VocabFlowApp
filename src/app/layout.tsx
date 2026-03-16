@@ -1,5 +1,5 @@
 import "./globals.css";
-import Header from "@/features/header/Header";
+import Header from "@/components/Header";
 import {Toaster} from "react-hot-toast";
 import { Space_Grotesk, DM_Sans } from 'next/font/google'
 
