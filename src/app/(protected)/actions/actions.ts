@@ -1,9 +1,8 @@
 import {auth} from "@/auth";
 import {redirect} from "next/navigation";
-import {db} from "@/index";
-import {eq} from "drizzle-orm";
-import {words} from "@/db/wordsTable";
 import {GetUserStatsResp} from "@/app/(protected)/types/types";
+import {getAllWords} from "@/features/words/queries";
+import {getUserTagsDB} from "@/features/tags/queries";
 
 export async function getUserStats(): Promise<GetUserStatsResp> {
     const session = await auth();
@@ -12,16 +11,11 @@ export async function getUserStats(): Promise<GetUserStatsResp> {
         redirect("/")
     }
 
-
-    const uniqueSet = new Set();
-    const userWords = await db.select().from(words).where(eq(words.user_id, session.user.id));
-
-    for (const word of userWords) {
-        uniqueSet.add(word.tag);
-    }
+    const allUserTags = await getUserTagsDB(session.user.id);
+    const userWords = await getAllWords(allUserTags.map(tag => tag.id));
 
     const userWordsCount = userWords.length
-    const userTagsCount = uniqueSet.size;
+    const userTagsCount = allUserTags.length
 
     return {
         userWordsCount: userWordsCount,

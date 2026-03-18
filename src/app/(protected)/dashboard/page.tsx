@@ -1,11 +1,9 @@
-import React, {Suspense} from 'react';
 import {auth} from "@/auth";
 import bookIcon from "../../../../public/book.svg"
 import tagIcon from "../../../../public/tag.svg"
 import Image from "next/image";
 import Link from "next/link";
 import {getUserStats} from "@/app/(protected)/actions/actions";
-import {HashLoader} from "react-spinners";
 import Header from "@/components/Header";
 
 async function Page() {
@@ -13,9 +11,7 @@ async function Page() {
     const {userWordsCount, userTagsCount} = await getUserStats();
 
     return (
-
-        <Suspense fallback={
-            <div className="fixed inset-0 flex items-center justify-center bg-white/80 z-50"><HashLoader size={64} color="#18f705" /></div>}>
+        <>
             <Header/>
             <section className="max-w-3xl mx-auto px-6 py-8">
                 <h1 className="text-3xl font-bold text-black mb-6">Hello, {session?.user?.name}</h1>
@@ -85,7 +81,7 @@ async function Page() {
                     </ul>
                 </nav>
             </section>
-        </Suspense>
+        </>
     );
 }
 

@@ -6,3 +6,5 @@ export type CreateWord = z.infer<typeof CreateWordSchema>;
 
 export type DbWord = typeof words.$inferSelect;
 
+export type DbNewWord = typeof words.$inferInsert;
+
