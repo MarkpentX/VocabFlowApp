@@ -1,17 +1,12 @@
-import {auth} from "@/auth";
-import {redirect} from "next/navigation";
 import {GetUserStatsResp} from "@/app/(protected)/types/types";
 import {getAllWords} from "@/features/words/queries";
 import {getUserTagsDB} from "@/features/tags/queries";
+import {getSessionUser} from "@/lib/utils/auth-utils";
 
 export async function getUserStats(): Promise<GetUserStatsResp> {
-    const session = await auth();
+    const user = await getSessionUser()
 
-    if (!session?.user?.id) {
-        redirect("/")
-    }
-
-    const allUserTags = await getUserTagsDB(session.user.id);
+    const allUserTags = await getUserTagsDB(user.id);
     const userWords = await getAllWords(allUserTags.map(tag => tag.id));
 
     const userWordsCount = userWords.length

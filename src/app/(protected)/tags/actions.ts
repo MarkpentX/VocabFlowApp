@@ -6,23 +6,18 @@ import {GetTagsResp} from "@/app/(protected)/types/types";
 import {getTagsWithWordsCountDB} from "@/features/tags/queries";
 import {DbWord} from "@/features/words/types";
 import {getWordsByTagDB} from "@/features/words/queries";
+import {getSessionUser} from "@/lib/utils/auth-utils";
 
 export async function getAllTags(): Promise<GetTagsResp> {
-    const session = await auth()
-    if (!session?.user?.id){
-        redirect("/auth")
-    }
+    const user = await getSessionUser()
 
-    const tags = await getTagsWithWordsCountDB(session.user.id)
+    const tags = await getTagsWithWordsCountDB(user.id)
     return tags
 }
 export async function getWordsByTag(tag: string): Promise<DbWord[]>{
-    const session = await auth()
-    if (!session?.user?.id){
-        redirect("/auth")
-    }
+    const user = await getSessionUser()
 
-    const userWords = await getWordsByTagDB(session.user.id, tag)
+    const userWords = await getWordsByTagDB(user.id, tag)
     return userWords
 }
 
