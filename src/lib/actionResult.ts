@@ -1,16 +1,16 @@
 export type ActionResult = {
     error: boolean,
-    message?: string,
+    message: string,
 }
 
-export function handleActionError(message: string = "Error"){
+export function handleActionError(message: string = "Error"): ActionResult {
     return {
         error: true,
         message: message,
     }
 }
 
-export function handleActionSuccess(message?: string){
+export function handleActionSuccess(message: string): ActionResult {
     return {
         error: false,
         message: message,

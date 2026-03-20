@@ -2,54 +2,55 @@
 
 import React from 'react';
 import Link from "next/link";
-import {getAllTags} from "@/app/(protected)/tags/actions";
+import {deleteTagAction, getAllTags} from "@/app/(protected)/tags/actions";
+import {DeleteForm} from "@/app/(protected)/tags/_components/DeleteForm";
+import {getSessionUser} from "@/lib/utils/auth-utils";
+import HeaderBackArrow from "@/app/(protected)/tags/_components/HeaderBackArrow";
 
 async function Page() {
-    const {tags} = await getAllTags()
+    const user = await getSessionUser()
+    const tags = await getAllTags(user.id)
 
     if (tags.length === 0){
         return (
-            <h1>You dont have any tags</h1>
+            <>
+                <HeaderBackArrow title="Tags" href="/dashboard"/>
+
+                <div className="flex flex-col gap-4 py-16 justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                         className="lucide lucide-folder-open text-[rgb(103,126,119)] w-12 h-12 text-muted-foreground mx-auto">
+                        <path
+                            d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+
+                    <p className="text-md text-[rgb(103,126,119)]">No tags yet. Add a word to create your first tag.</p>
+
+                    <Link href="/add-word" className="bg-[rgba(37,177,95,0.9)] text-white text-sm border-1 border-[rgb(226,229,220)] py-2.5 px-4 rounded-xl">Add word</Link>
+                </div>
+            </>
         )
     }
 
     return (
-        <main className="flex flex-col gap-3 px-6 py-4 mt-1.5 max-w-5xl h-dvh mx-auto">
-                <div className="flex items-center gap-5 mb-10">
-                    <Link href={"/dashboard"}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                             className="lucide lucide-arrow-left w-4 h-4">
-                            <path d="m12 19-7-7 7-7"></path>
-                            <path d="M19 12H5"></path>
-                        </svg>
-                    </Link>
+        <>
+            <HeaderBackArrow title="Tags" href="/dashboard"/>
+            <main className="flex flex-col gap-3 px-6 py-4 mt-1.5 max-w-5xl h-dvh mx-auto">
 
-                    <h1 className="text-xl text-[rgb(37,177,95)] font-bold font-spaceGrotesk">
-                        Tags
-                    </h1>
-                </div>
 
-            <ul className="max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-4 mx-auto w-full">
-                {tags.map((tag, index) => (
-                    <li className="animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-6 rounded-xl" key={index}>
-                        <Link className="text-black text-lg grid grid-cols-2" href={`/tags/${tag.title}`}>
-                            {tag.title}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                                 strokeLinejoin="round" className="justify-self-end self-center lucide text-red-500 lucide-trash2 w-4 h-4">
-                                <path d="M3 6h18"></path>
-                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                <line x1="10" x2="10" y1="11" y2="17"></line>
-                                <line x1="14" x2="14" y1="11" y2="17"></line>
-                            </svg>
-                            <span className="text-sm text-[rgb(103,126,119)]">{tag.wordsCount} word</span>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </main>
+                <ul className="max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-4 mx-auto w-full">
+                    {tags.map((tag, index) => (
+                        <li className="grid grid-cols-2 animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-6 rounded-xl" key={index}>
+                            <Link className="flex flex-col text-black text-lg" href={`/tags/${encodeURIComponent(tag.title)}`}>
+                                {tag.title}
+                                <span className="text-sm text-[rgb(103,126,119)]">{tag.wordsCount} word</span>
+                            </Link>
+                            <DeleteForm id={tag.id} deleteAction={deleteTagAction} />
+                        </li>
+                    ))}
+                </ul>
+            </main>
+        </>
     );
 }
 

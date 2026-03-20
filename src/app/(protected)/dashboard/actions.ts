@@ -6,6 +6,7 @@ import {ActionResult, handleActionError, handleActionSuccess} from "@/lib/action
 import {createTagDB, getTagDB, isTagAvailableDB} from "@/features/tags/queries";
 import {createWord} from "@/features/words/queries";
 import {getSessionUser} from "@/lib/utils/auth-utils";
+import {updateTag} from "next/cache";
 
 export async function createWordAction(data: CreateWord): Promise<ActionResult> {
     const user = await getSessionUser()
@@ -41,6 +42,7 @@ export async function createWordAction(data: CreateWord): Promise<ActionResult> 
             tagId = tag.id
         }
         await createWord(tagId, trimmedData)
+        updateTag(`USER_TAGS-${user.id}`)
         return handleActionSuccess("Word created successfully")
     } else {
         return handleActionError(userValidation.error.issues[0]?.message ?? "Validation Error")

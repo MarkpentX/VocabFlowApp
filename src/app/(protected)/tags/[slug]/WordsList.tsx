@@ -6,6 +6,8 @@ import Quiz from "@/app/(protected)/tags/_components/Quiz";
 // import {DeleteForm} from "@/app/(protected)/tags/_components/DeleteForm";
 import Link from "next/link";
 import SoundButton from "@/app/(protected)/tags/_components/SoundButton";
+import {DeleteForm} from "@/app/(protected)/tags/_components/DeleteForm";
+import {deleteWordAction} from "@/app/(protected)/tags/actions";
 
 interface WordsListProps {
     words: DbWord[]
@@ -26,24 +28,9 @@ function WordsList({words, slug}: WordsListProps) {
 
     return (
         <main className="flex flex-col gap-3 px-6 py-4 mt-1.5 max-w-5xl h-dvh mx-auto">
-            <div className="flex items-center gap-5">
-                <Link href={"/tags"}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                         className="lucide lucide-arrow-left w-4 h-4">
-                        <path d="m12 19-7-7 7-7"></path>
-                        <path d="M19 12H5"></path>
-                    </svg>
-                </Link>
-
-                <h1 className="text-xl text-[rgb(37,177,95)] font-bold font-spaceGrotesk">
-                    {slug}
-                </h1>
-            </div>
-
-            <div className="max-w-2xl mx-auto items-start justify-start">
+            <div className="items-start justify-start">
                 <nav>
-                    <ul className="w-screen flex justify-start items-start flex-row gap-3 mt-10">
+                    <ul className="w-full flex justify-start items-start flex-row gap-3 mt-10">
                         <li>
                             <Link href={"/practice"} className="flex items-center justify-center gap-2 bg-[rgba(37,177,95,0.9)] text-white text-sm border-1 border-[rgb(226,229,220)] py-2.5 px-5 w-full rounded-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -79,13 +66,15 @@ function WordsList({words, slug}: WordsListProps) {
                     </ul>
                 </nav>
 
-                <div className="mt-6 grid gap-x-3 gap-y-4">
+                <div className="mt-6 grid gap-x-3 gap-y-4 ">
                     {words.map((item) =>(
-                        <article className="flex gap-1 bg-[rgb(255,255,255)] items-center border-[rgb(226,229,220)] drop-shadow-sm py-6 shadow-black p-4 rounded-xl" key={item.id}>
-                            <SoundButton word={item.infinitive}/>
-                            <h3 className="font-dMSans text-[rgb(18,33,28)]">{item.infinitive}</h3>
-                            <h4 className="font-dMSans text-[rgb(103,126,119)]">- {item.meaning}</h4>
-                            {/*<DeleteForm id={item.id}/>*/}
+                        <article className="flex gap-1 bg-[rgb(255,255,255)] items-center border-[rgb(226,229,220)] drop-shadow-sm py-6 shadow-black p-4 rounded-xl justify-between" key={item.id}>
+                            <div className="flex items-center gap-3">
+                                <SoundButton word={item.infinitive}/>
+                                <h3 className="font-dMSans text-[rgb(18,33,28)]">{item.infinitive}</h3>
+                                <h4 className="font-dMSans text-[rgb(103,126,119)]">- {item.meaning}</h4>
+                            </div>
+                            <DeleteForm id={item.id} deleteAction={deleteWordAction}/>
                         </article>
                     ))}
                 </div>

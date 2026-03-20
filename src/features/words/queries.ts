@@ -48,3 +48,8 @@ export async function getWordsByTagDB(user_id: string, tag_name: string): Promis
         .from(words)
         .where(eq(words.tagId, tag.id));
 }
+
+export async function deleteWordDB(id: string): Promise<void>{
+    console.log('Delete words with id: ', id);
+    await db.delete(words).where(eq(words.id, id));
+}
