@@ -34,4 +34,3 @@ In the future, VocabFlow will include AI-powered features, such as:
 You can view the project here:
 https://shimmering-halva-130695.netlify.app/
 
-Хочешь, чтобы я сделал её тоже?
