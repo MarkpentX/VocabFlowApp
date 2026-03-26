@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from "next/link";
 import {DeleteForm} from "@/app/(protected)/tags/_components/DeleteForm";
-import HeaderBackArrow from "@/app/(protected)/tags/_components/HeaderBackArrow";
 import {slugEncode} from "@/lib/slug-utils";
 import {getTagsAction} from "@/features/tags/controllers/getTagsAction";
 import {deleteTagAction} from "@/features/tags/controllers/deleteTagAction";
@@ -19,8 +18,6 @@ async function ShowTagsPractice() {
     if (actionResult.data.length === 0){
         return (
             <>
-                <HeaderBackArrow title="Tags" href="/dashboard"/>
-
                 <div className="flex flex-col gap-4 py-16 justify-center items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -38,17 +35,21 @@ async function ShowTagsPractice() {
     }
 
     return (
-        <ul className="max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-4 mx-auto w-full">
-            {actionResult.data.map((tag, index) => (
-                <li className="grid grid-cols-2 animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-6 rounded-xl" key={index}>
-                    <Link className="flex flex-col text-black text-lg" href={`/practice/${slugEncode(tag.title)}`}>
-                        {tag.title}
-                        <span className="text-sm text-[rgb(103,126,119)]">{tag.wordsCount} word</span>
-                    </Link>
-                    <DeleteForm id={tag.id} deleteAction={deleteTagAction} />
-                </li>
-            ))}
-        </ul>
+        <>
+            <h2 className="text-[rgb(103,126,119)] font-dMSans text-sm text-center">Select the tag you want to practice</h2>
+            <ul className="max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-4 mx-auto w-full">
+                {actionResult.data.map((tag, index) => (
+                    <li className="grid grid-cols-2 animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-6 rounded-xl" key={index}>
+                        <Link className="flex flex-col text-black text-lg" href={`/practice/${slugEncode(tag.title)}`}>
+                            {tag.title}
+                            <span className="text-sm text-[rgb(103,126,119)]">{tag.wordsCount} word</span>
+                        </Link>
+                        <DeleteForm id={tag.id} deleteAction={deleteTagAction} />
+                    </li>
+                ))}
+            </ul>
+
+        </>
     );
 }
 

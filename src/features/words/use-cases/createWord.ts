@@ -1,6 +1,6 @@
 'use server'
 
-import {CreateWord, DbWord} from "@/features/words/types";
+import {CreateWord} from "@/features/words/types";
 import {CreateWordSchema} from "@/features/words/schemas";
 import {getSessionUser} from "@/lib/utils/auth-utils";
 import {updateTag} from "next/cache";
@@ -11,7 +11,6 @@ import {DbTag} from "@/features/tags/types";
 import {errors} from "@/lib/errors/factory";
 
 
-// TODO: remove action result. Must return a CUSTOM EXCEPTION e.g. ValidationError, DbError, etc.
 export async function createWord(data: CreateWord, tag: DbTag): Promise<void> {
     const user = await getSessionUser()
     const trimmedData: CreateWord = trimObject(data);
