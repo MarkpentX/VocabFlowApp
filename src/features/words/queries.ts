@@ -7,7 +7,7 @@ import {and, eq, inArray} from "drizzle-orm";
 import {getTagDB} from "@/features/tags/queries";
 import {tagsTable} from "@/db/schema";
 
-export async function createWord(tag_id: string, word: CreateWord){
+export async function createWordDB(tag_id: string, word: CreateWord){
     // infinitive: z.string().max(255).min(2),
     //     meaning: z.string().max(255).min(2),
     //     tag: z.string().max(255).min(2),
@@ -21,7 +21,7 @@ export async function createWord(tag_id: string, word: CreateWord){
     await db.insert(words).values(createdWord);
 }
 
-export async function getAllWords(tags_id: string[]): Promise<DbWord[]> {
+export async function getAllWordsDB(tags_id: string[]): Promise<DbWord[]> {
     return await db
         .select()
         .from(words)

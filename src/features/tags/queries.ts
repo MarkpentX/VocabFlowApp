@@ -5,28 +5,21 @@ import {db} from "@/index";
 import {and, eq} from "drizzle-orm";
 import {DbTag, TagsWithWords} from "@/features/tags/types";
 
-export async function isTagAvailableDB(user_id: string, tagName: string): Promise<boolean>{
-    const tag = await db
-        .select()
-        .from(tagsTable)
-        .where(
-            and(
-                eq(tagsTable.user_id, user_id),
-                eq(tagsTable.name, tagName)
-            )
-        )
-        .limit(1);
-
-    return tag.length === 0;
-}
-
-export async function createTagDB(user_id: string, tagName: string):Promise<void>{
+export async function createTagDB(
+    user_id: string,
+    tagName: string
+): Promise<typeof tagsTable.$inferSelect> {
     const tag: typeof tagsTable.$inferInsert = {
         name: tagName,
-        user_id: user_id,
+        user_id,
     };
 
-    await db.insert(tagsTable).values(tag);
+    const [createdTag] = await db
+        .insert(tagsTable)
+        .values(tag)
+        .returning();
+
+    return createdTag;
 }
 
 export async function getUserTagsDB(user_id: string):Promise<DbTag[]>{
@@ -35,7 +28,7 @@ export async function getUserTagsDB(user_id: string):Promise<DbTag[]>{
 }
 
 export async function getTagsWithWordsCountDB(user_id: string): Promise<TagsWithWords[]>{
-    console.log("Get tags with words count for user with id: ", user_id);
+    console.log("Get tags with words count for users with id: ", user_id);
     const tags = await db
         .select({
             id: tagsTable.id,           // добавлено

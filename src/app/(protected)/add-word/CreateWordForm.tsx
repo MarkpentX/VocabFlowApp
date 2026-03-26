@@ -6,21 +6,21 @@ import {CreateWordSchema} from "@/features/words/schemas";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {CreateWord} from "@/features/words/types";
-import {createWordAction} from "@/app/(protected)/dashboard/actions";
+import {createWordAction} from "@/features/words/controllers/createWordAction";
 
 function CreateWordForm() {
-    const {register, handleSubmit, formState} = useForm<z.infer<typeof CreateWordSchema>>({
+    const {register, handleSubmit, formState, resetField} = useForm<z.infer<typeof CreateWordSchema>>({
         resolver: zodResolver(CreateWordSchema)
     });
 
     async function onSubmit(data: CreateWord) {
-        console.log('data', data);
         const result = await createWordAction(data)
-        if (!result.error) {
-            toast.success(result.message!)
-        }
-        if (result.error){
-            toast.error(result.message!)
+        if (result.isSuccess) {
+            toast.success("The word has been created!");
+            resetField("infinitive")
+            resetField("meaning")
+        } else {
+            toast.error(result.message ?? "An error occurred");
         }
     }
 

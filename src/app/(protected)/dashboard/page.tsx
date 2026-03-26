@@ -3,12 +3,12 @@ import bookIcon from "../../../../public/book.svg"
 import tagIcon from "../../../../public/tag.svg"
 import Image from "next/image";
 import Link from "next/link";
-import {getUserStats} from "@/app/(protected)/actions/actions";
 import Header from "@/components/Header";
+import {getUserStatsAction} from "@/features/users/controllers/getUserStatsAction";
 
 async function Page() {
     const session = await auth();
-    const {userWordsCount, userTagsCount} = await getUserStats();
+    const actionResult = await getUserStatsAction();
 
     return (
         <>
@@ -19,13 +19,13 @@ async function Page() {
                 <div className="grid grid-cols-2 gap-4 mt-8">
                     <article className="bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-5 rounded-xl">
                         <Image className="w-9 h-9 mb-3" src={bookIcon} alt="book-icon"/>
-                        <span className="text-2xl font-spaceGrotesk font-bold" >{userWordsCount}</span>
+                        <span className="text-2xl font-spaceGrotesk font-bold" >{actionResult.isSuccess ? actionResult.data.userWordsCount : "..."}</span>
                         <p className="text-[rgb(103,126,119)] font-dMSans text-sm">Total Words</p>
                     </article>
 
                     <article className="bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-5 rounded-xl">
                         <Image className="w-9 h-9 mb-3" src={tagIcon} alt="tag-icon"/>
-                        <span className="text-2xl font-spaceGrotesk font-bold" >{userTagsCount}</span>
+                        <span className="text-2xl font-spaceGrotesk font-bold" >{actionResult.isSuccess ? actionResult.data.userTagsCount : "..."}</span>
                         <p className="text-[rgb(103,126,119)] font-dMSans text-sm">Total tags</p>
                     </article>
                 </div>

@@ -1,16 +1,21 @@
 'use server'
 
 import WordsList from "@/app/(protected)/tags/[slug]/WordsList";
-import {getWordsByTag} from "@/app/(protected)/tags/actions";
 import HeaderBackArrow from "@/app/(protected)/tags/_components/HeaderBackArrow";
 import React from "react";
+import {slugDecode} from "@/lib/slug-utils";
+import {getWordsByTagAction} from "@/features/words/controllers/getWordsByTagAction";
 
 export default async function Page({params,}: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
-    const decodedSlug = decodeURIComponent(slug);  // <-- декодируем сразу
-    const userWords = await getWordsByTag(decodedSlug)
+    const decodedSlug = slugDecode(slug);  // <-- декодируем сразу
+    const actionResult = await getWordsByTagAction(decodedSlug)
 
-    if (userWords.length === 0){
+    if (!actionResult.isSuccess || !actionResult.data) {
+        return <p className="text-center mt-10">Failed to load words.</p>;
+    }
+
+    if (actionResult.data.length === 0){
         return (
             <>
                 <HeaderBackArrow title={decodedSlug} href="/tags"/>
@@ -22,7 +27,7 @@ export default async function Page({params,}: { params: Promise<{ slug: string }
     return (
         <main>
             <HeaderBackArrow title={decodedSlug} href="/tags"/>
-            <WordsList words={userWords} slug={decodedSlug} />
+            <WordsList words={actionResult.data} />
         </main>
     )
 }

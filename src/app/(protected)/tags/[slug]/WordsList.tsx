@@ -1,30 +1,27 @@
 'use client'
 
-import React, {useState} from 'react';
+import React from 'react';
 import {DbWord} from "@/features/words/types";
-import Quiz from "@/app/(protected)/tags/_components/Quiz";
-// import {DeleteForm} from "@/app/(protected)/tags/_components/DeleteForm";
 import Link from "next/link";
 import SoundButton from "@/app/(protected)/tags/_components/SoundButton";
 import {DeleteForm} from "@/app/(protected)/tags/_components/DeleteForm";
-import {deleteWordAction} from "@/app/(protected)/tags/actions";
+import {deleteWordAction} from "@/features/words/controllers/deleteWordAction";
 
 interface WordsListProps {
     words: DbWord[]
-    slug: string
 }
 
-function WordsList({words, slug}: WordsListProps) {
-    const [isQuiz, setIsQuiz] = useState(false);
-
-    function showQuiz() {
-        setIsQuiz(!isQuiz);
-        console.log(isQuiz);
-    }
-
-    if (isQuiz) {
-        return <Quiz words={words} />
-    }
+function WordsList({words}: WordsListProps) {
+    // const [isQuiz, setIsQuiz] = useState(false);
+    //
+    // function showQuiz() {
+    //     setIsQuiz(!isQuiz);
+    //     console.log(isQuiz);
+    // }
+    //
+    // if (isQuiz) {
+    //     return <Quiz words={words} />
+    // }
 
     return (
         <main className="flex flex-col gap-3 px-6 py-4 mt-1.5 max-w-5xl h-dvh mx-auto">
@@ -78,10 +75,7 @@ function WordsList({words, slug}: WordsListProps) {
                         </article>
                     ))}
                 </div>
-
             </div>
-
-            {/*<button onClick={showQuiz}>Start Quiz</button>*/}
         </main>
     )
 }

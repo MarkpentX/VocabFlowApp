@@ -2,12 +2,12 @@
 
 import {useForm} from "react-hook-form";
 import React from "react";
-import {ActionResult} from "@/lib/actionResult";
 import toast from "react-hot-toast";
+import {ControllerResult} from "@/lib/types/controller-result";
 
 interface DeleteFormProps {
     id: string;
-    deleteAction: (id: string) => Promise<ActionResult>;
+    deleteAction: (id: string) => Promise<ControllerResult>;
 }
 
 export function DeleteForm({ id, deleteAction }: DeleteFormProps) {
@@ -15,10 +15,10 @@ export function DeleteForm({ id, deleteAction }: DeleteFormProps) {
 
     async function onSubmit() {
         const result = await deleteAction(id);
-        if (result.error){
-            toast.error(result.message)
+        if (!result.isSuccess){
+            toast.error("Error to delete!");
         } else {
-            toast.success(result.message);
+            toast.success("Successfully deleted!");
         }
     }
 

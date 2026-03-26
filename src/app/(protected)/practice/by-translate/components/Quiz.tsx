@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {DbWord} from "@/features/words/types";
 import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
-import QuizItem from "@/app/(protected)/tags/_components/QuizItem";
+import QuizItem from "@/app/(protected)/practice/by-translate/components/QuizItem";
 
 interface QuizProps {
     words: DbWord[]
@@ -18,7 +18,7 @@ function Quiz({ words }: QuizProps) {
             toast.success("Quiz complete!")
             setTimeout(() => {
                 router.push('/tags')
-            }, 500)
+            }, 300)
         } else {
             setIndex(index + 1)
         }
@@ -27,7 +27,6 @@ function Quiz({ words }: QuizProps) {
     return (
         <>
             <h1>Quiz</h1>
-
             <QuizItem word={words[index]} onNextQuestion={onNextQuestion} />
         </>
     );
