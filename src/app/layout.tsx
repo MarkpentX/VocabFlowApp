@@ -1,7 +1,7 @@
 import "./globals.css";
-import Header from "@/components/Header";
 import {Toaster} from "react-hot-toast";
 import { Space_Grotesk, DM_Sans } from 'next/font/google'
+import type {Metadata} from "next";
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ["vietnamese"],
@@ -10,6 +10,15 @@ const spaceGrotesk = Space_Grotesk({
 const dMSans = DM_Sans({
     subsets: ["latin"],
 })
+
+export const metadata: Metadata = {
+    title: "VocabFlow — Vocabulary Trainer for Language Learning",
+    description:
+        "Learn languages faster with VocabFlow. Save vocabulary, organize words with tags, and practice with quizzes to remember new words easily.",
+    icons: {
+        icon: "/favicon.svg",
+    },
+};
 
 export default function RootLayout({
                                        children,
