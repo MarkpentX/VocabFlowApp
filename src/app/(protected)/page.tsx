@@ -4,6 +4,7 @@ import tagIcon from '../../../public/tag.svg'
 import brainIcon from '../../../public/brain.svg'
 import Image from "next/image";
 import Header from "@/components/Header";
+import StartLearning from "@/app/(protected)/components/StartLearning";
 
 export default function Home() {
     const advantages = [
@@ -33,15 +34,7 @@ export default function Home() {
                       <span className="text-green-600"> practicing vocabulary</span>
                   </h1>
                   <p className="font-dMSans text-[rgb(103,126,119)] text-lg my-[1.5rem] max-w-lg mx-auto animate-[fadeInUp_0.6s_ease-out_forwards] max-md:text-sm">Save words, organize them with tags, and practice with interactive quizzes. Your personal vocabulary trainer — simple and effective.</p>
-                  <Link  href={"/auth"} className="animate-[fadeInUp_0.6s_ease-out_forwards] justify-center items-center gap-1 bg-[rgb(37,177,95)] inline-flex py-2.5 px-8 rounded-xl text-white font-spaceGrotesk hover:bg-[rgba(37,177,95,0.9)] transition-colors duration-200">
-                      Start Learning
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                           stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                           className="lucide lucide-arrow-right w-4 h-4">
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                      </svg>
-                  </Link>
+                  <StartLearning/>
               </section>
 
               <ul className="flex gap-6 my-[4rem] w-[896px] mx-auto max-md:flex-col max-md:w-[316]">
