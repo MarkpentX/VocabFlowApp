@@ -1,5 +1,3 @@
-'use server'
-
 import WordsList from "@/app/(protected)/tags/[slug]/WordsList";
 import HeaderBackArrow from "@/app/(protected)/tags/_components/HeaderBackArrow";
 import React from "react";

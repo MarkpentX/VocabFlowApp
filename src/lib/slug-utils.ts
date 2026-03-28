@@ -1,7 +1,7 @@
 export function slugEncode(slug: string): string {
-    return slug.replaceAll(' ', '-');
+    return encodeURIComponent(slug.replaceAll(' ', '-'));
 }
 
 export function slugDecode(slug: string): string {
-    return slug.replaceAll('-', ' ');
+    return decodeURIComponent(slug).replaceAll('-', ' ');
 }
