@@ -20,7 +20,7 @@ async function Page({params,}: { params: Promise<{ slug: string }> }) {
     return (
         <>
             <HeaderBackArrow title="Practice" href="/practice"  />
-            <main className="max-w-sm px-6 mx-auto flex flex-col ">
+            <main className="max-w-md px-6 mx-auto flex flex-col ">
                 <Quiz words={words.data} />
             </main>
         </>
