@@ -1,4 +1,4 @@
-import HeaderBackArrow, { BackArrowSlug } from "@/app/(protected)/tags/_components/HeaderBackArrow";
+import HeaderBackArrow from "@/app/(protected)/tags/_components/HeaderBackArrow";
 import ModeItem from "@/app/(protected)/practice/[slug]/ModeItem";
 import React from "react";
 

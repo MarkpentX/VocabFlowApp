@@ -2,6 +2,7 @@ import "./globals.css";
 import {Toaster} from "react-hot-toast";
 import { Space_Grotesk, DM_Sans } from 'next/font/google'
 import type {Metadata} from "next";
+import CustomCursor from "@/components/CustomCursor";
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ["vietnamese"],
@@ -28,6 +29,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${spaceGrotesk.className} ${dMSans.className}`}>
         <body className="bg-[rgb(248,249,245)]">
+        <CustomCursor />
         <Toaster
             position="top-center"
             reverseOrder={true}

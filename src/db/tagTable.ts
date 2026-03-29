@@ -2,12 +2,12 @@ import {
     pgTable,
     text,
 } from "drizzle-orm/pg-core"
-import {users} from "@/db/usersTable";
+import {usersTable} from "@/db/usersTable";
 
 export const tagsTable = pgTable("tags", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
     name: text("name").notNull(),
-    user_id: text("user_id").references(() => users.id, {onDelete: "cascade"})
+    user_id: text("user_id").references(() => usersTable.id, {onDelete: "cascade"})
 })

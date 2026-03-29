@@ -10,9 +10,10 @@ import toast from "react-hot-toast";
 interface QuizItemProps {
     word: DbWord
     onNextQuestion: () => void
+    addCorrect: () => void
 }
 
-function QuizItem({word, onNextQuestion}: QuizItemProps) {
+function QuizItem({word, onNextQuestion, addCorrect}: QuizItemProps) {
     const {register, handleSubmit, resetField} = useForm<z.infer<typeof AnswerSchema>>({
         resolver: zodResolver(AnswerSchema)
     });
@@ -22,6 +23,7 @@ function QuizItem({word, onNextQuestion}: QuizItemProps) {
 
         if (data.answer.toLowerCase().trim() === word.meaning.toLowerCase()){
             toast.success("Correct!")
+            addCorrect()
         } else {
             toast.error('correct: ' + word.meaning.toLowerCase())
         }

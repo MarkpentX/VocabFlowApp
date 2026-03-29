@@ -9,7 +9,7 @@ import {
 
 import type { AdapterAccountType } from "@auth/core/adapters"
 
-export const users = pgTable("users", {
+export const usersTable = pgTable("users", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
@@ -25,7 +25,7 @@ export const accounts = pgTable(
     {
         userId: text("userId")
             .notNull()
-            .references(() => users.id, { onDelete: "cascade" }),
+            .references(() => usersTable.id, { onDelete: "cascade" }),
         type: text("type").$type<AdapterAccountType>().notNull(),
         provider: text("provider").notNull(),
         providerAccountId: text("providerAccountId").notNull(),
@@ -50,7 +50,7 @@ export const sessions = pgTable("session", {
     sessionToken: text("sessionToken").primaryKey(),
     userId: text("userId")
         .notNull()
-        .references(() => users.id, { onDelete: "cascade" }),
+        .references(() => usersTable.id, { onDelete: "cascade" }),
     expires: timestamp("expires", { mode: "date" }).notNull(),
 })
 
@@ -76,7 +76,7 @@ export const authenticators = pgTable(
         credentialID: text("credentialID").notNull().unique(),
         userId: text("userId")
             .notNull()
-            .references(() => users.id, { onDelete: "cascade" }),
+            .references(() => usersTable.id, { onDelete: "cascade" }),
         providerAccountId: text("providerAccountId").notNull(),
         credentialPublicKey: text("credentialPublicKey").notNull(),
         counter: integer("counter").notNull(),

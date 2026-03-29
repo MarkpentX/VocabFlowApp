@@ -1,4 +1,3 @@
-import Link from "next/link";
 import bookIcon from '../../../public/book.svg'
 import tagIcon from '../../../public/tag.svg'
 import brainIcon from '../../../public/brain.svg'

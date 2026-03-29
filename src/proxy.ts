@@ -1,18 +1,28 @@
 import { auth } from "@/auth"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export default auth((req) => {
-    const isLoggedIn = !!req.auth
+export async function proxy(req: NextRequest) {
+    const session = await auth();
+    const pathname = req.nextUrl.pathname;
 
-    if (!isLoggedIn && req.nextUrl.pathname.startsWith("/dashboard")) {
-        return NextResponse.redirect(new URL("/", req.url))
+    // not logged in -> dashboard
+    if (!session?.user?.id && pathname.startsWith("/dashboard")) {
+        return NextResponse.redirect(new URL("/", req.url));
     }
 
-    if (isLoggedIn && req.nextUrl.pathname === "/") {
-        return NextResponse.redirect(new URL("/dashboard", req.url))
+    // logged in -> home
+    if (session?.user?.id && pathname === "/") {
+        return NextResponse.redirect(new URL("/dashboard", req.url));
     }
-})
+
+    // admin route protection
+    if (pathname.startsWith("/admin") && session?.user?.email !== "krejzimark29@gmail.com") {
+        return NextResponse.redirect(new URL("/", req.url));
+    }
+
+    return NextResponse.next();
+}
 
 export const config = {
-    matcher: ["/", "/dashboard/:path*"],
-}
+    matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+};

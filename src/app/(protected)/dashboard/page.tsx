@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import {getUserStatsAction} from "@/features/users/controllers/getUserStatsAction";
+import AddWordsBtn from "@/app/(protected)/components/AddWordsBtn";
 
 async function Page() {
     const session = await auth();
@@ -33,15 +34,7 @@ async function Page() {
                 <nav className="mt-8">
                     <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8">
                         <li>
-                            <Link href={"/add-word"} className="flex items-center justify-center gap-2 bg-[rgba(37,177,95,0.9)] text-white text-sm border-1 border-[rgb(226,229,220)] py-3 w-full px-8 rounded-xl">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                                     strokeLinejoin="round" className="lucide lucide-plus w-4 h-4">
-                                    <path d="M5 12h14"></path>
-                                    <path d="M12 5v14"></path>
-                                </svg>
-                                Add Word
-                            </Link>
+                            <AddWordsBtn/>
                         </li>
 
                         <li>
