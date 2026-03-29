@@ -1,7 +1,6 @@
 'use client'
 import React, {useState} from 'react';
 import {DbWord} from "@/features/words/types";
-import toast from "react-hot-toast";
 import QuizItem from "@/app/(protected)/practice/by-translate/components/QuizItem";
 import PracticeResult from "@/app/(protected)/practice/components/practiceResult";
 
@@ -17,7 +16,6 @@ function Quiz({ words, tagName }: QuizProps) {
     const progress = (index / words.length) * 100;
     async function onNextQuestion() {
         if (index === words.length - 1){
-            toast.success("Quiz complete!")
             setIndex(0)
             setIsFinished(true)
         } else {
@@ -34,7 +32,6 @@ function Quiz({ words, tagName }: QuizProps) {
             <PracticeResult
                 correctCount={correctCount}
                 questionsCount={words.length}
-                modeName="by-translate"
                 tagName={tagName}
             />
         )

@@ -5,11 +5,10 @@ import {slugEncode} from "@/lib/slug-utils";
 interface PracticeResultProps {
     correctCount: number
     questionsCount: number
-    modeName: string
     tagName: string
 }
 
-function PracticeResult({correctCount, questionsCount, modeName, tagName}: PracticeResultProps) {
+function PracticeResult({correctCount, questionsCount, tagName}: PracticeResultProps) {
     const encodedTagName = slugEncode(tagName);
 
     return (
