@@ -20,7 +20,7 @@ function WordsList({words}: WordsListProps) {
     // }
     //
     // if (isQuiz) {
-    //     return <Quiz words={words} />
+    //     return <Translate words={words} />
     // }
 
     return (

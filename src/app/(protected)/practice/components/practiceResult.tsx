@@ -5,11 +5,18 @@ import {slugEncode} from "@/lib/slug-utils";
 interface PracticeResultProps {
     correctCount: number
     questionsCount: number
+    onCloseResult: () => void
+    onResetCorrectCount: () => void
     tagName: string
 }
 
-function PracticeResult({correctCount, questionsCount, tagName}: PracticeResultProps) {
+function PracticeResult({onResetCorrectCount, onCloseResult, correctCount, questionsCount, tagName}: PracticeResultProps) {
     const encodedTagName = slugEncode(tagName);
+
+    function closeResult(){
+        onCloseResult()
+        onResetCorrectCount()
+    }
 
     return (
         <article className="mt-6 p-6 flex flex-col animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black rounded-2xl">
@@ -19,7 +26,7 @@ function PracticeResult({correctCount, questionsCount, tagName}: PracticeResultP
 
             <ul className="flex gap-3 justify-center flex-wrap mb-3">
                 <li>
-                    <Link className="flex items-center gap-2 px-4 py-2 rounded-md text-white bg-[rgba(37,177,95,0.9)]" href={`/practice/${tagName}`}>
+                    <Link onClick={closeResult} className="flex items-center gap-2 px-4 py-2 rounded-md text-white bg-[rgba(37,177,95,0.9)]" href={`/practice/${tagName}`}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                              className="lucide lucide-rotate-ccw w-4 h-4">
@@ -31,11 +38,11 @@ function PracticeResult({correctCount, questionsCount, tagName}: PracticeResultP
                 </li>
 
                 <li>
-                    <Link className="flex items-center gap-2 px-4 py-2 rounded-md text-black border border-[rgb(226,229,220)] bg-[rgb(248,249,245)]" href={`/practice/${tagName}`}>Other mode</Link>
+                    <Link onClick={closeResult} className="flex items-center gap-2 px-4 py-2 rounded-md text-black border border-[rgb(226,229,220)] bg-[rgb(248,249,245)]" href={`/practice/${tagName}`}>Other mode</Link>
                 </li>
             </ul>
 
-            <Link className="flex justify-center self-center items-center gap-2 px-4 py-2 rounded-md text-black border bg-[rgb(236,239,231)]" href={`/tags/${encodedTagName}`}>To the words</Link>
+            <Link onClick={closeResult} className="flex justify-center self-center items-center gap-2 px-4 py-2 rounded-md text-black bg-[rgb(236,239,231)]" href={`/tags/${encodedTagName}`}>To the words</Link>
         </article>
     );
 }

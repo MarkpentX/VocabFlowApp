@@ -1,8 +1,8 @@
 import React from 'react';
-import Translate from "@/app/(protected)/practice/by-translate/components/Translate";
 import {slugDecode} from "@/lib/slug-utils";
 import {getWordsByTagAction} from "@/features/words/controllers/getWordsByTagAction";
 import HeaderBackArrow from "@/app/(protected)/tags/_components/HeaderBackArrow";
+import Quiz from "@/app/(protected)/practice/by-ear/_components/Quiz";
 
 async function Page({params,}: { params: Promise<{ slug: string }> }) {
     const {slug} = await params
@@ -21,7 +21,7 @@ async function Page({params,}: { params: Promise<{ slug: string }> }) {
         <>
             <HeaderBackArrow title="Practice" href="/practice"  />
             <main className="max-w-md px-6 mx-auto flex flex-col ">
-                <Translate words={words.data} tagName={decodedSlug}/>
+                <Quiz words={words.data} tagName={decodedSlug}/>
             </main>
         </>
     );

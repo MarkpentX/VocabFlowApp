@@ -7,13 +7,13 @@ import {AnswerSchema} from "@/features/words/schemas";
 import {zodResolver} from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
-interface QuizItemProps {
+interface TranslateItemProps {
     word: DbWord
     onNextQuestion: () => void
     addCorrect: () => void
 }
 
-function QuizItem({word, onNextQuestion, addCorrect}: QuizItemProps) {
+function TranslateItem({word, onNextQuestion, addCorrect}: TranslateItemProps) {
     const {register, handleSubmit, resetField} = useForm<z.infer<typeof AnswerSchema>>({
         resolver: zodResolver(AnswerSchema)
     });
@@ -53,4 +53,4 @@ function QuizItem({word, onNextQuestion, addCorrect}: QuizItemProps) {
     );
 }
 
-export default QuizItem;
+export default TranslateItem;

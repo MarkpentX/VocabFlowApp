@@ -5,18 +5,19 @@ import Image from "next/image";
 
 interface ModeItemProps {
     slug: Promise<{ slug: string }>;
+    url: string;
     img: string;
     title: string;
     description: string;
 }
 
-async function ModeItem({slug, img, title, description}: ModeItemProps) {
+async function ModeItem({slug, img, title, description, url}: ModeItemProps) {
     const slugParam = await slug;
     const decodedSlug = slugDecode(slugParam.slug);
 
     return (
         <Link
-            href={`/practice/by-translate/${decodedSlug}`}
+            href={`/practice/${url}/${decodedSlug}`}
             className="bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-3 rounded-xl"
         >
             <article className="flex items-center gap-4 p-2 rounded-xl hover:bg-gray-50 transition">

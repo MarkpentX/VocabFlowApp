@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth/drizzle-adapter": "^1.11.1",
     "@hookform/resolvers": "^5.2.2",
+    "@lottiefiles/dotlottie-react": "^0.18.8",
     "@neondatabase/serverless": "^1.0.2",
     "@tailwindcss/postcss": "^4.2.1",
     "animate.css": "^4.1.1",

@@ -1,8 +1,8 @@
 'use client'
 import React, {useState} from 'react';
 import {DbWord} from "@/features/words/types";
-import QuizItem from "@/app/(protected)/practice/by-translate/components/QuizItem";
 import PracticeResult from "@/app/(protected)/practice/components/practiceResult";
+import QuizItemEar from "@/app/(protected)/practice/by-ear/_components/QuizItemEar";
 
 interface QuizProps {
     words: DbWord[]
@@ -27,9 +27,19 @@ function Quiz({ words, tagName }: QuizProps) {
         setCorrectCount(prev => prev + 1)
     }
 
+    function closeWindow() {
+        setIsFinished(false)
+    }
+
+    function resetCorrectCount() {
+        setCorrectCount(0)
+    }
+
     if (isFinished) {
         return (
             <PracticeResult
+                onCloseResult={closeWindow}
+                onResetCorrectCount={resetCorrectCount}
                 correctCount={correctCount}
                 questionsCount={words.length}
                 tagName={tagName}
@@ -45,7 +55,7 @@ function Quiz({ words, tagName }: QuizProps) {
                     style={{ width: `${progress}%` }}>
                 </div>
             </div>
-            <QuizItem word={words[index]} onNextQuestion={onNextQuestion} addCorrect={addCorrect}/>
+            <QuizItemEar word={words[index]} onNextQuestion={onNextQuestion} addCorrect={addCorrect}/>
         </>
     );
 }
