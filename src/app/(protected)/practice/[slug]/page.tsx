@@ -19,8 +19,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         {
             img: "/exam.svg",
             url: "quiz",
-            title: "Translate",
-            description: "Select right meaning"
+            title: "Choice",
+            description: "Choose the correct answer"
         }
     ];
 
