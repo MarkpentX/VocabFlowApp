@@ -6,7 +6,7 @@ import {getWordsByTagAction} from "@/features/words/controllers/getWordsByTagAct
 
 export default async function Page({params,}: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
-    const decodedSlug = slugDecode(slug);  // <-- декодируем сразу
+    const decodedSlug = slugDecode(slug);
     const actionResult = await getWordsByTagAction(decodedSlug)
 
     if (!actionResult.isSuccess || !actionResult.data) {

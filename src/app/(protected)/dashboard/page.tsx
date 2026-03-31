@@ -1,36 +1,18 @@
-import {auth} from "@/auth";
-import bookIcon from "../../../../public/book.svg"
-import tagIcon from "../../../../public/tag.svg"
-import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
-import {getUserStatsAction} from "@/features/users/controllers/getUserStatsAction";
 import AddWordsBtn from "@/app/(protected)/components/AddWordsBtn";
+import DashboardStatistics from "@/app/(protected)/dashboard/DashboardStatistics";
+import {Suspense} from "react";
+import StudyingAnim from "@/app/(protected)/components/StudyingAnim";
 
-async function Page() {
-    const session = await auth();
-    const actionResult = await getUserStatsAction();
-
+function Page() {
     return (
         <>
             <Header/>
             <section className="max-w-3xl mx-auto px-6 py-8">
-                <h1 className="text-3xl font-bold text-black mb-6">Hello, {session?.user?.name}</h1>
-
-                <div className="grid grid-cols-2 gap-4 mt-8">
-                    <article className="bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-5 rounded-xl">
-                        <Image className="w-9 h-9 mb-3" src={bookIcon} alt="book-icon"/>
-                        <span className="text-2xl font-spaceGrotesk font-bold" >{actionResult.isSuccess ? actionResult.data.userWordsCount : "..."}</span>
-                        <p className="text-[rgb(103,126,119)] font-dMSans text-sm">Total Words</p>
-                    </article>
-
-                    <article className="bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-5 rounded-xl">
-                        <Image className="w-9 h-9 mb-3" src={tagIcon} alt="tag-icon"/>
-                        <span className="text-2xl font-spaceGrotesk font-bold" >{actionResult.isSuccess ? actionResult.data.userTagsCount : "..."}</span>
-                        <p className="text-[rgb(103,126,119)] font-dMSans text-sm">Total tags</p>
-                    </article>
-                </div>
-
+                <Suspense fallback={<div>loading...</div>}>
+                    <DashboardStatistics/>
+                </Suspense>
                 <nav className="mt-8">
                     <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8">
                         <li>
@@ -74,6 +56,7 @@ async function Page() {
                     </ul>
                 </nav>
             </section>
+            <StudyingAnim/>
         </>
     );
 }

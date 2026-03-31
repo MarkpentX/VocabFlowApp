@@ -1,7 +1,10 @@
 import "./globals.css";
 import {Toaster} from "react-hot-toast";
-import { Space_Grotesk, DM_Sans } from 'next/font/google'
+import { Space_Grotesk, DM_Sans, Geist } from 'next/font/google'
 import type {Metadata} from "next";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ["vietnamese"],
@@ -26,7 +29,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`${spaceGrotesk.className} ${dMSans.className}`}>
+        <html lang="en" className={cn(spaceGrotesk.className, dMSans.className, "font-sans", geist.variable)}>
         <body className="bg-[rgb(248,249,245)]">
         <Toaster
             position="top-center"

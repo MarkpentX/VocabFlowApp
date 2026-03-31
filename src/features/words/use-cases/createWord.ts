@@ -10,7 +10,6 @@ import {handleValidation} from "@/core/handleValidation";
 import {DbTag} from "@/features/tags/types";
 import {errors} from "@/lib/errors/factory";
 
-
 export async function createWord(data: CreateWord, tag: DbTag): Promise<void> {
     const user = await getSessionUser()
     const trimmedData: CreateWord = trimObject(data);
@@ -20,6 +19,7 @@ export async function createWord(data: CreateWord, tag: DbTag): Promise<void> {
     try {
         await createWordDB(tag.id, trimmedData);
         updateTag(`USER_TAGS-${user.id}`);
+        updateTag(`USER-STATS-${user.id}`);
     } catch (err){
         console.error(err);
         throw errors.db()

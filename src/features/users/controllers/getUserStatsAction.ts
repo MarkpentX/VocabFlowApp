@@ -1,15 +1,17 @@
 "use server";
 
 import {handleActionError, handleActionSuccess} from "@/lib/actionResult";
-import {getSessionUser} from "@/lib/utils/auth-utils";
 import {getUserStats} from "@/features/users/use-cases/getUserStats";
 import {ControllerResult} from "@/lib/types/controller-result";
 import {GetUserStatsResp} from "@/features/users/types";
+import {cacheLife, cacheTag} from "next/cache";
 
-export async function getUserStatsAction(): Promise<ControllerResult<GetUserStatsResp>>{
+export async function getUserStatsAction(userId: string): Promise<ControllerResult<GetUserStatsResp>>{
+    "use cache";
+    cacheLife("max")
+    cacheTag(`USER-STATS-${userId}`)
     try {
-        const user = await getSessionUser();
-        const userStats = await getUserStats(user.id);
+        const userStats = await getUserStats(userId);
         return handleActionSuccess(userStats);
     } catch (error) {
         return handleActionError(error);

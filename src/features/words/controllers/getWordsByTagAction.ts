@@ -10,6 +10,7 @@ export async function getWordsByTagAction(tag: string): Promise<ControllerResult
         const words = await getWordsByTag(tag, user.id)
         return handleActionSuccess(words);
     } catch (error) {
+        console.error(error);
         return handleActionError(error);
     }
 }
