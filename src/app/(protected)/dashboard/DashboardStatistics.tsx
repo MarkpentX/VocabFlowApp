@@ -9,11 +9,18 @@ import TextWriter from "@/app/(protected)/components/TextWriter";
 async function DashboardStatistics() {
     const user = await getSessionUser();
     const actionResult = await getUserStatsAction(user.id);
-
+    const helloText =
+        user.name
+            ? `Hello, ${user.name}`
+            : user.username
+                ? `Hello, ${user.username}`
+                : "Hello, user";
+    console.log(helloText);
+    console.log(user);
     return (
         <>
             <h1 className="text-3xl font-bold text-black mb-6">
-                <TextWriter text={user.name ? `Hello, ${user.name}` : "Hello, user"}/>
+                <TextWriter text={helloText}/>
             </h1>
 
             <div className="grid grid-cols-2 gap-4 mt-8">

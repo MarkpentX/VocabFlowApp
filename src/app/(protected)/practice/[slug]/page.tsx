@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
     return (
         <>
-            <HeaderBackArrow title="Practice mode" href="/practice"  />
+            <HeaderBackArrow title="Practice mode" href="/dashboard"  />
 
             <main className="max-w-md mx-auto px-6 mt-6">
                 <h1 className="text-center text-black text-2xl font-bold mb-6">

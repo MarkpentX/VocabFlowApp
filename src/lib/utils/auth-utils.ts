@@ -4,6 +4,7 @@ import {redirect} from "next/navigation";
 interface SessionUser {
     id: string;
     name?: string;
+    username?: string;
     email?: string;
 }
 
