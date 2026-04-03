@@ -15,13 +15,17 @@ function SignInForm() {
 
     async function onSubmit(data: CreateUserData) {
         const result = await createUserAction(data)
-        if (result.isSuccess){
+
+        if (result.isSuccess) {
             toast.success("Successfully!");
             redirect("/dashboard")
+        } else if (result.message?.includes("Read more at https://errors.authjs.dev#callbackrouteerror")) {
+            toast.error("Incorrect passwrod");
         } else {
             toast.error(result.message ?? "An error occurred");
         }
     }
+
 
     return (
         <form className="mt-10 flex flex-col gap-4 bg-[rgb(255,255,255)]

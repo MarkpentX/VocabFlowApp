@@ -8,9 +8,10 @@ import { accounts, sessions, usersTable, verificationTokens } from "@/db/schema"
 import { db } from "@/index"
 import { createUserDB, getUserByUsernameDB } from "@/features/auth/queries"
 
-// === TypeScript module augmentation ===
+// ===== Type augmentation =====
 declare module "next-auth" {
     interface User {
+        id: string
         username?: string
         email?: string | null
     }
@@ -19,7 +20,7 @@ declare module "next-auth" {
         user: {
             id: string
             username?: string
-            email?: string   // <-- теперь string | undefined
+            email?: string
         }
     }
 }
@@ -32,7 +33,6 @@ declare module "next-auth/jwt" {
     }
 }
 
-// === NextAuth configuration ===
 export const { handlers, signIn, signOut, auth } = NextAuth({
     adapter: DrizzleAdapter(db, {
         usersTable,
@@ -51,28 +51,34 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             },
 
             async authorize(credentials) {
+                if (!credentials?.username || !credentials?.password) {
+                    throw new Error("Missing credentials")
+                }
+
                 let user = await getUserByUsernameDB(credentials.username as string)
 
                 if (!user) {
-                    const data = {
+                    const newUser = {
                         username: credentials.username as string,
                         password: credentials.password as string,
                     }
-                    user = await createUserDB(data)
-                } else {
-                    const passwordCorrect = await compare(
-                        credentials.password as string,
-                        user.passwordHash!
-                    )
-                    if (!passwordCorrect) {
-                        throw new Error("Incorrect credentials")
-                    }
+
+                    user = await createUserDB(newUser)
+                }
+
+                const passwordCorrect = await compare(
+                    credentials.password as string,
+                    user.passwordHash!
+                )
+
+                if (!passwordCorrect) {
+                    throw new Error("Incorrect password")
                 }
 
                 return {
                     id: user.id.toString(),
                     username: user.username ?? undefined,
-                    email: user.email ?? undefined, // <-- null превращаем в undefined
+                    email: user.email ?? undefined,
                 }
             },
         }),
@@ -89,6 +95,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 token.username = user.username
                 token.email = user.email ?? undefined
             }
+
             return token
         },
 
@@ -96,8 +103,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if (session.user) {
                 session.user.id = token.id as string
                 session.user.username = token.username
-                if (token.email) session.user.email = token.email // <-- только если есть
+
+                if (token.email) {
+                    session.user.email = token.email
+                }
             }
+
             return session
         },
     },
