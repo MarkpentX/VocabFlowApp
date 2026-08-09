@@ -26,11 +26,24 @@ function pickVoice(voices: SpeechSynthesisVoice[], locale: string): SpeechSynthe
     );
 }
 
+// Shared by every SoundButton on the page. Each button only ever paused its OWN previous
+// audio, so if word A's request was still in flight (or still playing) when word B's button
+// was clicked, A could start/finish playing after B and sound like "the wrong word". Tracking
+// the one audio/utterance that's actually allowed to be active, page-wide, fixes that.
+let activeAudio: HTMLAudioElement | null = null;
+
+function stopEverythingPlaying() {
+    activeAudio?.pause();
+    activeAudio = null;
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+    }
+}
+
 function SoundButton({ word, lang, className }: SoundButtonProps) {
     const t = useTranslations("tts");
     const [isSpeaking, setIsSpeaking] = useState(false);
     const voicesRef = useRef<SpeechSynthesisVoice[]>([]);
-    const audioRef = useRef<HTMLAudioElement | null>(null);
     const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
     useEffect(() => {
@@ -88,17 +101,16 @@ function SoundButton({ word, lang, className }: SoundButtonProps) {
     }, [word, lang, t]);
 
     const handleSpeak = useCallback(() => {
-        audioRef.current?.pause();
-        if (typeof window !== "undefined" && "speechSynthesis" in window) {
-            window.speechSynthesis.cancel();
-        }
+        stopEverythingPlaying();
 
         const audio = new Audio(`/api/tts?text=${encodeURIComponent(word)}&lang=${lang}`);
-        audioRef.current = audio;
+        activeAudio = audio;
 
         let fallbackTriggered = false;
         const triggerFallback = () => {
-            if (fallbackTriggered) {
+            // Ignore late errors from an audio object that's no longer the active one
+            // (the user already moved on to another word).
+            if (fallbackTriggered || activeAudio !== audio) {
                 return;
             }
             fallbackTriggered = true;
@@ -107,7 +119,12 @@ function SoundButton({ word, lang, className }: SoundButtonProps) {
         };
 
         audio.onplay = () => setIsSpeaking(true);
-        audio.onended = () => setIsSpeaking(false);
+        audio.onended = () => {
+            setIsSpeaking(false);
+            if (activeAudio === audio) {
+                activeAudio = null;
+            }
+        };
         audio.onerror = triggerFallback;
 
         audio.play().catch(triggerFallback);
@@ -123,7 +140,7 @@ function SoundButton({ word, lang, className }: SoundButtonProps) {
         >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                  fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                 strokeLinejoin="round" className="lucide lucide-volume2 w-6 h-6 text-[rgb(37,177,95)]">
+                 strokeLinejoin="round" className="lucide lucide-volume2 w-[18px] h-[18px] text-[rgb(37,177,95)]">
                 <path
                     d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path>
                 <path d="M16 9a5 5 0 0 1 0 6"></path>

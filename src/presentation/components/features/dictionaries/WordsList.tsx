@@ -19,7 +19,7 @@ function WordsList({words}: WordsListProps) {
         <main className="flex flex-col gap-3 px-6 py-4 mt-1.5 max-w-5xl h-dvh mx-auto">
             <div className="items-start justify-start">
                 <nav>
-                    <ul className="w-full flex flex-col sm:flex-row justify-start items-stretch sm:items-start gap-3 mt-10">
+                    <ul className="w-full flex flex-col sm:flex-row justify-start items-stretch sm:items-start gap-3 mt-3">
                         <li className="flex-1">
                             <Link href={"/practice"} className="flex items-center justify-center gap-2 bg-[rgba(37,177,95,0.9)] text-white text-sm border-1 border-[rgb(226,229,220)] py-2.5 px-5 w-full rounded-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
