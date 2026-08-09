@@ -24,7 +24,7 @@ function Page() {
                         </li>
 
                         <li>
-                            <Link href={"/tags"} className="flex items-center justify-center gap-2 text-black text-sm border-1 border-[rgb(226,229,220)] py-3 w-full px-8 rounded-xl">
+                            <Link href={"/dictionary"} className="flex items-center justify-center gap-2 text-black text-sm border-1 border-[rgb(226,229,220)] py-3 w-full px-8 rounded-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
                                      strokeLinejoin="round" className="lucide lucide-tags w-4 h-4">
@@ -33,7 +33,7 @@ function Page() {
                                         d="M9.586 5.586A2 2 0 0 0 8.172 5H3a1 1 0 0 0-1 1v5.172a2 2 0 0 0 .586 1.414L8.29 18.29a2.426 2.426 0 0 0 3.42 0l3.58-3.58a2.426 2.426 0 0 0 0-3.42z"></path>
                                     <circle cx="6.5" cy="9.5" r=".5" fill="currentColor"></circle>
                                 </svg>
-                                {t("viewTags")}
+                                {t("viewDictionaries")}
                             </Link>
                         </li>
 

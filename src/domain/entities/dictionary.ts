@@ -1,10 +1,10 @@
-export interface Tag {
+export interface Dictionary {
     id: string;
     name: string;
     userId: string | null;
 }
 
-export interface TagWithWordsCount {
+export interface DictionaryWithWordsCount {
     id: string;
     title: string;
     wordsCount: number;

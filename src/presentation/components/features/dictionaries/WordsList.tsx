@@ -4,7 +4,7 @@ import React from 'react';
 import { Word } from "@/domain/entities/word";
 import { Link } from "@/i18n/navigation";
 import SoundButton from "@/presentation/components/features/words/SoundButton";
-import { DeleteForm } from "@/presentation/components/features/tags/DeleteForm";
+import { DeleteForm } from "@/presentation/components/features/dictionaries/DeleteForm";
 import { deleteWordAction } from "@/presentation/actions/word-actions";
 import { useTranslations } from "next-intl";
 

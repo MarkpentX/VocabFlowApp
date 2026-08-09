@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from "@/i18n/navigation";
-import { DeleteForm } from "@/presentation/components/features/tags/DeleteForm";
+import { DeleteForm } from "@/presentation/components/features/dictionaries/DeleteForm";
 import { slugEncode } from "@/lib/slug-utils";
-import { getTagsAction, deleteTagAction } from "@/presentation/actions/tag-actions";
+import { getDictionariesAction, deleteDictionaryAction } from "@/presentation/actions/dictionary-actions";
 import { getTranslations } from "next-intl/server";
 
-async function ShowTagsPractice() {
-    const t = await getTranslations("tags");
+async function ShowDictionariesPractice() {
+    const t = await getTranslations("dictionaries");
     const tPractice = await getTranslations("practice");
-    const actionResult = await getTagsAction()
+    const actionResult = await getDictionariesAction()
 
     if (!actionResult.isSuccess){
         return (
@@ -27,7 +27,7 @@ async function ShowTagsPractice() {
                             d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"></path>
                     </svg>
 
-                    <p className="text-md text-[rgb(103,126,119)]">{t("noTagsYet")}</p>
+                    <p className="text-md text-[rgb(103,126,119)]">{t("noDictionariesYet")}</p>
 
                     <Link href="/add-word" className="bg-[rgba(37,177,95,0.9)] text-white text-sm border-1 border-[rgb(226,229,220)] py-2.5 px-4 rounded-xl">{t("addWord")}</Link>
                 </div>
@@ -37,15 +37,15 @@ async function ShowTagsPractice() {
 
     return (
         <>
-            <h2 className="text-[rgb(103,126,119)] font-dMSans text-sm text-center">{tPractice("selectTagToPractice")}</h2>
+            <h2 className="text-[rgb(103,126,119)] font-dMSans text-sm text-center">{tPractice("selectDictionaryToPractice")}</h2>
             <ul className="max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-4 mx-auto w-full">
-                {actionResult.data.map((tag, index) => (
+                {actionResult.data.map((dictionary, index) => (
                     <li className="grid grid-cols-2 animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-6 rounded-xl" key={index}>
-                        <Link className="flex flex-col text-black text-lg" href={`/practice/${slugEncode(tag.title)}`}>
-                            {tag.title}
-                            <span className="text-sm text-[rgb(103,126,119)]">{t("wordCount", {count: tag.wordsCount})}</span>
+                        <Link className="flex flex-col text-black text-lg" href={`/practice/${slugEncode(dictionary.title)}`}>
+                            {dictionary.title}
+                            <span className="text-sm text-[rgb(103,126,119)]">{t("wordCount", {count: dictionary.wordsCount})}</span>
                         </Link>
-                        <DeleteForm id={tag.id} deleteAction={deleteTagAction} />
+                        <DeleteForm id={dictionary.id} deleteAction={deleteDictionaryAction} />
                     </li>
                 ))}
             </ul>
@@ -54,4 +54,4 @@ async function ShowTagsPractice() {
     );
 }
 
-export default ShowTagsPractice;
+export default ShowDictionariesPractice;

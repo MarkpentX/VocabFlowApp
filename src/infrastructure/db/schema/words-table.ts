@@ -1,5 +1,5 @@
 import { pgTable, text } from "drizzle-orm/pg-core";
-import { tagsTable } from "@/infrastructure/db/schema/tags-table";
+import { dictionariesTable } from "@/infrastructure/db/schema/dictionaries-table";
 
 export const wordsTable = pgTable("words", {
     id: text("id")
@@ -10,5 +10,5 @@ export const wordsTable = pgTable("words", {
     meaningLang: text("meaning_lang", { enum: ["en", "ru", "uk"] })
         .notNull()
         .default("en"),
-    tagId: text("tag_id").references(() => tagsTable.id, { onDelete: "cascade" }).notNull(),
+    dictionaryId: text("dictionary_id").references(() => dictionariesTable.id, { onDelete: "cascade" }).notNull(),
 });

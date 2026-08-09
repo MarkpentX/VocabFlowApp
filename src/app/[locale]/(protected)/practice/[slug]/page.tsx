@@ -1,4 +1,4 @@
-import HeaderBackArrow from "@/presentation/components/features/tags/HeaderBackArrow";
+import HeaderBackArrow from "@/presentation/components/features/dictionaries/HeaderBackArrow";
 import ModeItem from "@/presentation/components/features/practice/ModeItem";
 import React from "react";
 import { getTranslations } from "next-intl/server";

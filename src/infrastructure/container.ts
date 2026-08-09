@@ -1,5 +1,5 @@
 import { drizzleWordRepository } from "@/infrastructure/repositories/drizzle-word-repository";
-import { drizzleTagRepository } from "@/infrastructure/repositories/drizzle-tag-repository";
+import { drizzleDictionaryRepository } from "@/infrastructure/repositories/drizzle-dictionary-repository";
 import { drizzleUserRepository } from "@/infrastructure/repositories/drizzle-user-repository";
 import { mymemoryTranslationService } from "@/infrastructure/services/mymemory-translation-service";
 import { googleTranslationService } from "@/infrastructure/services/google-translation-service";
@@ -8,11 +8,11 @@ import { nextAuthService } from "@/infrastructure/auth/next-auth-service";
 
 import { createCreateWordUseCase } from "@/application/use-cases/words/create-word";
 import { createDeleteWordUseCase } from "@/application/use-cases/words/delete-word";
-import { createGetWordsByTagUseCase } from "@/application/use-cases/words/get-words-by-tag";
+import { createGetWordsByDictionaryUseCase } from "@/application/use-cases/words/get-words-by-dictionary";
 import { createGetUserWordsUseCase } from "@/application/use-cases/words/get-user-words";
-import { createGetTagsUseCase } from "@/application/use-cases/tags/get-tags-with-word-counts";
-import { createGetUserTagsUseCase } from "@/application/use-cases/tags/get-user-tags";
-import { createDeleteTagUseCase } from "@/application/use-cases/tags/delete-tag";
+import { createGetDictionariesUseCase } from "@/application/use-cases/dictionaries/get-dictionaries-with-word-counts";
+import { createGetUserDictionariesUseCase } from "@/application/use-cases/dictionaries/get-user-dictionaries";
+import { createDeleteDictionaryUseCase } from "@/application/use-cases/dictionaries/delete-dictionary";
 import { createGetUserStatsUseCase } from "@/application/use-cases/users/get-user-stats";
 import { createGetStreakUseCase } from "@/application/use-cases/users/get-streak";
 import { createRecordPracticeCompletionUseCase } from "@/application/use-cases/users/record-practice-completion";
@@ -22,21 +22,21 @@ import { createTranslateWordUseCase } from "@/application/use-cases/translation/
 
 export const createWord = createCreateWordUseCase({
     wordRepository: drizzleWordRepository,
-    tagRepository: drizzleTagRepository,
+    dictionaryRepository: drizzleDictionaryRepository,
 });
 
 export const deleteWord = createDeleteWordUseCase(drizzleWordRepository);
-export const getWordsByTag = createGetWordsByTagUseCase(drizzleWordRepository);
+export const getWordsByDictionary = createGetWordsByDictionaryUseCase(drizzleWordRepository);
 export const getUserWords = createGetUserWordsUseCase(drizzleWordRepository);
 
-export const getTags = createGetTagsUseCase(drizzleTagRepository);
-export const getUserTags = createGetUserTagsUseCase(drizzleTagRepository);
-export const deleteTag = createDeleteTagUseCase(drizzleTagRepository);
+export const getDictionaries = createGetDictionariesUseCase(drizzleDictionaryRepository);
+export const getUserDictionaries = createGetUserDictionariesUseCase(drizzleDictionaryRepository);
+export const deleteDictionary = createDeleteDictionaryUseCase(drizzleDictionaryRepository);
 
 export const getStreak = createGetStreakUseCase(drizzleUserRepository);
 export const recordPracticeCompletion = createRecordPracticeCompletionUseCase(drizzleUserRepository);
 
-export const getUserStats = createGetUserStatsUseCase({ getUserTags, getUserWords, getStreak });
+export const getUserStats = createGetUserStatsUseCase({ getUserDictionaries, getUserWords, getStreak });
 
 export const getUsers = createGetUsersUseCase(drizzleUserRepository);
 

@@ -12,13 +12,13 @@ interface PracticeResultProps {
     failed: boolean
     maxCombo: number
     streakResult: StreakUpdateResult | null
-    tagName: string
+    dictionaryName: string
     onPlayAgain: () => void
 }
 
-function PracticeResult({ onPlayAgain, correctCount, questionsCount, failed, maxCombo, streakResult, tagName }: PracticeResultProps) {
+function PracticeResult({ onPlayAgain, correctCount, questionsCount, failed, maxCombo, streakResult, dictionaryName }: PracticeResultProps) {
     const t = useTranslations("practice");
-    const encodedTagName = slugEncode(tagName);
+    const encodedDictionaryName = slugEncode(dictionaryName);
     const isPerfect = !failed && questionsCount > 0 && correctCount === questionsCount;
     const resultIcon = failed ? "💔" : isPerfect ? "🏆" : "✨";
 
@@ -77,7 +77,7 @@ function PracticeResult({ onPlayAgain, correctCount, questionsCount, failed, max
                 <li className="flex-1 min-w-[140px]">
                     <Link
                         className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-black border border-[rgb(226,229,220)] bg-[rgb(248,249,245)] w-full transition-transform duration-150 hover:scale-[1.03] hover:bg-gray-100 active:scale-95"
-                        href={`/practice/${encodedTagName}`}
+                        href={`/practice/${encodedDictionaryName}`}
                     >
                         {t("otherMode")}
                     </Link>
@@ -86,7 +86,7 @@ function PracticeResult({ onPlayAgain, correctCount, questionsCount, failed, max
 
             <Link
                 className="flex justify-center self-center items-center gap-2 px-4 py-2 rounded-md text-[rgb(103,126,119)] hover:text-black transition-colors"
-                href={`/tags/${encodedTagName}`}
+                href={`/dictionary/${encodedDictionaryName}`}
             >
                 {t("toWords")}
             </Link>

@@ -1,5 +1,5 @@
 import { WordRepository } from "@/domain/repositories/word-repository";
-import { TagRepository } from "@/domain/repositories/tag-repository";
+import { DictionaryRepository } from "@/domain/repositories/dictionary-repository";
 import { CreateWordSchema } from "@/domain/validation/word.schema";
 import { validate } from "@/application/shared/validate";
 import { trimObject } from "@/application/shared/trim-object";
@@ -8,36 +8,36 @@ import { NewWordInput } from "@/domain/entities/word";
 
 export interface CreateWordDeps {
     wordRepository: WordRepository;
-    tagRepository: TagRepository;
+    dictionaryRepository: DictionaryRepository;
 }
 
-export function createCreateWordUseCase({ wordRepository, tagRepository }: CreateWordDeps) {
+export function createCreateWordUseCase({ wordRepository, dictionaryRepository }: CreateWordDeps) {
     return async function createWord(input: NewWordInput, userId: string): Promise<void> {
         const trimmed = trimObject({
             infinitive: input.infinitive,
             meaning: input.meaning,
-            tag: input.tag,
+            dictionary: input.dictionary,
         });
-        const tagName = trimmed.tag.toLowerCase();
+        const dictionaryName = trimmed.dictionary.toLowerCase();
 
         validate(CreateWordSchema, {
             infinitive: trimmed.infinitive,
             meaning: trimmed.meaning,
             meaningLang: input.meaningLang,
-            tag: tagName,
+            dictionary: dictionaryName,
         });
 
         try {
-            let tag = await tagRepository.findByUserAndName(userId, tagName);
-            if (!tag) {
-                tag = await tagRepository.create(userId, tagName);
+            let dictionary = await dictionaryRepository.findByUserAndName(userId, dictionaryName);
+            if (!dictionary) {
+                dictionary = await dictionaryRepository.create(userId, dictionaryName);
             }
 
-            await wordRepository.create(tag.id, {
+            await wordRepository.create(dictionary.id, {
                 infinitive: trimmed.infinitive,
                 meaning: trimmed.meaning,
                 meaningLang: input.meaningLang,
-                tag: tagName,
+                dictionary: dictionaryName,
             });
         } catch (err) {
             console.error(err);

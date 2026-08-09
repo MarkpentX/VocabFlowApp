@@ -8,10 +8,10 @@ import { usePracticeSession } from "@/presentation/hooks/use-practice-session";
 
 interface QuizByEarProps {
     words: Word[]
-    tagName: string
+    dictionaryName: string
 }
 
-function QuizByEar({ words, tagName }: QuizByEarProps) {
+function QuizByEar({ words, dictionaryName }: QuizByEarProps) {
     const session = usePracticeSession(words);
 
     if (session.isFinished) {
@@ -23,7 +23,7 @@ function QuizByEar({ words, tagName }: QuizByEarProps) {
                 failed={session.failed}
                 maxCombo={session.maxCombo}
                 streakResult={session.streakResult}
-                tagName={tagName}
+                dictionaryName={dictionaryName}
             />
         )
     }

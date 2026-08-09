@@ -9,10 +9,10 @@ import { usePracticeSession } from "@/presentation/hooks/use-practice-session";
 
 interface QuizByChoiceProps {
     words: Word[]
-    tagName: string
+    dictionaryName: string
 }
 
-function QuizByChoice({ words, tagName }: QuizByChoiceProps) {
+function QuizByChoice({ words, dictionaryName }: QuizByChoiceProps) {
     const session = usePracticeSession(words);
 
     const quizData: QuizQuestion[] = words
@@ -39,7 +39,7 @@ function QuizByChoice({ words, tagName }: QuizByChoiceProps) {
                 failed={session.failed}
                 maxCombo={session.maxCombo}
                 streakResult={session.streakResult}
-                tagName={tagName}
+                dictionaryName={dictionaryName}
             />
         )
     }

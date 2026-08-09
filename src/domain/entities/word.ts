@@ -7,12 +7,12 @@ export interface Word {
     infinitive: string;
     meaning: string;
     meaningLang: WordLanguage;
-    tagId: string;
+    dictionaryId: string;
 }
 
 export interface NewWordInput {
     infinitive: string;
     meaning: string;
     meaningLang: WordLanguage;
-    tag: string;
+    dictionary: string;
 }

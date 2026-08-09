@@ -3,9 +3,9 @@ import { Word } from "@/domain/entities/word";
 import { errors } from "@/domain/errors/factory";
 
 export function createGetUserWordsUseCase(wordRepository: WordRepository) {
-    return async function getUserWords(tagIds: string[]): Promise<Word[]> {
+    return async function getUserWords(dictionaryIds: string[]): Promise<Word[]> {
         try {
-            return await wordRepository.findByTagIds(tagIds);
+            return await wordRepository.findByDictionaryIds(dictionaryIds);
         } catch {
             throw errors.db();
         }

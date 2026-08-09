@@ -27,7 +27,7 @@ function CreateWordForm() {
         defaultValues: {
             infinitive: "",
             meaning: "",
-            tag: "",
+            dictionary: "",
             meaningLang: "ru"
         }
     });
@@ -140,15 +140,15 @@ function CreateWordForm() {
             </p>
 
             <p className="flex flex-col">
-                <label className="text-sm font-bold mb-1" htmlFor="tag">{t("tagLabel")}</label>
+                <label className="text-sm font-bold mb-1" htmlFor="dictionary">{t("dictionaryLabel")}</label>
                 <input
                     className="h-10 border border-[rgb(226,229,220)] text-sm text-[rgb(18,33,28)] bg-[rgb(248,249,245)] px-3 py-2 rounded-md"
-                    id="tag"
-                    placeholder={t("tagPlaceholder")}
+                    id="dictionary"
+                    placeholder={t("dictionaryPlaceholder")}
                     type="text"
-                    {...register("tag")}
+                    {...register("dictionary")}
                 />
-                <span className="text-red-500 text-xs">{formState.errors.tag?.message}</span>
+                <span className="text-red-500 text-xs">{formState.errors.dictionary?.message}</span>
             </p>
 
             <button

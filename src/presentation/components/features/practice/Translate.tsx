@@ -8,10 +8,10 @@ import { usePracticeSession } from "@/presentation/hooks/use-practice-session";
 
 interface TranslateProps {
     words: Word[]
-    tagName: string
+    dictionaryName: string
 }
 
-function Translate({ words, tagName }: TranslateProps) {
+function Translate({ words, dictionaryName }: TranslateProps) {
     const session = usePracticeSession(words);
 
     if (session.isFinished) {
@@ -23,7 +23,7 @@ function Translate({ words, tagName }: TranslateProps) {
                 failed={session.failed}
                 maxCombo={session.maxCombo}
                 streakResult={session.streakResult}
-                tagName={tagName}
+                dictionaryName={dictionaryName}
             />
         )
     }

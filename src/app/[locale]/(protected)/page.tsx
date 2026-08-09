@@ -11,7 +11,7 @@ export default function Home() {
 
     const advantages = [
         { icon: "/book.svg", key: "saveWords" },
-        { icon: "/tag.svg", key: "organizeTags" },
+        { icon: "/tag.svg", key: "organizeDictionaries" },
         { icon: "/brain.svg", key: "practiceLearn" },
     ] as const;
 

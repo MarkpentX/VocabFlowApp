@@ -1,25 +1,25 @@
 "use server";
 
-import { getTags, deleteTag } from "@/infrastructure/container";
+import { getDictionaries, deleteDictionary } from "@/infrastructure/container";
 import { getSessionUser } from "@/infrastructure/auth/session";
 import { ControllerResult } from "@/application/shared/controller-result";
 import { handleActionError, handleActionSuccess } from "@/application/shared/action-result";
-import { TagWithWordsCount } from "@/domain/entities/tag";
+import { DictionaryWithWordsCount } from "@/domain/entities/dictionary";
 
-export async function getTagsAction(): Promise<ControllerResult<TagWithWordsCount[]>> {
+export async function getDictionariesAction(): Promise<ControllerResult<DictionaryWithWordsCount[]>> {
     try {
         const user = await getSessionUser();
-        const allTags = await getTags(user.id);
-        return handleActionSuccess(allTags);
+        const allDictionaries = await getDictionaries(user.id);
+        return handleActionSuccess(allDictionaries);
     } catch (error) {
         return handleActionError(error);
     }
 }
 
-export async function deleteTagAction(id: string): Promise<ControllerResult> {
+export async function deleteDictionaryAction(id: string): Promise<ControllerResult> {
     try {
         await getSessionUser();
-        await deleteTag(id);
+        await deleteDictionary(id);
         return handleActionSuccess();
     } catch (error) {
         return handleActionError(error);

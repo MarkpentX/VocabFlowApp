@@ -42,9 +42,9 @@ async function DashboardStatistics() {
                 </article>
 
                 <article className="bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black p-5 rounded-xl">
-                    <Image className="w-9 h-9 mb-3" src="/tag.svg" alt="tag-icon" width={36} height={36}/>
-                    <span className="text-2xl font-spaceGrotesk font-bold" >{actionResult.isSuccess ? actionResult.data.userTagsCount : "..."}</span>
-                    <p className="text-[rgb(103,126,119)] font-dMSans text-sm">{t("totalTags")}</p>
+                    <Image className="w-9 h-9 mb-3" src="/tag.svg" alt="dictionary-icon" width={36} height={36}/>
+                    <span className="text-2xl font-spaceGrotesk font-bold" >{actionResult.isSuccess ? actionResult.data.userDictionariesCount : "..."}</span>
+                    <p className="text-[rgb(103,126,119)] font-dMSans text-sm">{t("totalDictionaries")}</p>
                 </article>
             </div>
         </>

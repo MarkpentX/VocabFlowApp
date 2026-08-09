@@ -1,29 +1,29 @@
 import { errors } from "@/domain/errors/factory";
-import { Tag } from "@/domain/entities/tag";
+import { Dictionary } from "@/domain/entities/dictionary";
 import { Word } from "@/domain/entities/word";
 import { StreakInfo } from "@/domain/entities/streak";
 
 export interface GetUserStatsResult {
     userWordsCount: number;
-    userTagsCount: number;
+    userDictionariesCount: number;
     currentStreak: number;
     longestStreak: number;
 }
 
 export interface GetUserStatsDeps {
-    getUserTags: (userId: string) => Promise<Tag[]>;
-    getUserWords: (tagIds: string[]) => Promise<Word[]>;
+    getUserDictionaries: (userId: string) => Promise<Dictionary[]>;
+    getUserWords: (dictionaryIds: string[]) => Promise<Word[]>;
     getStreak: (userId: string) => Promise<StreakInfo>;
 }
 
-export function createGetUserStatsUseCase({ getUserTags, getUserWords, getStreak }: GetUserStatsDeps) {
+export function createGetUserStatsUseCase({ getUserDictionaries, getUserWords, getStreak }: GetUserStatsDeps) {
     return async function getUserStats(userId: string): Promise<GetUserStatsResult> {
         try {
-            const [tags, streak] = await Promise.all([getUserTags(userId), getStreak(userId)]);
-            const words = await getUserWords(tags.map((tag) => tag.id));
+            const [dictionaries, streak] = await Promise.all([getUserDictionaries(userId), getStreak(userId)]);
+            const words = await getUserWords(dictionaries.map((dictionary) => dictionary.id));
             return {
                 userWordsCount: words.length,
-                userTagsCount: tags.length,
+                userDictionariesCount: dictionaries.length,
                 currentStreak: streak.currentStreak,
                 longestStreak: streak.longestStreak,
             };

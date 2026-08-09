@@ -1,7 +1,7 @@
 import { pgTable, text } from "drizzle-orm/pg-core";
 import { usersTable } from "@/infrastructure/db/schema/users-table";
 
-export const tagsTable = pgTable("tags", {
+export const dictionariesTable = pgTable("dictionaries", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),

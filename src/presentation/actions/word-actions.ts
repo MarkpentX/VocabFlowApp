@@ -1,6 +1,6 @@
 "use server";
 
-import { createWord, deleteWord, getWordsByTag } from "@/infrastructure/container";
+import { createWord, deleteWord, getWordsByDictionary } from "@/infrastructure/container";
 import { getSessionUser } from "@/infrastructure/auth/session";
 import { ControllerResult } from "@/application/shared/controller-result";
 import { handleActionError, handleActionSuccess } from "@/application/shared/action-result";
@@ -26,10 +26,10 @@ export async function deleteWordAction(id: string): Promise<ControllerResult> {
     }
 }
 
-export async function getWordsByTagAction(tag: string): Promise<ControllerResult<Word[]>> {
+export async function getWordsByDictionaryAction(dictionary: string): Promise<ControllerResult<Word[]>> {
     try {
         const user = await getSessionUser();
-        const words = await getWordsByTag(tag, user.id);
+        const words = await getWordsByDictionary(dictionary, user.id);
         return handleActionSuccess(words);
     } catch (error) {
         console.error(error);

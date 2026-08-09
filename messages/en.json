@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "VocabFlow — Vocabulary Trainer for Language Learning",
-    "description": "Learn languages faster with VocabFlow. Save vocabulary, organize words with tags, and practice with quizzes to remember new words easily."
+    "description": "Learn languages faster with VocabFlow. Save vocabulary, organize words into dictionaries, and practice with quizzes to remember new words easily."
   },
   "common": {
     "appName": "VocabFlow",
@@ -19,12 +19,12 @@
   "home": {
     "heroTitlePrefix": "Learn languages by",
     "heroTitleHighlight": "practicing vocabulary",
-    "heroSubtitle": "Save words, organize them with tags, and practice with interactive quizzes. Your personal vocabulary trainer — simple and effective.",
+    "heroSubtitle": "Save words, organize them into dictionaries, and practice with interactive quizzes. Your personal vocabulary trainer — simple and effective.",
     "startLearning": "Start Learning",
     "featuresTitle": "Features",
     "advantages": {
       "saveWords": { "title": "Save Words", "desc": "Build your personal vocabulary with words and translations." },
-      "organizeTags": { "title": "Organize with Tags", "desc": "Group words by topic — food, travel, business, and more." },
+      "organizeDictionaries": { "title": "Organize into Dictionaries", "desc": "Group words by topic — food, travel, business, and more." },
       "practiceLearn": { "title": "Practice & Learn", "desc": "Test yourself with interactive quizzes and track progress." }
     }
   },
@@ -32,9 +32,9 @@
     "helloNamed": "Hello, {name}",
     "helloUser": "Hello, user",
     "totalWords": "Total Words",
-    "totalTags": "Total tags",
+    "totalDictionaries": "Total dictionaries",
     "addWord": "Add Word",
-    "viewTags": "View Tags",
+    "viewDictionaries": "View Dictionaries",
     "startPractice": "Start Practice",
     "streak": {
       "daysLabel": "{count, plural, one {day} other {days}} streak"
@@ -48,29 +48,29 @@
     "meaningLabel": "Meaning / Translation",
     "meaningPlaceholder": "translation",
     "translatingPlaceholder": "Translating...",
-    "tagLabel": "Tag",
-    "tagPlaceholder": "e.g. fruits",
+    "dictionaryLabel": "Dictionary",
+    "dictionaryPlaceholder": "e.g. fruits",
     "saveButton": "Save word",
     "createdSuccess": "The word has been created!",
     "createdError": "An error occurred",
     "translationError": "Could not translate this word. You can still type the meaning manually.",
     "languages": { "en": "English", "ru": "Russian", "uk": "Ukrainian" }
   },
-  "tags": {
-    "pageTitle": "Tags",
-    "noTagsYet": "No tags yet. Add a word to create your first tag.",
+  "dictionaries": {
+    "pageTitle": "Dictionaries",
+    "noDictionariesYet": "No dictionaries yet. Add a word to create your first dictionary.",
     "addWord": "Add word",
     "wordCount": "{count, plural, one {# word} other {# words}}",
     "loadError": "An error occurred",
-    "noWordsYet": "No words in this tag yet.",
+    "noWordsYet": "No words in this dictionary yet.",
     "loadWordsError": "Failed to load words."
   },
   "practice": {
     "pageTitle": "Practice mode",
     "selectMode": "Select mode",
-    "selectTagToPractice": "Select the tag you want to practice",
+    "selectDictionaryToPractice": "Select the dictionary you want to practice",
     "practiceTitle": "Practice",
-    "loadWordsError": "Failed to load words for this tag.",
+    "loadWordsError": "Failed to load words for this dictionary.",
     "modes": {
       "byTranslate": { "title": "By translate", "description": "Write the translation of the words" },
       "byEar": { "title": "By ear", "description": "Hear and write the word" },
