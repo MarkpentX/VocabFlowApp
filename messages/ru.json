@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "title": "VocabFlow — тренажёр словарного запаса для изучения языков",
+    "description": "Учите языки быстрее с VocabFlow. Сохраняйте слова, организуйте их по тегам и закрепляйте в тестах."
+  },
+  "common": {
+    "appName": "VocabFlow",
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "back": "Назад",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "logout": "Выйти",
+    "login": "Войти",
+    "language": "Язык",
+    "deleteSuccess": "Успешно удалено!",
+    "deleteError": "Не удалось удалить!"
+  },
+  "home": {
+    "heroTitlePrefix": "Учите языки, ",
+    "heroTitleHighlight": "тренируя слова",
+    "heroSubtitle": "Сохраняйте слова, группируйте их по темам и закрепляйте в интерактивных тестах. Ваш персональный тренажёр словарного запаса — просто и эффективно.",
+    "startLearning": "Начать обучение",
+    "featuresTitle": "Возможности",
+    "advantages": {
+      "saveWords": { "title": "Сохраняйте слова", "desc": "Формируйте личный словарь из слов и их переводов." },
+      "organizeTags": { "title": "Организуйте по тегам", "desc": "Группируйте слова по темам — еда, путешествия, бизнес и другие." },
+      "practiceLearn": { "title": "Практикуйтесь", "desc": "Проверяйте себя в интерактивных тестах и следите за прогрессом." }
+    }
+  },
+  "dashboard": {
+    "helloNamed": "Привет, {name}",
+    "helloUser": "Привет!",
+    "totalWords": "Всего слов",
+    "totalTags": "Всего тегов",
+    "addWord": "Добавить слово",
+    "viewTags": "Все теги",
+    "startPractice": "Начать практику",
+    "streak": {
+      "daysLabel": "{count, plural, one {день} few {дня} many {дней} other {дней}} подряд"
+    }
+  },
+  "words": {
+    "addWordTitle": "Новое слово",
+    "translateToLabel": "Перевести на",
+    "wordLabel": "Слово",
+    "wordPlaceholder": "например, apple",
+    "meaningLabel": "Значение / перевод",
+    "meaningPlaceholder": "перевод",
+    "translatingPlaceholder": "Переводим...",
+    "tagLabel": "Тег",
+    "tagPlaceholder": "например, фрукты",
+    "saveButton": "Сохранить слово",
+    "createdSuccess": "Слово добавлено!",
+    "createdError": "Произошла ошибка",
+    "translationError": "Не удалось перевести слово. Вы можете ввести перевод вручную.",
+    "languages": { "en": "Английский", "ru": "Русский", "uk": "Украинский" }
+  },
+  "tags": {
+    "pageTitle": "Теги",
+    "noTagsYet": "Тегов пока нет. Добавьте слово, чтобы создать первый тег.",
+    "addWord": "Добавить слово",
+    "wordCount": "{count, plural, one {# слово} few {# слова} many {# слов} other {# слова}}",
+    "loadError": "Произошла ошибка",
+    "noWordsYet": "В этом теге пока нет слов.",
+    "loadWordsError": "Не удалось загрузить слова."
+  },
+  "practice": {
+    "pageTitle": "Режим практики",
+    "selectMode": "Выберите режим",
+    "selectTagToPractice": "Выберите тег для практики",
+    "practiceTitle": "Практика",
+    "loadWordsError": "Не удалось загрузить слова для этого тега.",
+    "modes": {
+      "byTranslate": { "title": "По переводу", "description": "Напишите перевод слова" },
+      "byEar": { "title": "На слух", "description": "Прослушайте и напишите слово" },
+      "quiz": { "title": "Выбор ответа", "description": "Выберите правильный вариант" }
+    },
+    "listenAndWrite": "Прослушайте и напишите слово",
+    "writeTranslationPlaceholder": "Введите перевод:",
+    "writeWordHeardPlaceholder": "Напишите услышанное слово:",
+    "check": "Проверить",
+    "correct": "Верно!",
+    "correctAnswerWas": "Правильный ответ: {answer}",
+    "practiceOver": "Практика завершена!",
+    "keepLearning": "Продолжайте учиться вместе с VocabFlow!",
+    "again": "Повторить",
+    "otherMode": "Другой режим",
+    "toWords": "К словам",
+    "comboMessage": "Комбо ×{count}! 🔥",
+    "bestCombo": "Лучшее комбо: ×{count}",
+    "outOfHearts": "Жизни закончились!",
+    "perfectScore": "Идеально! Ни одной ошибки 🏆"
+  },
+  "auth": {
+    "continuePrompt": "Продолжите, чтобы начать изучать языки",
+    "usernameLabel": "Имя пользователя:",
+    "passwordLabel": "Пароль:",
+    "continueButton": "Продолжить",
+    "googleContinue": "Войти через Google",
+    "loading": "Загрузка...",
+    "signInSuccess": "Вход выполнен успешно!",
+    "incorrectPassword": "Неверное имя пользователя или пароль",
+    "genericError": "Произошла ошибка"
+  },
+  "admin": {
+    "title": "Админ-панель",
+    "loadUsersError": "Не удалось загрузить пользователей"
+  },
+  "errors": {
+    "unexpected": "Непредвиденная ошибка",
+    "database": "Что-то пошло не так. Попробуйте ещё раз.",
+    "translationUnavailable": "Сервис перевода сейчас недоступен.",
+    "notFound": "Не найдено"
+  },
+  "tts": {
+    "noVoiceAvailable": "Озвучивание для этого языка пока недоступно на вашем устройстве."
+  }
+}

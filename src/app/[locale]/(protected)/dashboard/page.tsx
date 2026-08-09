@@ -1,0 +1,68 @@
+import { Link } from "@/i18n/navigation";
+import Header from "@/presentation/components/layout/Header";
+import AddWordsBtn from "@/presentation/components/features/dashboard/AddWordsBtn";
+import DashboardStatistics from "@/presentation/components/features/dashboard/DashboardStatistics";
+import { Suspense } from "react";
+import StudyingAnim from "@/presentation/components/features/dashboard/StudyingAnim";
+import { useTranslations } from "next-intl";
+
+function Page() {
+    const t = useTranslations("dashboard");
+    const tCommon = useTranslations("common");
+
+    return (
+        <>
+            <Header/>
+            <section className="max-w-3xl mx-auto px-6 py-8">
+                <Suspense fallback={<div>{tCommon("loading")}</div>}>
+                    <DashboardStatistics/>
+                </Suspense>
+                <nav className="mt-8">
+                    <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8">
+                        <li>
+                            <AddWordsBtn/>
+                        </li>
+
+                        <li>
+                            <Link href={"/tags"} className="flex items-center justify-center gap-2 text-black text-sm border-1 border-[rgb(226,229,220)] py-3 w-full px-8 rounded-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                     strokeLinejoin="round" className="lucide lucide-tags w-4 h-4">
+                                    <path d="m15 5 6.3 6.3a2.4 2.4 0 0 1 0 3.4L17 19"></path>
+                                    <path
+                                        d="M9.586 5.586A2 2 0 0 0 8.172 5H3a1 1 0 0 0-1 1v5.172a2 2 0 0 0 .586 1.414L8.29 18.29a2.426 2.426 0 0 0 3.42 0l3.58-3.58a2.426 2.426 0 0 0 0-3.42z"></path>
+                                    <circle cx="6.5" cy="9.5" r=".5" fill="currentColor"></circle>
+                                </svg>
+                                {t("viewTags")}
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link href={"/practice"} className="flex items-center justify-center gap-2 bg-[rgba(236,239,231,0.8)] text-black text-sm border-1 border-[rgb(226,229,220)] py-3 w-full px-8 rounded-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                     strokeLinejoin="round" className="lucide lucide-brain w-4 h-4">
+                                    <path
+                                        d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path>
+                                    <path
+                                        d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path>
+                                    <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>
+                                    <path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path>
+                                    <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path>
+                                    <path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path>
+                                    <path d="M19.938 10.5a4 4 0 0 1 .585.396"></path>
+                                    <path d="M6 18a4 4 0 0 1-1.967-.516"></path>
+                                    <path d="M19.967 17.484A4 4 0 0 1 18 18"></path>
+                                </svg>
+                                {t("startPractice")}
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+            <StudyingAnim/>
+        </>
+    );
+}
+
+export default Page;

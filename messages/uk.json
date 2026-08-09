@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "title": "VocabFlow — тренажер словникового запасу для вивчення мов",
+    "description": "Вивчайте мови швидше з VocabFlow. Зберігайте слова, організовуйте їх за тегами та закріплюйте в тестах."
+  },
+  "common": {
+    "appName": "VocabFlow",
+    "loading": "Завантаження...",
+    "error": "Сталася помилка",
+    "back": "Назад",
+    "save": "Зберегти",
+    "cancel": "Скасувати",
+    "logout": "Вийти",
+    "login": "Увійти",
+    "language": "Мова",
+    "deleteSuccess": "Успішно видалено!",
+    "deleteError": "Не вдалося видалити!"
+  },
+  "home": {
+    "heroTitlePrefix": "Вивчайте мови, ",
+    "heroTitleHighlight": "тренуючи слова",
+    "heroSubtitle": "Зберігайте слова, групуйте їх за темами та закріплюйте в інтерактивних тестах. Ваш персональний тренажер словникового запасу — просто й ефективно.",
+    "startLearning": "Почати навчання",
+    "featuresTitle": "Можливості",
+    "advantages": {
+      "saveWords": { "title": "Зберігайте слова", "desc": "Формуйте особистий словник зі слів та їхніх перекладів." },
+      "organizeTags": { "title": "Організуйте за тегами", "desc": "Групуйте слова за темами — їжа, подорожі, бізнес та інші." },
+      "practiceLearn": { "title": "Практикуйтеся", "desc": "Перевіряйте себе в інтерактивних тестах і стежте за прогресом." }
+    }
+  },
+  "dashboard": {
+    "helloNamed": "Привіт, {name}",
+    "helloUser": "Привіт!",
+    "totalWords": "Усього слів",
+    "totalTags": "Усього тегів",
+    "addWord": "Додати слово",
+    "viewTags": "Усі теги",
+    "startPractice": "Почати практику",
+    "streak": {
+      "daysLabel": "{count, plural, one {день} few {дні} many {днів} other {дні}} поспіль"
+    }
+  },
+  "words": {
+    "addWordTitle": "Нове слово",
+    "translateToLabel": "Перекласти на",
+    "wordLabel": "Слово",
+    "wordPlaceholder": "наприклад, apple",
+    "meaningLabel": "Значення / переклад",
+    "meaningPlaceholder": "переклад",
+    "translatingPlaceholder": "Перекладаємо...",
+    "tagLabel": "Тег",
+    "tagPlaceholder": "наприклад, фрукти",
+    "saveButton": "Зберегти слово",
+    "createdSuccess": "Слово додано!",
+    "createdError": "Сталася помилка",
+    "translationError": "Не вдалося перекласти слово. Ви можете ввести переклад вручну.",
+    "languages": { "en": "Англійська", "ru": "Російська", "uk": "Українська" }
+  },
+  "tags": {
+    "pageTitle": "Теги",
+    "noTagsYet": "Тегів поки немає. Додайте слово, щоб створити перший тег.",
+    "addWord": "Додати слово",
+    "wordCount": "{count, plural, one {# слово} few {# слова} many {# слів} other {# слова}}",
+    "loadError": "Сталася помилка",
+    "noWordsYet": "У цьому тегу поки немає слів.",
+    "loadWordsError": "Не вдалося завантажити слова."
+  },
+  "practice": {
+    "pageTitle": "Режим практики",
+    "selectMode": "Виберіть режим",
+    "selectTagToPractice": "Виберіть тег для практики",
+    "practiceTitle": "Практика",
+    "loadWordsError": "Не вдалося завантажити слова для цього тегу.",
+    "modes": {
+      "byTranslate": { "title": "За перекладом", "description": "Напишіть переклад слова" },
+      "byEar": { "title": "На слух", "description": "Прослухайте і напишіть слово" },
+      "quiz": { "title": "Вибір відповіді", "description": "Виберіть правильний варіант" }
+    },
+    "listenAndWrite": "Прослухайте і напишіть слово",
+    "writeTranslationPlaceholder": "Введіть переклад:",
+    "writeWordHeardPlaceholder": "Напишіть почуте слово:",
+    "check": "Перевірити",
+    "correct": "Правильно!",
+    "correctAnswerWas": "Правильна відповідь: {answer}",
+    "practiceOver": "Практику завершено!",
+    "keepLearning": "Продовжуйте навчатися разом із VocabFlow!",
+    "again": "Повторити",
+    "otherMode": "Інший режим",
+    "toWords": "До слів",
+    "comboMessage": "Комбо ×{count}! 🔥",
+    "bestCombo": "Найкраще комбо: ×{count}",
+    "outOfHearts": "Життя закінчилися!",
+    "perfectScore": "Ідеально! Жодної помилки 🏆"
+  },
+  "auth": {
+    "continuePrompt": "Продовжте, щоб почати вивчати мови",
+    "usernameLabel": "Ім'я користувача:",
+    "passwordLabel": "Пароль:",
+    "continueButton": "Продовжити",
+    "googleContinue": "Увійти через Google",
+    "loading": "Завантаження...",
+    "signInSuccess": "Вхід виконано успішно!",
+    "incorrectPassword": "Неправильне ім'я користувача або пароль",
+    "genericError": "Сталася помилка"
+  },
+  "admin": {
+    "title": "Адмін-панель",
+    "loadUsersError": "Не вдалося завантажити користувачів"
+  },
+  "errors": {
+    "unexpected": "Неочікувана помилка",
+    "database": "Щось пішло не так. Спробуйте ще раз.",
+    "translationUnavailable": "Сервіс перекладу зараз недоступний.",
+    "notFound": "Не знайдено"
+  },
+  "tts": {
+    "noVoiceAvailable": "Озвучення для цієї мови поки що недоступне на вашому пристрої."
+  }
+}

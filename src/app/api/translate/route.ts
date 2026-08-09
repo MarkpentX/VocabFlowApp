@@ -1,27 +1,35 @@
 import { NextResponse } from "next/server";
+import { translateWord } from "@/infrastructure/container";
+import { isDomainError } from "@/domain/errors/type-guard";
+import { WORD_LANGUAGES, WordLanguage } from "@/domain/entities/word";
+
+function isWordLanguage(value: unknown): value is WordLanguage {
+    return typeof value === "string" && (WORD_LANGUAGES as readonly string[]).includes(value);
+}
 
 export async function POST(req: Request) {
-    const { text, target } = await req.json();
+    const body = await req.json().catch(() => null);
 
-    if (!text) {
-        return NextResponse.json({ translation: "" });
+    if (
+        !body ||
+        typeof body.text !== "string" ||
+        !isWordLanguage(body.source) ||
+        !isWordLanguage(body.target)
+    ) {
+        return NextResponse.json({ error: "invalid_request" }, { status: 400 });
     }
 
     try {
-        const res = await fetch(
-            `https://api.mymemory.translated.net/get?q=${encodeURIComponent(
-                text
-            )}&langpair=en|${target}`
-        );
-
-        const data = await res.json();
-
-        return NextResponse.json({
-            translation: data.responseData.translatedText,
+        const translation = await translateWord({
+            text: body.text,
+            sourceLang: body.source,
+            targetLang: body.target,
         });
-    } catch {
-        return NextResponse.json({
-            translation: "",
-        });
+        return NextResponse.json({ translation });
+    } catch (err) {
+        if (isDomainError(err)) {
+            return NextResponse.json({ error: "translation_unavailable" }, { status: 502 });
+        }
+        return NextResponse.json({ error: "unexpected" }, { status: 500 });
     }
 }

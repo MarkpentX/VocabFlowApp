@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "title": "VocabFlow — Vocabulary Trainer for Language Learning",
+    "description": "Learn languages faster with VocabFlow. Save vocabulary, organize words with tags, and practice with quizzes to remember new words easily."
+  },
+  "common": {
+    "appName": "VocabFlow",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "logout": "Logout",
+    "login": "Login",
+    "language": "Language",
+    "deleteSuccess": "Successfully deleted!",
+    "deleteError": "Failed to delete!"
+  },
+  "home": {
+    "heroTitlePrefix": "Learn languages by",
+    "heroTitleHighlight": "practicing vocabulary",
+    "heroSubtitle": "Save words, organize them with tags, and practice with interactive quizzes. Your personal vocabulary trainer — simple and effective.",
+    "startLearning": "Start Learning",
+    "featuresTitle": "Features",
+    "advantages": {
+      "saveWords": { "title": "Save Words", "desc": "Build your personal vocabulary with words and translations." },
+      "organizeTags": { "title": "Organize with Tags", "desc": "Group words by topic — food, travel, business, and more." },
+      "practiceLearn": { "title": "Practice & Learn", "desc": "Test yourself with interactive quizzes and track progress." }
+    }
+  },
+  "dashboard": {
+    "helloNamed": "Hello, {name}",
+    "helloUser": "Hello, user",
+    "totalWords": "Total Words",
+    "totalTags": "Total tags",
+    "addWord": "Add Word",
+    "viewTags": "View Tags",
+    "startPractice": "Start Practice",
+    "streak": {
+      "daysLabel": "{count, plural, one {day} other {days}} streak"
+    }
+  },
+  "words": {
+    "addWordTitle": "Add Word",
+    "translateToLabel": "Translate to",
+    "wordLabel": "Word",
+    "wordPlaceholder": "e.g. apple",
+    "meaningLabel": "Meaning / Translation",
+    "meaningPlaceholder": "translation",
+    "translatingPlaceholder": "Translating...",
+    "tagLabel": "Tag",
+    "tagPlaceholder": "e.g. fruits",
+    "saveButton": "Save word",
+    "createdSuccess": "The word has been created!",
+    "createdError": "An error occurred",
+    "translationError": "Could not translate this word. You can still type the meaning manually.",
+    "languages": { "en": "English", "ru": "Russian", "uk": "Ukrainian" }
+  },
+  "tags": {
+    "pageTitle": "Tags",
+    "noTagsYet": "No tags yet. Add a word to create your first tag.",
+    "addWord": "Add word",
+    "wordCount": "{count, plural, one {# word} other {# words}}",
+    "loadError": "An error occurred",
+    "noWordsYet": "No words in this tag yet.",
+    "loadWordsError": "Failed to load words."
+  },
+  "practice": {
+    "pageTitle": "Practice mode",
+    "selectMode": "Select mode",
+    "selectTagToPractice": "Select the tag you want to practice",
+    "practiceTitle": "Practice",
+    "loadWordsError": "Failed to load words for this tag.",
+    "modes": {
+      "byTranslate": { "title": "By translate", "description": "Write the translation of the words" },
+      "byEar": { "title": "By ear", "description": "Hear and write the word" },
+      "quiz": { "title": "Choice", "description": "Choose the correct answer" }
+    },
+    "listenAndWrite": "Listen and write the word",
+    "writeTranslationPlaceholder": "Write a translation:",
+    "writeWordHeardPlaceholder": "Write the word you heard:",
+    "check": "Check",
+    "correct": "Correct!",
+    "correctAnswerWas": "Correct answer: {answer}",
+    "practiceOver": "Practice is over!",
+    "keepLearning": "Keep learning with VocabFlow!",
+    "again": "Again",
+    "otherMode": "Other mode",
+    "toWords": "To the words",
+    "comboMessage": "Combo ×{count}! 🔥",
+    "bestCombo": "Best combo: ×{count}",
+    "outOfHearts": "Out of hearts!",
+    "perfectScore": "Perfect! Not a single mistake 🏆"
+  },
+  "auth": {
+    "continuePrompt": "Continue to start learning languages",
+    "usernameLabel": "Username:",
+    "passwordLabel": "Password:",
+    "continueButton": "Continue",
+    "googleContinue": "Continue with Google",
+    "loading": "Loading...",
+    "signInSuccess": "Successfully signed in!",
+    "incorrectPassword": "Incorrect username or password",
+    "genericError": "An error occurred"
+  },
+  "admin": {
+    "title": "Admin",
+    "loadUsersError": "Failed to load users"
+  },
+  "errors": {
+    "unexpected": "Unexpected error",
+    "database": "Something went wrong. Please try again.",
+    "translationUnavailable": "Translation service is unavailable right now.",
+    "notFound": "Not found"
+  },
+  "tts": {
+    "noVoiceAvailable": "Pronunciation isn't available for this language on your device."
+  }
+}
