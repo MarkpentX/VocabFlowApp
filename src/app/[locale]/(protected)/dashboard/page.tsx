@@ -18,7 +18,7 @@ function Page() {
                     <DashboardStatistics/>
                 </Suspense>
                 <nav className="mt-8">
-                    <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-8">
                         <li>
                             <AddWordsBtn/>
                         </li>
@@ -55,6 +55,21 @@ function Page() {
                                     <path d="M19.967 17.484A4 4 0 0 1 18 18"></path>
                                 </svg>
                                 {t("startPractice")}
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link href={"/shop"} className="flex items-center justify-center gap-2 text-black text-sm border-1 border-[rgb(226,229,220)] py-3 w-full px-8 rounded-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                     strokeLinejoin="round" className="lucide lucide-store w-4 h-4">
+                                    <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"></path>
+                                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                    <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"></path>
+                                    <path d="M2 7h20"></path>
+                                    <path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"></path>
+                                </svg>
+                                {t("shop")}
                             </Link>
                         </li>
                     </ul>

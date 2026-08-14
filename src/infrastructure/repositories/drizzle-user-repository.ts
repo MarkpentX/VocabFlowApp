@@ -1,9 +1,10 @@
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { db } from "@/infrastructure/db/client";
 import { usersTable } from "@/infrastructure/db/schema/users-table";
 import { UserRepository } from "@/domain/repositories/user-repository";
 import { User } from "@/domain/entities/user";
 import { StreakInfo, StreakUpdateResult } from "@/domain/entities/streak";
+import { CoinsInfo, PracticeCoinsAward } from "@/domain/entities/coins";
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
@@ -86,5 +87,20 @@ export const drizzleUserRepository: UserRepository = {
         }
 
         return { previousStreak, currentStreak, longestStreak, streakIncreased };
+    },
+
+    async getCoins(userId: string): Promise<CoinsInfo> {
+        const [user] = await db.select().from(usersTable).where(eq(usersTable.id, userId));
+        return { coins: user?.coins ?? 0 };
+    },
+
+    async awardCoins(userId: string, amount: number): Promise<PracticeCoinsAward> {
+        const [updated] = await db
+            .update(usersTable)
+            .set({ coins: sql`${usersTable.coins} + ${amount}` })
+            .where(eq(usersTable.id, userId))
+            .returning({ coins: usersTable.coins });
+
+        return { earned: amount, coins: updated?.coins ?? 0 };
     },
 };

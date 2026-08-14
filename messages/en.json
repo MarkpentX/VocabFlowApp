@@ -36,8 +36,12 @@
     "addWord": "Add Word",
     "viewDictionaries": "View Dictionaries",
     "startPractice": "Start Practice",
+    "shop": "Shop",
     "streak": {
       "daysLabel": "{count, plural, one {day} other {days}} streak"
+    },
+    "coins": {
+      "label": "coins"
     }
   },
   "words": {
@@ -91,6 +95,46 @@
     "bestCombo": "Best combo: ×{count}",
     "outOfHearts": "Out of hearts!",
     "perfectScore": "Perfect! Not a single mistake 🏆"
+  },
+  "shop": {
+    "title": "Shop",
+    "subtitle": "Spend your coins on real perks — unlock a custom exam or test your English level.",
+    "items": {
+      "customExam": {
+        "title": "Custom Exam",
+        "description": "Pick at least 3 of your dictionaries and take a combined exam whenever you want."
+      },
+      "levelTest": {
+        "title": "English Level Test",
+        "description": "Find out your English level from A1 to C1 with a quick vocabulary test."
+      }
+    },
+    "buy": "Buy",
+    "open": "Open",
+    "owned": "Owned",
+    "insufficientFunds": "Not enough coins yet",
+    "purchaseSuccess": "Purchased! It's unlocked now."
+  },
+  "exam": {
+    "title": "Custom Exam",
+    "pickerTitle": "Pick the dictionaries for your exam",
+    "minDictionaries": "Choose at least {count} dictionaries",
+    "start": "Start exam",
+    "changeDictionaries": "Change dictionaries",
+    "loadError": "Couldn't load words for the selected dictionaries."
+  },
+  "levelTest": {
+    "title": "English Level Test",
+    "resultIntro": "Your estimated English level is",
+    "scoreLabel": "{correct} / {total} correct",
+    "retake": "Retake test",
+    "levels": {
+      "A1": { "title": "Beginner", "description": "You know basic words and phrases. Keep building your foundation!" },
+      "A2": { "title": "Elementary", "description": "You can handle simple everyday conversations." },
+      "B1": { "title": "Intermediate", "description": "You can talk about familiar topics with confidence." },
+      "B2": { "title": "Upper Intermediate", "description": "You express yourself clearly on a wide range of topics." },
+      "C1": { "title": "Advanced", "description": "You use English fluently and precisely, even in complex situations." }
+    }
   },
   "auth": {
     "continuePrompt": "Continue to start learning languages",

@@ -47,6 +47,27 @@ export const drizzleWordRepository: WordRepository = {
         return rows.map(toDomain);
     },
 
+    async findByUserAndDictionaryIds(userId: string, dictionaryIds: string[]) {
+        if (dictionaryIds.length === 0) {
+            return [];
+        }
+
+        const ownedDictionaries = await db
+            .select({ id: dictionariesTable.id })
+            .from(dictionariesTable)
+            .where(and(eq(dictionariesTable.user_id, userId), inArray(dictionariesTable.id, dictionaryIds)));
+
+        if (ownedDictionaries.length === 0) {
+            return [];
+        }
+
+        const rows = await db
+            .select()
+            .from(wordsTable)
+            .where(inArray(wordsTable.dictionaryId, ownedDictionaries.map((d) => d.id)));
+        return rows.map(toDomain);
+    },
+
     async delete(id: string) {
         await db.delete(wordsTable).where(eq(wordsTable.id, id));
     },

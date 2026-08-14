@@ -5,7 +5,9 @@ import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { Word } from "@/domain/entities/word";
 import { StreakUpdateResult } from "@/domain/entities/streak";
+import { PracticeCoinsAward } from "@/domain/entities/coins";
 import { recordPracticeCompletionAction } from "@/presentation/actions/streak-actions";
+import { awardPracticeCoinsAction } from "@/presentation/actions/coin-actions";
 
 export const MAX_HEARTS = 3;
 const COMBO_TOAST_THRESHOLD = 3;
@@ -21,11 +23,17 @@ export interface PracticeSession {
     correctCount: number;
     questionsCount: number;
     streakResult: StreakUpdateResult | null;
+    coinsAward: PracticeCoinsAward | null;
     onAnswer: (isCorrect: boolean) => void;
     resetSession: () => void;
 }
 
-export function usePracticeSession(words: Word[]): PracticeSession {
+interface UsePracticeSessionOptions {
+    awardsCoins?: boolean;
+}
+
+export function usePracticeSession(words: Word[], options: UsePracticeSessionOptions = {}): PracticeSession {
+    const { awardsCoins = true } = options;
     const t = useTranslations("practice");
 
     const [index, setIndex] = useState(0);
@@ -36,6 +44,7 @@ export function usePracticeSession(words: Word[]): PracticeSession {
     const [combo, setCombo] = useState(0);
     const [maxCombo, setMaxCombo] = useState(0);
     const [streakResult, setStreakResult] = useState<StreakUpdateResult | null>(null);
+    const [coinsAward, setCoinsAward] = useState<PracticeCoinsAward | null>(null);
 
     const prevComboRef = useRef(0);
     const recordedRef = useRef(false);
@@ -52,12 +61,24 @@ export function usePracticeSession(words: Word[]): PracticeSession {
             return;
         }
         recordedRef.current = true;
+
+        const isPerfect = !failed && words.length > 0 && correctCount === words.length;
+
         recordPracticeCompletionAction().then((result) => {
-            if (result.isSuccess) {
-                setStreakResult(result.data);
+            if (!result.isSuccess) {
+                return;
+            }
+            setStreakResult(result.data);
+
+            if (awardsCoins && isPerfect) {
+                awardPracticeCoinsAction(result.data.currentStreak).then((coinsResult) => {
+                    if (coinsResult.isSuccess) {
+                        setCoinsAward(coinsResult.data);
+                    }
+                });
             }
         });
-    }, [isFinished]);
+    }, [isFinished, failed, correctCount, words.length, awardsCoins]);
 
     function onAnswer(isCorrect: boolean) {
         let nextHearts = hearts;
@@ -98,6 +119,7 @@ export function usePracticeSession(words: Word[]): PracticeSession {
         setCombo(0);
         setMaxCombo(0);
         setStreakResult(null);
+        setCoinsAward(null);
         prevComboRef.current = 0;
         recordedRef.current = false;
     }
@@ -115,6 +137,7 @@ export function usePracticeSession(words: Word[]): PracticeSession {
         correctCount,
         questionsCount: words.length,
         streakResult,
+        coinsAward,
         onAnswer,
         resetSession,
     };

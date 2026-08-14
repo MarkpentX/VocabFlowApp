@@ -24,6 +24,7 @@ export const usersTable = pgTable("users", {
     currentStreak: integer("current_streak").notNull().default(0),
     longestStreak: integer("longest_streak").notNull().default(0),
     lastPracticeDate: text("last_practice_date"),
+    coins: integer("coins").notNull().default(0),
 });
 
 export const accounts = pgTable(

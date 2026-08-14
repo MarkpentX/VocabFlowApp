@@ -23,6 +23,7 @@ function Translate({ words, dictionaryName }: TranslateProps) {
                 failed={session.failed}
                 maxCombo={session.maxCombo}
                 streakResult={session.streakResult}
+                coinsAward={session.coinsAward}
                 dictionaryName={dictionaryName}
             />
         )

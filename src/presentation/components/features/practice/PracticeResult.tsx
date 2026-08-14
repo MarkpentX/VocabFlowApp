@@ -3,8 +3,11 @@ import { Link } from "@/i18n/navigation";
 import { slugEncode } from "@/lib/slug-utils";
 import { useTranslations } from "next-intl";
 import ConfettiEffect from "@/presentation/components/features/practice/ConfettiEffect";
+import CoinBurst from "@/presentation/components/features/practice/CoinBurst";
 import StreakBadge from "@/presentation/components/features/dashboard/StreakBadge";
+import CoinBadge from "@/presentation/components/features/dashboard/CoinBadge";
 import { StreakUpdateResult } from "@/domain/entities/streak";
+import { PracticeCoinsAward } from "@/domain/entities/coins";
 
 interface PracticeResultProps {
     correctCount: number
@@ -12,19 +15,23 @@ interface PracticeResultProps {
     failed: boolean
     maxCombo: number
     streakResult: StreakUpdateResult | null
-    dictionaryName: string
+    coinsAward: PracticeCoinsAward | null
+    dictionaryName?: string
+    backHref?: string
+    backLabel?: string
     onPlayAgain: () => void
 }
 
-function PracticeResult({ onPlayAgain, correctCount, questionsCount, failed, maxCombo, streakResult, dictionaryName }: PracticeResultProps) {
+function PracticeResult({ onPlayAgain, correctCount, questionsCount, failed, maxCombo, streakResult, coinsAward, dictionaryName, backHref, backLabel }: PracticeResultProps) {
     const t = useTranslations("practice");
-    const encodedDictionaryName = slugEncode(dictionaryName);
+    const encodedDictionaryName = dictionaryName ? slugEncode(dictionaryName) : null;
     const isPerfect = !failed && questionsCount > 0 && correctCount === questionsCount;
     const resultIcon = failed ? "💔" : isPerfect ? "🏆" : "✨";
 
     return (
-        <article className="mt-6 p-7 flex flex-col items-center animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black rounded-2xl">
+        <article className="relative mt-6 p-7 flex flex-col items-center animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black rounded-2xl">
             {isPerfect && <ConfettiEffect/>}
+            {coinsAward && coinsAward.earned > 0 && <CoinBurst amount={coinsAward.earned}/>}
 
             <span className="text-5xl mb-2">{resultIcon}</span>
 
@@ -46,14 +53,24 @@ function PracticeResult({ onPlayAgain, correctCount, questionsCount, failed, max
                 {isPerfect ? t("perfectScore") : t("keepLearning")}
             </p>
 
-            {streakResult && streakResult.currentStreak > 0 && (
-                <div className="flex justify-center items-center w-full mb-6 px-5 py-4 rounded-2xl bg-gradient-to-br from-orange-50 to-red-50 border border-orange-100">
-                    <StreakBadge
-                        currentStreak={streakResult.currentStreak}
-                        previousStreak={streakResult.previousStreak}
-                        streakIncreased={streakResult.streakIncreased}
-                        size={56}
-                    />
+            {((streakResult && streakResult.currentStreak > 0) || coinsAward) && (
+                <div className="flex flex-wrap justify-center items-center gap-3 w-full mb-6">
+                    {streakResult && streakResult.currentStreak > 0 && (
+                        <div className="flex justify-center items-center flex-1 min-w-[140px] px-5 py-4 rounded-2xl bg-gradient-to-br from-orange-50 to-red-50 border border-orange-100">
+                            <StreakBadge
+                                currentStreak={streakResult.currentStreak}
+                                previousStreak={streakResult.previousStreak}
+                                streakIncreased={streakResult.streakIncreased}
+                                size={56}
+                            />
+                        </div>
+                    )}
+
+                    {coinsAward && (
+                        <div className="flex justify-center items-center flex-1 min-w-[140px] px-5 py-4 rounded-2xl bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100">
+                            <CoinBadge coins={coinsAward.coins} size={56}/>
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -74,22 +91,35 @@ function PracticeResult({ onPlayAgain, correctCount, questionsCount, failed, max
                     </button>
                 </li>
 
-                <li className="flex-1 min-w-[140px]">
-                    <Link
-                        className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-black border border-[rgb(226,229,220)] bg-[rgb(248,249,245)] w-full transition-transform duration-150 hover:scale-[1.03] hover:bg-gray-100 active:scale-95"
-                        href={`/practice/${encodedDictionaryName}`}
-                    >
-                        {t("otherMode")}
-                    </Link>
-                </li>
+                {encodedDictionaryName && (
+                    <li className="flex-1 min-w-[140px]">
+                        <Link
+                            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-black border border-[rgb(226,229,220)] bg-[rgb(248,249,245)] w-full transition-transform duration-150 hover:scale-[1.03] hover:bg-gray-100 active:scale-95"
+                            href={`/practice/${encodedDictionaryName}`}
+                        >
+                            {t("otherMode")}
+                        </Link>
+                    </li>
+                )}
             </ul>
 
-            <Link
-                className="flex justify-center self-center items-center gap-2 px-4 py-2 rounded-md text-[rgb(103,126,119)] hover:text-black transition-colors"
-                href={`/dictionary/${encodedDictionaryName}`}
-            >
-                {t("toWords")}
-            </Link>
+            {encodedDictionaryName && (
+                <Link
+                    className="flex justify-center self-center items-center gap-2 px-4 py-2 rounded-md text-[rgb(103,126,119)] hover:text-black transition-colors"
+                    href={`/dictionary/${encodedDictionaryName}`}
+                >
+                    {t("toWords")}
+                </Link>
+            )}
+
+            {!encodedDictionaryName && backHref && backLabel && (
+                <Link
+                    className="flex justify-center self-center items-center gap-2 px-4 py-2 rounded-md text-[rgb(103,126,119)] hover:text-black transition-colors"
+                    href={backHref}
+                >
+                    {backLabel}
+                </Link>
+            )}
         </article>
     );
 }

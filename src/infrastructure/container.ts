@@ -1,6 +1,8 @@
 import { drizzleWordRepository } from "@/infrastructure/repositories/drizzle-word-repository";
 import { drizzleDictionaryRepository } from "@/infrastructure/repositories/drizzle-dictionary-repository";
 import { drizzleUserRepository } from "@/infrastructure/repositories/drizzle-user-repository";
+import { drizzleShopRepository } from "@/infrastructure/repositories/drizzle-shop-repository";
+import { LEVEL_TEST_QUESTIONS } from "@/infrastructure/data/level-test-questions";
 import { mymemoryTranslationService } from "@/infrastructure/services/mymemory-translation-service";
 import { googleTranslationService } from "@/infrastructure/services/google-translation-service";
 import { createCompositeTranslationService } from "@/infrastructure/services/composite-translation-service";
@@ -19,6 +21,12 @@ import { createRecordPracticeCompletionUseCase } from "@/application/use-cases/u
 import { createGetUsersUseCase } from "@/application/use-cases/admin/get-users";
 import { createRegisterUserUseCase } from "@/application/use-cases/auth/register-user";
 import { createTranslateWordUseCase } from "@/application/use-cases/translation/translate-word";
+import { createGetCoinsUseCase } from "@/application/use-cases/users/get-coins";
+import { createAwardPracticeCoinsUseCase } from "@/application/use-cases/users/award-practice-coins";
+import { createGetShopStatusUseCase } from "@/application/use-cases/shop/get-shop-status";
+import { createPurchaseItemUseCase } from "@/application/use-cases/shop/purchase-item";
+import { createGetExamWordsUseCase } from "@/application/use-cases/words/get-exam-words";
+import { createGetLevelTestQuestionsUseCase } from "@/application/use-cases/level-test/get-level-test-questions";
 
 export const createWord = createCreateWordUseCase({
     wordRepository: drizzleWordRepository,
@@ -36,9 +44,22 @@ export const deleteDictionary = createDeleteDictionaryUseCase(drizzleDictionaryR
 export const getStreak = createGetStreakUseCase(drizzleUserRepository);
 export const recordPracticeCompletion = createRecordPracticeCompletionUseCase(drizzleUserRepository);
 
-export const getUserStats = createGetUserStatsUseCase({ getUserDictionaries, getUserWords, getStreak });
+export const getCoins = createGetCoinsUseCase(drizzleUserRepository);
+export const awardPracticeCoins = createAwardPracticeCoinsUseCase(drizzleUserRepository);
+
+export const getUserStats = createGetUserStatsUseCase({ getUserDictionaries, getUserWords, getStreak, getCoins });
 
 export const getUsers = createGetUsersUseCase(drizzleUserRepository);
+
+export const getShopStatus = createGetShopStatusUseCase({
+    userRepository: drizzleUserRepository,
+    shopRepository: drizzleShopRepository,
+});
+export const purchaseItem = createPurchaseItemUseCase(drizzleShopRepository);
+
+export const getExamWords = createGetExamWordsUseCase(drizzleWordRepository);
+
+export const getLevelTestQuestions = createGetLevelTestQuestionsUseCase(LEVEL_TEST_QUESTIONS);
 
 export const registerUser = createRegisterUserUseCase(nextAuthService);
 

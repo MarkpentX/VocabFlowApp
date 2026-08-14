@@ -23,6 +23,7 @@ function QuizByEar({ words, dictionaryName }: QuizByEarProps) {
                 failed={session.failed}
                 maxCombo={session.maxCombo}
                 streakResult={session.streakResult}
+                coinsAward={session.coinsAward}
                 dictionaryName={dictionaryName}
             />
         )

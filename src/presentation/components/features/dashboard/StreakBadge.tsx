@@ -5,6 +5,7 @@ import { motion, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useCountUp } from "@/presentation/hooks/use-count-up";
+import FireIcon from "@/presentation/components/features/dashboard/FireIcon";
 
 interface StreakBadgeProps {
     currentStreak: number;
@@ -47,8 +48,8 @@ const flameVariants: Variants = {
 
 const glowVariants: Variants = {
     idle: { opacity: 0, scale: 0.8, transition: { duration: 0.4 } },
-    igniting: { opacity: [0, 1, 0.8], scale: [0.7, 1.15, 1], transition: { duration: 0.9, ease: "easeOut" } },
-    lit: { opacity: [0.55, 0.9, 0.55], scale: [0.95, 1.1, 0.95], transition: { duration: 2.6, repeat: Infinity, ease: "easeInOut" } },
+    igniting: { opacity: [0, 1, 0.85], scale: [0.7, 1.2, 1], transition: { duration: 0.9, ease: "easeOut" } },
+    lit: { opacity: [0.65, 1, 0.65], scale: [0.95, 1.15, 0.95], transition: { duration: 2.2, repeat: Infinity, ease: "easeInOut" } },
 };
 
 function StreakBadge({ currentStreak, previousStreak, streakIncreased = false, size = 64 }: StreakBadgeProps) {
@@ -71,8 +72,8 @@ function StreakBadge({ currentStreak, previousStreak, streakIncreased = false, s
                     className="absolute inset-0 rounded-full"
                     style={{
                         background:
-                            "radial-gradient(circle, rgba(255,140,40,0.55) 0%, rgba(255,80,30,0.25) 45%, transparent 75%)",
-                        filter: "blur(10px)",
+                            "radial-gradient(circle, rgba(255,160,40,0.7) 0%, rgba(255,80,30,0.35) 45%, transparent 75%)",
+                        filter: "blur(9px)",
                     }}
                     variants={glowVariants}
                     animate={phase}
@@ -97,10 +98,10 @@ function StreakBadge({ currentStreak, previousStreak, streakIncreased = false, s
                             setPhase("lit");
                         }
                     }}
-                    style={{ fontSize: size * 0.6, lineHeight: 1 }}
+                    style={{ display: "flex" }}
                     className="select-none"
                 >
-                    🔥
+                    <FireIcon size={size * 0.72} active={phase !== "idle"} />
                 </motion.span>
             </div>
 
@@ -110,7 +111,7 @@ function StreakBadge({ currentStreak, previousStreak, streakIncreased = false, s
                         "font-spaceGrotesk font-extrabold tabular-nums",
                         phase === "idle"
                             ? "text-[rgb(180,186,180)]"
-                            : "bg-gradient-to-br from-[#FF9A3D] to-[#FF3D3D] bg-clip-text text-transparent"
+                            : "bg-gradient-to-br from-[#FFB23D] via-[#FF7A1F] to-[#FF3D3D] bg-clip-text text-transparent drop-shadow-sm"
                     )}
                     style={{ fontSize: size * 0.4 }}
                 >
