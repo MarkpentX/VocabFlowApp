@@ -154,7 +154,9 @@
     "loading": "Loading...",
     "signInSuccess": "Successfully signed in!",
     "incorrectPassword": "Incorrect username or password",
-    "genericError": "An error occurred"
+    "authFailed": "Wrong password, or this username is already taken",
+    "captchaRequired": "Please verify that you're not a robot",
+    "captchaFailed": "Captcha verification failed, please try again"
   },
   "admin": {
     "title": "Admin",

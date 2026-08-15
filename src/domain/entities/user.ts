@@ -17,4 +17,5 @@ export interface SessionUser {
 export interface NewUserInput {
     username: string;
     password: string;
+    captchaToken: string;
 }

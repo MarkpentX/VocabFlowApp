@@ -7,6 +7,7 @@ import { mymemoryTranslationService } from "@/infrastructure/services/mymemory-t
 import { googleTranslationService } from "@/infrastructure/services/google-translation-service";
 import { createCompositeTranslationService } from "@/infrastructure/services/composite-translation-service";
 import { nextAuthService } from "@/infrastructure/auth/next-auth-service";
+import { turnstileService } from "@/infrastructure/captcha/turnstile-service";
 
 import { createCreateWordUseCase } from "@/application/use-cases/words/create-word";
 import { createDeleteWordUseCase } from "@/application/use-cases/words/delete-word";
@@ -61,7 +62,10 @@ export const getExamWords = createGetExamWordsUseCase(drizzleWordRepository);
 
 export const getLevelTestQuestions = createGetLevelTestQuestionsUseCase(LEVEL_TEST_QUESTIONS);
 
-export const registerUser = createRegisterUserUseCase(nextAuthService);
+export const registerUser = createRegisterUserUseCase({
+    authService: nextAuthService,
+    captchaService: turnstileService,
+});
 
 const translationService = createCompositeTranslationService([
     googleTranslationService,
