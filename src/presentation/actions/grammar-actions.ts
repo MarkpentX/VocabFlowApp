@@ -1,6 +1,13 @@
 "use server";
 
-import { getGrammarRules, getGrammarStats, generateGrammarSession, recordGrammarAttempt } from "@/infrastructure/container";
+import {
+    getGrammarRules,
+    getGrammarStats,
+    generateGrammarSession,
+    recordGrammarAttempt,
+    createSharedGrammarResult,
+    getSharedGrammarResult,
+} from "@/infrastructure/container";
 import { getSessionUser } from "@/infrastructure/auth/session";
 import { ControllerResult } from "@/application/shared/controller-result";
 import { handleActionError, handleActionSuccess } from "@/application/shared/action-result";
@@ -8,6 +15,7 @@ import { GrammarStats } from "@/domain/entities/grammar";
 import { GrammarRuleSummary } from "@/application/use-cases/grammar/get-grammar-rules";
 import { GrammarSessionResult } from "@/domain/repositories/grammar-repository";
 import { QuizQuestion } from "@/domain/entities/quiz";
+import { CreateSharedResultInput, SharedGrammarResult } from "@/domain/entities/grammar-shared-result";
 
 export async function getGrammarRulesAction(): Promise<ControllerResult<GrammarRuleSummary[]>> {
     try {
@@ -45,6 +53,28 @@ export async function recordGrammarAttemptAction(result: GrammarSessionResult): 
         const user = await getSessionUser();
         await recordGrammarAttempt(user.id, result);
         return handleActionSuccess();
+    } catch (error) {
+        return handleActionError(error);
+    }
+}
+
+export async function createSharedGrammarResultAction(
+    input: CreateSharedResultInput
+): Promise<ControllerResult<SharedGrammarResult>> {
+    try {
+        const user = await getSessionUser();
+        const studentName = user.name ?? user.username ?? "Student";
+        const result = await createSharedGrammarResult(user.id, studentName, input);
+        return handleActionSuccess(result);
+    } catch (error) {
+        return handleActionError(error);
+    }
+}
+
+export async function getSharedGrammarResultAction(id: string): Promise<ControllerResult<SharedGrammarResult>> {
+    try {
+        const result = await getSharedGrammarResult(id);
+        return handleActionSuccess(result);
     } catch (error) {
         return handleActionError(error);
     }

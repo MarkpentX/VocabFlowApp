@@ -9,6 +9,7 @@ import { createCompositeTranslationService } from "@/infrastructure/services/com
 import { nextAuthService } from "@/infrastructure/auth/next-auth-service";
 import { turnstileService } from "@/infrastructure/captcha/turnstile-service";
 import { drizzleGrammarRepository } from "@/infrastructure/repositories/drizzle-grammar-repository";
+import { drizzleGrammarSharedResultRepository } from "@/infrastructure/repositories/drizzle-grammar-shared-result-repository";
 import { GRAMMAR_RULES } from "@/infrastructure/data/grammar-rules";
 
 import { createCreateWordUseCase } from "@/application/use-cases/words/create-word";
@@ -34,6 +35,8 @@ import { createGetGrammarRulesUseCase } from "@/application/use-cases/grammar/ge
 import { createGetGrammarStatsUseCase } from "@/application/use-cases/grammar/get-grammar-stats";
 import { createGenerateGrammarSessionUseCase } from "@/application/use-cases/grammar/generate-grammar-session";
 import { createRecordGrammarAttemptUseCase } from "@/application/use-cases/grammar/record-grammar-attempt";
+import { createCreateSharedGrammarResultUseCase } from "@/application/use-cases/grammar/create-shared-grammar-result";
+import { createGetSharedGrammarResultUseCase } from "@/application/use-cases/grammar/get-shared-grammar-result";
 
 export const createWord = createCreateWordUseCase({
     wordRepository: drizzleWordRepository,
@@ -77,6 +80,8 @@ export const getGrammarRules = createGetGrammarRulesUseCase(GRAMMAR_RULES);
 export const getGrammarStats = createGetGrammarStatsUseCase(drizzleGrammarRepository, GRAMMAR_RULES);
 export const generateGrammarSession = createGenerateGrammarSessionUseCase(GRAMMAR_RULES);
 export const recordGrammarAttempt = createRecordGrammarAttemptUseCase(drizzleGrammarRepository);
+export const createSharedGrammarResult = createCreateSharedGrammarResultUseCase(drizzleGrammarSharedResultRepository);
+export const getSharedGrammarResult = createGetSharedGrammarResultUseCase(drizzleGrammarSharedResultRepository);
 
 const translationService = createCompositeTranslationService([
     googleTranslationService,

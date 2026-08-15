@@ -8,7 +8,6 @@
     "home": "Головна",
     "dictionaries": "Слова",
     "add": "Додати",
-    "practice": "Практика",
     "shop": "Магазин",
     "grammar": "Граматика"
   },
@@ -217,7 +216,7 @@
     "noVoiceAvailable": "Озвучення для цієї мови поки що недоступне на вашому пристрої."
   },
   "grammar": {
-    "subtitle": "Вивчайте правила граматики безкоштовно, а потім закріплюйте їх вправами, які завжди різні.",
+    "subtitle": "Вивчайте правила англійської граматики безкоштовно — від A1 до B2, а потім закріплюйте кожне вправами, які завжди різні.",
     "takeExam": "Пройти змішаний іспит",
     "mastered": "Опановано",
     "notStarted": "Ще не розпочато",
@@ -283,89 +282,188 @@
       "conditionals-zero-first": {
         "title": "Умовні речення: нульовий і перший тип",
         "description": "Загальні істини та реальні можливості в майбутньому."
+      },
+      "past-continuous": {
+        "title": "Past Continuous",
+        "description": "Дія в процесі в конкретний момент минулого — I was working."
+      },
+      "passive-voice": {
+        "title": "Пасивний стан",
+        "description": "Коли важлива дія, а не той, хто її виконав — it is made, it was built."
+      },
+      "past-perfect": {
+        "title": "Past Perfect",
+        "description": "Дія, завершена раніше за інший момент у минулому."
+      },
+      "reported-speech": {
+        "title": "Непряма мова",
+        "description": "Переказ чужих слів — she said she liked it."
+      },
+      "relative-clauses": {
+        "title": "Підрядні означальні речення",
+        "description": "З'єднуємо ідеї через who, which, where і whose."
+      },
+      "second-conditional": {
+        "title": "Другий тип умовних речень",
+        "description": "Уявні або малоймовірні ситуації в теперішньому чи майбутньому."
       }
     },
     "lessons": {
       "present-simple": {
-        "explanation": "Present Simple використовується для звичок, розпорядку дня та фактів, які завжди правдиві. До дієслова додається -s або -es, якщо підмет he, she або it.",
+        "explanation": "Present Simple використовується для звичок, розпорядку дня, постійних фактів і того, що завжди правдиве. Форма будується з базовим дієсловом (I/you/we/they + work), а для he/she/it додається -s або -es (she works, he watches). Часта помилка: забувають додати -s для he/she/it або, навпаки, додають його до всіх підметів поспіль.",
         "examples": [
           "I work every day.",
           "She works in a hospital.",
-          "The sun rises in the east."
+          "The sun rises in the east.",
+          "They don't like coffee."
         ]
       },
       "present-continuous": {
-        "explanation": "Present Continuous (am/is/are + дієслово-ing) використовується для дій, що відбуваються прямо зараз або в поточний період часу.",
+        "explanation": "Present Continuous (am/is/are + дієслово-ing) використовується для дій, що відбуваються прямо зараз, тимчасових ситуацій або вже запланованих майбутніх подій. Обирайте am для I, is для he/she/it і are для you/we/they. Часта помилка: не використовуйте Present Continuous з дієсловами почуттів і станів на кшталт like, know, want — для них потрібен Present Simple ('I like tea', а не 'I am liking tea').",
         "examples": [
           "I am working right now.",
           "She is reading a book.",
-          "They are watching a movie tonight."
+          "They are watching a movie tonight.",
+          "We are meeting Tom at 5pm."
         ]
       },
       "past-simple": {
-        "explanation": "Past Simple використовується для дій, які почалися і закінчилися в минулому. У правильних дієслів додається -ed, у неправильних — своя форма минулого часу.",
+        "explanation": "Past Simple використовується для дій, які почалися і закінчилися в конкретний момент у минулому. У правильних дієслів додається -ed (worked, played), у неправильних — своя форма, яку потрібно запам'ятати (go → went, see → saw). Часта помилка: не використовуйте 'did' разом із формою минулого часу в питаннях і запереченнях — правильно 'Did you see it?', а не 'Did you saw it?'.",
         "examples": [
           "I worked yesterday.",
           "She went to Paris last year.",
-          "They watched a film last night."
+          "They watched a film last night.",
+          "We didn't see him at the party."
         ]
       },
       "present-perfect": {
-        "explanation": "Present Perfect (have/has + дієприкметник минулого часу) використовується для дій із минулого, які пов'язані з теперішнім моментом — досвід, зміни або ще не завершені дії.",
+        "explanation": "Present Perfect (have/has + дієприкметник минулого часу) використовується для дій із минулого, які пов'язані з теперішнім моментом — життєвий досвід, недавні новини або дії, що почалися в минулому і тривають зараз. 'Has' використовується для he/she/it, 'have' — для всіх інших. Часта помилка: не використовуйте Present Perfect із конкретним завершеним часом на кшталт 'yesterday' або 'in 2015' — у цьому разі потрібен Past Simple.",
         "examples": [
           "I have finished my homework.",
           "She has visited Japan twice.",
-          "We have already eaten."
+          "We have already eaten.",
+          "Have you ever tried sushi?"
         ]
       },
       "future-will-going-to": {
-        "explanation": "'Will' використовується для спонтанних рішень і прогнозів, а 'going to' — для планів і намірів, які вже прийняті заздалегідь.",
+        "explanation": "'Will' + базове дієслово використовується для спонтанних рішень, прийнятих прямо в момент мовлення, і прогнозів без явних доказів. 'Be going to' + базове дієслово використовується для планів і намірів, прийнятих заздалегідь, або прогнозів, заснованих на очевидних ознаках. Часта помилка: не можна казати 'will going to' — ці дві форми ніколи не поєднуються разом.",
         "examples": [
           "I will call you tomorrow.",
           "She is going to travel next month.",
-          "It will probably rain later."
+          "It will probably rain later.",
+          "Look at those clouds — it's going to rain!"
         ]
       },
       "articles": {
-        "explanation": "Артикль 'a' ставиться перед словами, що починаються з приголосного звуку, а 'an' — перед словами з голосного звуку, якщо предмет згадується вперше. 'The' використовується для чогось конкретного або вже згаданого.",
+        "explanation": "Артикль 'a' ставиться перед словом із приголосного звуку, а 'an' — перед словом із голосного звуку, коли злічуваний іменник в однині згадується вперше (a car, an apple). 'The' використовується, коли предмет уже відомий — бо про нього вже казали, він єдиний у своєму роді, або це очевидно із ситуації. Часта помилка: вибір залежить від ЗВУКУ, а не від літери — 'an hour' (h не вимовляється), але 'a university' (звучить як 'ю').",
         "examples": [
           "I saw a dog in the park.",
           "She ate an apple.",
-          "I have a car. The car is red."
+          "I have a car. The car is red.",
+          "The sun is very bright today."
         ]
       },
       "comparatives-superlatives": {
-        "explanation": "Вищий ступінь (-er / more) використовується для порівняння двох предметів, а найвищий (-est / most) — для порівняння трьох і більше.",
+        "explanation": "Вищий ступінь використовується для порівняння двох предметів: до коротких прикметників додається -er (tall → taller), а перед довгими ставиться 'more' (beautiful → more beautiful), після чого йде 'than'. Найвищий ступінь використовується для порівняння трьох і більше предметів: додається -est (tallest) або ставиться 'most' (most beautiful), зазвичай з артиклем 'the' перед прикметником. Часта помилка: не можна поєднувати обидві форми разом — 'more beautiful', а не 'more beautifuler'.",
         "examples": [
           "A car is faster than a bicycle.",
           "This is the most beautiful city I know.",
-          "Today is better than yesterday."
+          "Today is better than yesterday.",
+          "She is the tallest student in the class."
         ]
       },
       "modal-verbs": {
-        "explanation": "'Can' використовується для здатності, 'must' — для суворого обов'язку, 'should' — для поради, а 'have to' — для необхідності.",
+        "explanation": "'Can' використовується для здатності або дозволу, 'must' — для суворого обов'язку, що йде від самого мовця, 'have to' — для необхідності, що йде ззовні (правила, інші люди), а 'should' — для поради чи рекомендації. Після модальних дієслів завжди йде базова форма дієслова, без 'to' і без -s для he/she/it. Часта помилка: не можна казати 'must to' або 'she cans' — модальні дієслова ніколи не приймають 'to' чи закінчення -s.",
         "examples": [
           "I can swim very well.",
           "You must wear a seatbelt.",
-          "You should see a doctor."
+          "You should see a doctor.",
+          "She has to finish this by Friday."
         ]
       },
       "prepositions-time-place": {
-        "explanation": "'At' використовується для точного часу і точок, 'on' — для днів тижня і поверхонь, а 'in' — для місяців, років і замкнених просторів.",
+        "explanation": "Для часу використовуйте 'at' із точним часом на годиннику й у кількох сталих виразах (at 5 o'clock, at night), 'on' — із днями та датами (on Monday, on 1 May), а 'in' — із місяцями, роками та довшими періодами (in June, in 2020). Для місця використовуйте 'at' для конкретної точки (at the door), 'on' для поверхні (on the table), а 'in' для замкненого простору (in the box). Часта помилка: 'in the morning/afternoon/evening', але 'at night' — ніч є винятком.",
         "examples": [
           "I'll see you at 5 o'clock.",
           "The meeting is on Monday.",
-          "The keys are in the box."
+          "The keys are in the box.",
+          "We arrived in the evening."
         ]
       },
       "conditionals-zero-first": {
-        "explanation": "Нульовий тип умовних речень (if + present, present) використовується для загальних істин, а перший тип (if + present, will + дієслово) — для реальних можливостей у майбутньому.",
+        "explanation": "Нульовий тип умовних речень (if + present simple, present simple) використовується для загальних істин і наукових фактів, які завжди правдиві. Перший тип (if + present simple, will + базове дієслово) використовується для реальних, ймовірних ситуацій у майбутньому. Часта помилка: ніколи не використовуйте 'will' у підрядному з if — правильно 'If it rains, I will stay home', а не 'If it will rain, I will stay home'.",
         "examples": [
           "If you heat ice, it melts.",
           "If it rains tomorrow, I will stay home.",
-          "If you study hard, you will pass."
+          "If you study hard, you will pass.",
+          "Water boils if you heat it to 100°C."
+        ]
+      },
+      "past-continuous": {
+        "explanation": "Past Continuous (was/were + дієслово-ing) використовується для дії, яка вже відбувалася в конкретний момент у минулому, часто перерваної іншою дією, або для опису фонової обстановки. 'Was' використовується для I/he/she/it, 'were' — для you/we/they. Часта помилка: не плутайте його з Present Continuous — час у реченні має однозначно вказувати на минуле.",
+        "examples": [
+          "I was working at 8 o'clock last night.",
+          "She was reading when the phone rang.",
+          "They were watching TV all evening.",
+          "It was raining during the whole match."
+        ]
+      },
+      "passive-voice": {
+        "explanation": "Пасивний стан (be + дієприкметник минулого часу) використовується, коли сама дія важливіша за того, хто її виконав, або коли виконавець невідомий чи очевидний. Форма 'be' має відповідати часу речення: 'is/are' для теперішнього, 'was/were' для минулого. Часта помилка: не забувайте дієприкметник — 'the letter is write' неправильно, правильно 'the letter is written'.",
+        "examples": [
+          "The car is cleaned every week.",
+          "The letters were delivered yesterday.",
+          "This bridge was built in 1990.",
+          "These books are sold in every shop."
+        ]
+      },
+      "past-perfect": {
+        "explanation": "Past Perfect (had + дієприкметник минулого часу) показує, що одна дія в минулому відбулася раніше за іншу дію чи момент у минулому — вона 'йде далі' за звичайний минулий час. Форма не змінюється за особами: 'had' однакове для I, you, he, she, we і they. Часта помилка: не використовуйте його для кожної події в минулому — лише коли порівнюються два моменти в минулому і один явно передує іншому.",
+        "examples": [
+          "I had finished dinner before she arrived.",
+          "They had already left when we got there.",
+          "She had never seen snow before that winter.",
+          "The train had departed by the time we reached the station."
+        ]
+      },
+      "reported-speech": {
+        "explanation": "Непряма мова використовується, щоб переказати чиїсь слова, не цитуючи їх дослівно. Коли дієслово-зв'язка ('said') стоїть у минулому часі, вихідний час зазвичай зсувається на один крок назад — Present Simple стає Past Simple ('I like it' → 'She said she liked it'). Часта помилка: забувають зсунути час назад і залишають дієслово без змін, як у прямій цитаті.",
+        "examples": [
+          "He said he liked the city.",
+          "She said she had a new car.",
+          "They said they wanted to help.",
+          "My friend said he needed more time."
+        ]
+      },
+      "relative-clauses": {
+        "explanation": "Підрядні означальні речення додають додаткову інформацію про іменник, не починаючи нове речення. 'Who' використовується для людей, 'which' — для предметів, 'where' — для місць, а 'whose' показує приналежність. Часта помилка: не використовуйте 'which' для людей чи 'who' для предметів — вибір строго залежить від того, про кого чи про що йдеться.",
+        "examples": [
+          "The man who lives next door is a doctor.",
+          "The car which I bought is red.",
+          "The city where we met is beautiful.",
+          "The woman whose car is red is my neighbor."
+        ]
+      },
+      "second-conditional": {
+        "explanation": "Другий тип умовних речень (if + past simple, would + базове дієслово) використовується для уявних, гіпотетичних або малоймовірних ситуацій у теперішньому чи майбутньому — а не для реальних фактів. Минулий час у підрядному з if тут НЕ вказує на минуле — він показує, що ситуація нереальна. Часта помилка: не можна використовувати 'would' у підрядному з if — правильно 'If I had more time', а не 'If I would have more time'.",
+        "examples": [
+          "If I had more time, I would travel more.",
+          "If she won the lottery, she would buy a house.",
+          "If we knew the answer, we would tell you.",
+          "I would help you if I had a car."
         ]
       }
+    },
+    "share": {
+      "button": "Поділитися результатом",
+      "shared": "Надіслано!",
+      "linkCopied": "Посилання скопійовано в буфер обміну!",
+      "error": "Не вдалося створити посилання. Спробуйте ще раз.",
+      "shareTitle": "Мій результат з граматики у VocabFlow",
+      "resultTitle": "Результат {name} з граматики",
+      "bestCombo": "Найкраще комбо: ×{count}",
+      "rulesPracticed": "Вивчені правила",
+      "tryVocabFlow": "Спробувати VocabFlow"
     }
   }
 }

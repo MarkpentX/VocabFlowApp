@@ -8,7 +8,6 @@
     "home": "Home",
     "dictionaries": "Words",
     "add": "Add",
-    "practice": "Practice",
     "shop": "Shop",
     "grammar": "Grammar"
   },
@@ -217,7 +216,7 @@
     "noVoiceAvailable": "Pronunciation isn't available for this language on your device."
   },
   "grammar": {
-    "subtitle": "Learn grammar rules for free, then drill them with exercises that are always different.",
+    "subtitle": "Learn English grammar rules for free, from A1 to B2, then drill each one with exercises that are always different.",
     "takeExam": "Take a mixed exam",
     "mastered": "Mastered",
     "notStarted": "Not started yet",
@@ -283,89 +282,188 @@
       "conditionals-zero-first": {
         "title": "Conditionals: Zero & First",
         "description": "General truths and real future possibilities."
+      },
+      "past-continuous": {
+        "title": "Past Continuous",
+        "description": "An action in progress at a specific moment in the past."
+      },
+      "passive-voice": {
+        "title": "Passive Voice",
+        "description": "When the focus is on the action, not who did it — it is made, it was built."
+      },
+      "past-perfect": {
+        "title": "Past Perfect",
+        "description": "An action completed before another point in the past."
+      },
+      "reported-speech": {
+        "title": "Reported Speech",
+        "description": "Retelling what someone said — she said she liked it."
+      },
+      "relative-clauses": {
+        "title": "Relative Clauses",
+        "description": "Joining ideas with who, which, where, and whose."
+      },
+      "second-conditional": {
+        "title": "Second Conditional",
+        "description": "Imaginary or unlikely situations in the present or future."
       }
     },
     "lessons": {
       "present-simple": {
-        "explanation": "Use the Present Simple for habits, routines, and facts that are generally true. Add -s or -es to the verb when the subject is he, she, or it.",
+        "explanation": "Use the Present Simple for habits, routines, permanent facts, and things that are generally true. Form it with the base verb (I/you/we/they + work) and add -s or -es for he/she/it (she works, he watches). Common mistake: learners often forget the -s for he/she/it, or add it to every subject by mistake.",
         "examples": [
           "I work every day.",
           "She works in a hospital.",
-          "The sun rises in the east."
+          "The sun rises in the east.",
+          "They don't like coffee."
         ]
       },
       "present-continuous": {
-        "explanation": "Use the Present Continuous (am/is/are + verb-ing) for actions happening right now or around this time.",
+        "explanation": "Use the Present Continuous (am/is/are + verb-ing) for actions happening right now, temporary situations, or fixed future plans. Choose am for I, is for he/she/it, and are for you/we/they. Common mistake: don't use the Present Continuous for permanent facts or feelings like 'like', 'know', or 'want' — use the Present Simple instead ('I like tea', not 'I am liking tea').",
         "examples": [
           "I am working right now.",
           "She is reading a book.",
-          "They are watching a movie tonight."
+          "They are watching a movie tonight.",
+          "We are meeting Tom at 5pm."
         ]
       },
       "past-simple": {
-        "explanation": "Use the Past Simple for actions that started and finished in the past. Regular verbs add -ed; irregular verbs have their own past form.",
+        "explanation": "Use the Past Simple for actions that started and finished at a specific time in the past. Regular verbs add -ed (worked, played); irregular verbs have their own past form that must be memorised (go → went, see → saw). Common mistake: don't use 'did' together with the past form in questions or negatives — say 'Did you see it?', not 'Did you saw it?'.",
         "examples": [
           "I worked yesterday.",
           "She went to Paris last year.",
-          "They watched a film last night."
+          "They watched a film last night.",
+          "We didn't see him at the party."
         ]
       },
       "present-perfect": {
-        "explanation": "Use the Present Perfect (have/has + past participle) for past actions that connect to the present — experiences, changes, or things not yet finished.",
+        "explanation": "Use the Present Perfect (have/has + past participle) for past actions that are connected to the present — life experiences, recent news, or actions that started in the past and continue now. Use 'has' for he/she/it and 'have' for everyone else. Common mistake: don't use the Present Perfect with a specific finished time like 'yesterday' or 'in 2015' — use the Past Simple instead.",
         "examples": [
           "I have finished my homework.",
           "She has visited Japan twice.",
-          "We have already eaten."
+          "We have already eaten.",
+          "Have you ever tried sushi?"
         ]
       },
       "future-will-going-to": {
-        "explanation": "Use 'will' for spontaneous decisions and predictions, and 'going to' for plans and intentions you've already decided on.",
+        "explanation": "Use 'will' + base verb for spontaneous decisions made at the moment of speaking and for predictions without clear evidence. Use 'be going to' + base verb for plans and intentions decided before now, or predictions based on evidence you can see. Common mistake: don't say 'will going to' — the two forms are never combined together.",
         "examples": [
           "I will call you tomorrow.",
           "She is going to travel next month.",
-          "It will probably rain later."
+          "It will probably rain later.",
+          "Look at those clouds — it's going to rain!"
         ]
       },
       "articles": {
-        "explanation": "Use 'a' before consonant sounds and 'an' before vowel sounds for something mentioned for the first time. Use 'the' for something specific or already mentioned.",
+        "explanation": "Use 'a' before a consonant sound and 'an' before a vowel sound when you mention a singular countable noun for the first time (a car, an apple). Use 'the' when the noun is already known — because you mentioned it before, there's only one of it, or the situation makes it obvious. Common mistake: the choice depends on the SOUND, not the letter — 'an hour' (silent h) but 'a university' (starts with a 'y' sound).",
         "examples": [
           "I saw a dog in the park.",
           "She ate an apple.",
-          "I have a car. The car is red."
+          "I have a car. The car is red.",
+          "The sun is very bright today."
         ]
       },
       "comparatives-superlatives": {
-        "explanation": "Use comparatives (-er / more) to compare two things, and superlatives (-est / most) to compare three or more things.",
+        "explanation": "Use comparatives to compare two things: add -er to short adjectives (tall → taller) or use 'more' before long adjectives (beautiful → more beautiful), followed by 'than'. Use superlatives to compare three or more things: add -est (tallest) or use 'most' (most beautiful), usually with 'the' in front. Common mistake: don't combine both forms together — say 'more beautiful', not 'more beautifuler'.",
         "examples": [
           "A car is faster than a bicycle.",
           "This is the most beautiful city I know.",
-          "Today is better than yesterday."
+          "Today is better than yesterday.",
+          "She is the tallest student in the class."
         ]
       },
       "modal-verbs": {
-        "explanation": "Use 'can' for ability, 'must' for strong obligation, 'should' for advice, and 'have to' for necessity.",
+        "explanation": "Use 'can' for ability or permission, 'must' for strong obligation that comes from the speaker, 'have to' for necessity that comes from outside (rules, other people), and 'should' for advice or a recommendation. Modal verbs are always followed by the base form of the verb, with no 'to' and no -s for he/she/it. Common mistake: don't say 'must to' or 'she cans' — modal verbs never take 'to' or an -s ending.",
         "examples": [
           "I can swim very well.",
           "You must wear a seatbelt.",
-          "You should see a doctor."
+          "You should see a doctor.",
+          "She has to finish this by Friday."
         ]
       },
       "prepositions-time-place": {
-        "explanation": "Use 'at' for exact times and points, 'on' for days and surfaces, and 'in' for months, years, and enclosed spaces.",
+        "explanation": "For time, use 'at' with exact clock times and a few fixed expressions (at 5 o'clock, at night), 'on' with days and dates (on Monday, on 1 May), and 'in' with months, years, and longer periods (in June, in 2020). For place, use 'at' for a specific point (at the door), 'on' for a surface (on the table), and 'in' for an enclosed space (in the box). Common mistake: 'in the morning/afternoon/evening' but 'at night' — night is the one exception.",
         "examples": [
           "I'll see you at 5 o'clock.",
           "The meeting is on Monday.",
-          "The keys are in the box."
+          "The keys are in the box.",
+          "We arrived in the evening."
         ]
       },
       "conditionals-zero-first": {
-        "explanation": "Use the Zero Conditional (if + present, present) for general truths, and the First Conditional (if + present, will + verb) for real future possibilities.",
+        "explanation": "Use the Zero Conditional (if + present simple, present simple) for general truths and scientific facts that are always true. Use the First Conditional (if + present simple, will + base verb) for real, likely situations in the future. Common mistake: never use 'will' in the if-clause — say 'If it rains, I will stay home', not 'If it will rain, I will stay home'.",
         "examples": [
           "If you heat ice, it melts.",
           "If it rains tomorrow, I will stay home.",
-          "If you study hard, you will pass."
+          "If you study hard, you will pass.",
+          "Water boils if you heat it to 100°C."
+        ]
+      },
+      "past-continuous": {
+        "explanation": "Use the Past Continuous (was/were + verb-ing) for an action that was already in progress at a specific point in the past, often interrupted by another action, or for background scene-setting. Use 'was' for I/he/she/it and 'were' for you/we/they. Common mistake: don't confuse it with the Present Continuous — the time reference must clearly be in the past.",
+        "examples": [
+          "I was working at 8 o'clock last night.",
+          "She was reading when the phone rang.",
+          "They were watching TV all evening.",
+          "It was raining during the whole match."
+        ]
+      },
+      "passive-voice": {
+        "explanation": "Use the Passive Voice (be + past participle) when the action itself is more important than who performed it, or when the doer is unknown or obvious. Match the tense of 'be' to the sentence's time: 'is/are' for the present, 'was/were' for the past. Common mistake: don't forget the past participle — 'the letter is write' is wrong, it must be 'the letter is written'.",
+        "examples": [
+          "The car is cleaned every week.",
+          "The letters were delivered yesterday.",
+          "This bridge was built in 1990.",
+          "These books are sold in every shop."
+        ]
+      },
+      "past-perfect": {
+        "explanation": "Use the Past Perfect (had + past participle) to show that one past action happened before another past action or time — it 'goes back' further than a normal past-tense event. It doesn't change for person: 'had' is the same for I, you, he, she, we, and they. Common mistake: don't use it for every past event — only when you're comparing two points in the past and one clearly comes first.",
+        "examples": [
+          "I had finished dinner before she arrived.",
+          "They had already left when we got there.",
+          "She had never seen snow before that winter.",
+          "The train had departed by the time we reached the station."
+        ]
+      },
+      "reported-speech": {
+        "explanation": "Use Reported Speech to tell someone what another person said, without quoting their exact words. When the reporting verb ('said') is in the past, the original tense usually shifts one step back — Present Simple becomes Past Simple ('I like it' → 'She said she liked it'). Common mistake: forgetting to backshift the tense, or leaving the verb unchanged as if it were a direct quote.",
+        "examples": [
+          "He said he liked the city.",
+          "She said she had a new car.",
+          "They said they wanted to help.",
+          "My friend said he needed more time."
+        ]
+      },
+      "relative-clauses": {
+        "explanation": "Use relative clauses to add extra information about a noun without starting a new sentence. Use 'who' for people, 'which' for things, 'where' for places, and 'whose' to show possession. Common mistake: don't use 'which' for people or 'who' for things — the choice depends strictly on what kind of noun you are describing.",
+        "examples": [
+          "The man who lives next door is a doctor.",
+          "The car which I bought is red.",
+          "The city where we met is beautiful.",
+          "The woman whose car is red is my neighbor."
+        ]
+      },
+      "second-conditional": {
+        "explanation": "Use the Second Conditional (if + past simple, would + base verb) to talk about imaginary, hypothetical, or unlikely situations in the present or future — not real facts. The past tense in the if-clause does NOT refer to the past here; it signals that the situation is unreal. Common mistake: don't use 'would' in the if-clause — say 'If I had more time', not 'If I would have more time'.",
+        "examples": [
+          "If I had more time, I would travel more.",
+          "If she won the lottery, she would buy a house.",
+          "If we knew the answer, we would tell you.",
+          "I would help you if I had a car."
         ]
       }
+    },
+    "share": {
+      "button": "Share results",
+      "shared": "Shared!",
+      "linkCopied": "Link copied to clipboard!",
+      "error": "Couldn't create a link. Please try again.",
+      "shareTitle": "My VocabFlow grammar result",
+      "resultTitle": "{name}'s grammar result",
+      "bestCombo": "Best combo: ×{count}",
+      "rulesPracticed": "Rules practiced",
+      "tryVocabFlow": "Try VocabFlow"
     }
   }
 }

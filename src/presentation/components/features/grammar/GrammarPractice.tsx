@@ -9,6 +9,7 @@ import QuizItem from "@/presentation/components/features/practice/QuizItem";
 import HeartsBar from "@/presentation/components/features/practice/HeartsBar";
 import { useGrammarPracticeSession } from "@/presentation/hooks/use-grammar-practice-session";
 import { generateGrammarSessionAction } from "@/presentation/actions/grammar-actions";
+import ShareResultButton from "@/presentation/components/features/grammar/ShareResultButton";
 
 const QUESTIONS_PER_ROUND = 12;
 
@@ -52,17 +53,25 @@ function GrammarPractice({ ruleKey, ruleTitle }: GrammarPracticeProps) {
 
     if (session.isFinished) {
         return (
-            <PracticeResult
-                onPlayAgain={handlePlayAgain}
-                correctCount={session.correctCount}
-                questionsCount={session.questionsCount}
-                failed={session.failed}
-                maxCombo={session.maxCombo}
-                streakResult={session.streakResult}
-                coinsAward={session.coinsAward}
-                backHref={`/grammar/${ruleKey}`}
-                backLabel={t("backToLesson")}
-            />
+            <div className="flex flex-col gap-3">
+                <PracticeResult
+                    onPlayAgain={handlePlayAgain}
+                    correctCount={session.correctCount}
+                    questionsCount={session.questionsCount}
+                    failed={session.failed}
+                    maxCombo={session.maxCombo}
+                    streakResult={session.streakResult}
+                    coinsAward={session.coinsAward}
+                    backHref={`/grammar/${ruleKey}`}
+                    backLabel={t("backToLesson")}
+                />
+                <ShareResultButton
+                    ruleKeys={[ruleKey]}
+                    questionsCount={session.questionsCount}
+                    correctCount={session.correctCount}
+                    maxCombo={session.maxCombo}
+                />
+            </div>
         );
     }
 

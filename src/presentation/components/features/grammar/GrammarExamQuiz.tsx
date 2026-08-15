@@ -7,29 +7,39 @@ import PracticeResult from "@/presentation/components/features/practice/Practice
 import QuizItem from "@/presentation/components/features/practice/QuizItem";
 import HeartsBar from "@/presentation/components/features/practice/HeartsBar";
 import { useGrammarPracticeSession } from "@/presentation/hooks/use-grammar-practice-session";
+import ShareResultButton from "@/presentation/components/features/grammar/ShareResultButton";
 
 interface GrammarExamQuizProps {
     questions: QuizQuestion[];
+    ruleKeys: string[];
     onChangeRules: () => void;
 }
 
-function GrammarExamQuiz({ questions, onChangeRules }: GrammarExamQuizProps) {
+function GrammarExamQuiz({ questions, ruleKeys, onChangeRules }: GrammarExamQuizProps) {
     const t = useTranslations("grammar");
     const session = useGrammarPracticeSession(questions, { awardsCoins: false, maxHearts: 5 });
 
     if (session.isFinished) {
         return (
-            <PracticeResult
-                onPlayAgain={session.resetSession}
-                correctCount={session.correctCount}
-                questionsCount={session.questionsCount}
-                failed={session.failed}
-                maxCombo={session.maxCombo}
-                streakResult={session.streakResult}
-                coinsAward={session.coinsAward}
-                backHref="/grammar/exam"
-                backLabel={t("exam.changeRules")}
-            />
+            <div className="flex flex-col gap-3">
+                <PracticeResult
+                    onPlayAgain={session.resetSession}
+                    correctCount={session.correctCount}
+                    questionsCount={session.questionsCount}
+                    failed={session.failed}
+                    maxCombo={session.maxCombo}
+                    streakResult={session.streakResult}
+                    coinsAward={session.coinsAward}
+                    backHref="/grammar/exam"
+                    backLabel={t("exam.changeRules")}
+                />
+                <ShareResultButton
+                    ruleKeys={ruleKeys}
+                    questionsCount={session.questionsCount}
+                    correctCount={session.correctCount}
+                    maxCombo={session.maxCombo}
+                />
+            </div>
         );
     }
 

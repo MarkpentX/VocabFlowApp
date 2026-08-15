@@ -8,7 +8,6 @@
     "home": "Главная",
     "dictionaries": "Слова",
     "add": "Добавить",
-    "practice": "Практика",
     "shop": "Магазин",
     "grammar": "Грамматика"
   },
@@ -217,7 +216,7 @@
     "noVoiceAvailable": "Озвучивание для этого языка пока недоступно на вашем устройстве."
   },
   "grammar": {
-    "subtitle": "Изучайте правила грамматики бесплатно, а затем закрепляйте их упражнениями, которые всегда разные.",
+    "subtitle": "Изучайте правила английской грамматики бесплатно — от A1 до B2, а затем закрепляйте каждое упражнениями, которые всегда разные.",
     "takeExam": "Пройти смешанный экзамен",
     "mastered": "Освоено",
     "notStarted": "Ещё не начато",
@@ -283,89 +282,188 @@
       "conditionals-zero-first": {
         "title": "Условные предложения: нулевой и первый тип",
         "description": "Общие истины и реальные возможности в будущем."
+      },
+      "past-continuous": {
+        "title": "Past Continuous",
+        "description": "Действие в процессе в конкретный момент прошлого — I was working."
+      },
+      "passive-voice": {
+        "title": "Пассивный залог",
+        "description": "Когда важно действие, а не тот, кто его совершил — it is made, it was built."
+      },
+      "past-perfect": {
+        "title": "Past Perfect",
+        "description": "Действие, завершённое раньше другого момента в прошлом."
+      },
+      "reported-speech": {
+        "title": "Косвенная речь",
+        "description": "Пересказ чужих слов — she said she liked it."
+      },
+      "relative-clauses": {
+        "title": "Придаточные определительные",
+        "description": "Соединяем идеи через who, which, where и whose."
+      },
+      "second-conditional": {
+        "title": "Второй тип условных предложений",
+        "description": "Воображаемые или маловероятные ситуации в настоящем или будущем."
       }
     },
     "lessons": {
       "present-simple": {
-        "explanation": "Present Simple используется для привычек, распорядка дня и фактов, которые всегда верны. К глаголу добавляется -s или -es, если подлежащее he, she или it.",
+        "explanation": "Present Simple используется для привычек, распорядка дня, постоянных фактов и того, что верно всегда. Форма строится с базовым глаголом (I/you/we/they + work), а для he/she/it добавляется -s или -es (she works, he watches). Частая ошибка: забывают добавить -s для he/she/it или, наоборот, добавляют его ко всем подлежащим подряд.",
         "examples": [
           "I work every day.",
           "She works in a hospital.",
-          "The sun rises in the east."
+          "The sun rises in the east.",
+          "They don't like coffee."
         ]
       },
       "present-continuous": {
-        "explanation": "Present Continuous (am/is/are + глагол-ing) используется для действий, происходящих прямо сейчас или в текущий период времени.",
+        "explanation": "Present Continuous (am/is/are + глагол-ing) используется для действий, происходящих прямо сейчас, временных ситуаций или уже запланированных будущих событий. Выбирайте am для I, is для he/she/it и are для you/we/they. Частая ошибка: не используйте Present Continuous с глаголами чувств и состояний вроде like, know, want — для них нужен Present Simple ('I like tea', а не 'I am liking tea').",
         "examples": [
           "I am working right now.",
           "She is reading a book.",
-          "They are watching a movie tonight."
+          "They are watching a movie tonight.",
+          "We are meeting Tom at 5pm."
         ]
       },
       "past-simple": {
-        "explanation": "Past Simple используется для действий, которые начались и закончились в прошлом. У правильных глаголов добавляется -ed, у неправильных — своя форма прошедшего времени.",
+        "explanation": "Past Simple используется для действий, которые начались и закончились в конкретный момент в прошлом. У правильных глаголов добавляется -ed (worked, played), у неправильных — своя форма, которую нужно запомнить (go → went, see → saw). Частая ошибка: не используйте 'did' вместе с формой прошедшего времени в вопросах и отрицаниях — правильно 'Did you see it?', а не 'Did you saw it?'.",
         "examples": [
           "I worked yesterday.",
           "She went to Paris last year.",
-          "They watched a film last night."
+          "They watched a film last night.",
+          "We didn't see him at the party."
         ]
       },
       "present-perfect": {
-        "explanation": "Present Perfect (have/has + причастие прошедшего времени) используется для действий из прошлого, которые связаны с настоящим моментом — опыт, изменения или ещё не завершённые действия.",
+        "explanation": "Present Perfect (have/has + причастие прошедшего времени) используется для действий из прошлого, которые связаны с настоящим моментом — жизненный опыт, недавние новости или действия, начавшиеся в прошлом и продолжающиеся сейчас. 'Has' используется для he/she/it, 'have' — для всех остальных. Частая ошибка: не используйте Present Perfect с конкретным завершённым временем вроде 'yesterday' или 'in 2015' — в этом случае нужен Past Simple.",
         "examples": [
           "I have finished my homework.",
           "She has visited Japan twice.",
-          "We have already eaten."
+          "We have already eaten.",
+          "Have you ever tried sushi?"
         ]
       },
       "future-will-going-to": {
-        "explanation": "'Will' используется для спонтанных решений и предсказаний, а 'going to' — для планов и намерений, которые уже приняты заранее.",
+        "explanation": "'Will' + базовый глагол используется для спонтанных решений, принятых прямо в момент речи, и предсказаний без явных доказательств. 'Be going to' + базовый глагол используется для планов и намерений, принятых заранее, или предсказаний, основанных на очевидных признаках. Частая ошибка: нельзя говорить 'will going to' — эти две формы никогда не соединяются вместе.",
         "examples": [
           "I will call you tomorrow.",
           "She is going to travel next month.",
-          "It will probably rain later."
+          "It will probably rain later.",
+          "Look at those clouds — it's going to rain!"
         ]
       },
       "articles": {
-        "explanation": "Артикль 'a' ставится перед словами, начинающимися с согласного звука, а 'an' — перед словами с гласного звука, если предмет упоминается впервые. 'The' используется для чего-то конкретного или уже упомянутого.",
+        "explanation": "Артикль 'a' ставится перед словом с согласного звука, а 'an' — перед словом с гласного звука, когда исчисляемое существительное в единственном числе упоминается впервые (a car, an apple). 'The' используется, когда предмет уже известен — потому что о нём уже говорили, он единственный в своём роде, или это очевидно из ситуации. Частая ошибка: выбор зависит от ЗВУКА, а не от буквы — 'an hour' (h не произносится), но 'a university' (звучит как 'ю').",
         "examples": [
           "I saw a dog in the park.",
           "She ate an apple.",
-          "I have a car. The car is red."
+          "I have a car. The car is red.",
+          "The sun is very bright today."
         ]
       },
       "comparatives-superlatives": {
-        "explanation": "Сравнительная степень (-er / more) используется для сравнения двух предметов, а превосходная (-est / most) — для сравнения трёх и более.",
+        "explanation": "Сравнительная степень используется для сравнения двух предметов: к коротким прилагательным добавляется -er (tall → taller), а перед длинными ставится 'more' (beautiful → more beautiful), после чего идёт 'than'. Превосходная степень используется для сравнения трёх и более предметов: добавляется -est (tallest) или ставится 'most' (most beautiful), обычно с артиклем 'the' перед прилагательным. Частая ошибка: нельзя соединять обе формы вместе — 'more beautiful', а не 'more beautifuler'.",
         "examples": [
           "A car is faster than a bicycle.",
           "This is the most beautiful city I know.",
-          "Today is better than yesterday."
+          "Today is better than yesterday.",
+          "She is the tallest student in the class."
         ]
       },
       "modal-verbs": {
-        "explanation": "'Can' используется для способности, 'must' — для строгой обязанности, 'should' — для совета, а 'have to' — для необходимости.",
+        "explanation": "'Can' используется для способности или разрешения, 'must' — для строгой обязанности, которая исходит от самого говорящего, 'have to' — для необходимости, которая исходит извне (правила, другие люди), а 'should' — для совета или рекомендации. После модальных глаголов всегда идёт базовая форма глагола, без 'to' и без -s для he/she/it. Частая ошибка: нельзя говорить 'must to' или 'she cans' — модальные глаголы никогда не принимают 'to' или окончание -s.",
         "examples": [
           "I can swim very well.",
           "You must wear a seatbelt.",
-          "You should see a doctor."
+          "You should see a doctor.",
+          "She has to finish this by Friday."
         ]
       },
       "prepositions-time-place": {
-        "explanation": "'At' используется для точного времени и точек, 'on' — для дней недели и поверхностей, а 'in' — для месяцев, лет и замкнутых пространств.",
+        "explanation": "Для времени используйте 'at' с точным временем на часах и в нескольких устойчивых выражениях (at 5 o'clock, at night), 'on' — с днями и датами (on Monday, on 1 May), а 'in' — с месяцами, годами и более длинными периодами (in June, in 2020). Для места используйте 'at' для конкретной точки (at the door), 'on' для поверхности (on the table), а 'in' для замкнутого пространства (in the box). Частая ошибка: 'in the morning/afternoon/evening', но 'at night' — ночь является исключением.",
         "examples": [
           "I'll see you at 5 o'clock.",
           "The meeting is on Monday.",
-          "The keys are in the box."
+          "The keys are in the box.",
+          "We arrived in the evening."
         ]
       },
       "conditionals-zero-first": {
-        "explanation": "Нулевой тип условных предложений (if + present, present) используется для общих истин, а первый тип (if + present, will + глагол) — для реальных возможностей в будущем.",
+        "explanation": "Нулевой тип условных предложений (if + present simple, present simple) используется для общих истин и научных фактов, которые всегда верны. Первый тип (if + present simple, will + базовый глагол) используется для реальных, вероятных ситуаций в будущем. Частая ошибка: никогда не используйте 'will' в придаточном с if — правильно 'If it rains, I will stay home', а не 'If it will rain, I will stay home'.",
         "examples": [
           "If you heat ice, it melts.",
           "If it rains tomorrow, I will stay home.",
-          "If you study hard, you will pass."
+          "If you study hard, you will pass.",
+          "Water boils if you heat it to 100°C."
+        ]
+      },
+      "past-continuous": {
+        "explanation": "Past Continuous (was/were + глагол-ing) используется для действия, которое уже происходило в конкретный момент в прошлом, часто прерванного другим действием, или для описания фоновой обстановки. 'Was' используется для I/he/she/it, 'were' — для you/we/they. Частая ошибка: не путайте его с Present Continuous — время в предложении должно однозначно указывать на прошлое.",
+        "examples": [
+          "I was working at 8 o'clock last night.",
+          "She was reading when the phone rang.",
+          "They were watching TV all evening.",
+          "It was raining during the whole match."
+        ]
+      },
+      "passive-voice": {
+        "explanation": "Пассивный залог (be + причастие прошедшего времени) используется, когда само действие важнее, чем тот, кто его совершил, или когда исполнитель неизвестен или очевиден. Форма 'be' должна соответствовать времени предложения: 'is/are' для настоящего, 'was/were' для прошедшего. Частая ошибка: не забывайте причастие — 'the letter is write' неверно, правильно 'the letter is written'.",
+        "examples": [
+          "The car is cleaned every week.",
+          "The letters were delivered yesterday.",
+          "This bridge was built in 1990.",
+          "These books are sold in every shop."
+        ]
+      },
+      "past-perfect": {
+        "explanation": "Past Perfect (had + причастие прошедшего времени) показывает, что одно действие в прошлом произошло раньше другого действия или момента в прошлом — оно 'уходит дальше' обычного прошедшего времени. Форма не меняется по лицам: 'had' одинаково для I, you, he, she, we и they. Частая ошибка: не используйте его для каждого события в прошлом — только когда сравниваются два момента в прошлом и один явно предшествует другому.",
+        "examples": [
+          "I had finished dinner before she arrived.",
+          "They had already left when we got there.",
+          "She had never seen snow before that winter.",
+          "The train had departed by the time we reached the station."
+        ]
+      },
+      "reported-speech": {
+        "explanation": "Косвенная речь используется, чтобы пересказать чьи-то слова, не цитируя их дословно. Когда глагол-связка ('said') стоит в прошедшем времени, исходное время обычно сдвигается на один шаг назад — Present Simple становится Past Simple ('I like it' → 'She said she liked it'). Частая ошибка: забывают сдвинуть время назад и оставляют глагол без изменений, как в прямой цитате.",
+        "examples": [
+          "He said he liked the city.",
+          "She said she had a new car.",
+          "They said they wanted to help.",
+          "My friend said he needed more time."
+        ]
+      },
+      "relative-clauses": {
+        "explanation": "Придаточные определительные предложения добавляют дополнительную информацию о существительном, не начиная новое предложение. 'Who' используется для людей, 'which' — для предметов, 'where' — для мест, а 'whose' показывает принадлежность. Частая ошибка: не используйте 'which' для людей или 'who' для предметов — выбор строго зависит от того, о ком или о чём идёт речь.",
+        "examples": [
+          "The man who lives next door is a doctor.",
+          "The car which I bought is red.",
+          "The city where we met is beautiful.",
+          "The woman whose car is red is my neighbor."
+        ]
+      },
+      "second-conditional": {
+        "explanation": "Второй тип условных предложений (if + past simple, would + базовый глагол) используется для воображаемых, гипотетических или маловероятных ситуаций в настоящем или будущем — а не для реальных фактов. Прошедшее время в придаточном с if здесь НЕ указывает на прошлое — оно показывает, что ситуация нереальна. Частая ошибка: нельзя использовать 'would' в придаточном с if — правильно 'If I had more time', а не 'If I would have more time'.",
+        "examples": [
+          "If I had more time, I would travel more.",
+          "If she won the lottery, she would buy a house.",
+          "If we knew the answer, we would tell you.",
+          "I would help you if I had a car."
         ]
       }
+    },
+    "share": {
+      "button": "Поделиться результатом",
+      "shared": "Отправлено!",
+      "linkCopied": "Ссылка скопирована в буфер обмена!",
+      "error": "Не удалось создать ссылку. Попробуйте ещё раз.",
+      "shareTitle": "Мой результат по грамматике в VocabFlow",
+      "resultTitle": "Результат {name} по грамматике",
+      "bestCombo": "Лучшее комбо: ×{count}",
+      "rulesPracticed": "Изученные правила",
+      "tryVocabFlow": "Попробовать VocabFlow"
     }
   }
 }

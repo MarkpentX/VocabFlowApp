@@ -18,6 +18,7 @@ interface GrammarExamFlowProps {
 function GrammarExamFlow({ rules }: GrammarExamFlowProps) {
     const t = useTranslations("grammar");
     const [questions, setQuestions] = useState<QuizQuestion[] | null>(null);
+    const [selectedRuleKeys, setSelectedRuleKeys] = useState<string[]>([]);
     const [pending, setPending] = useState(false);
 
     async function handleStart(ruleKeys: string[]) {
@@ -30,11 +31,12 @@ function GrammarExamFlow({ rules }: GrammarExamFlowProps) {
             return;
         }
 
+        setSelectedRuleKeys(ruleKeys);
         setQuestions(result.data);
     }
 
     if (questions) {
-        return <GrammarExamQuiz questions={questions} onChangeRules={() => setQuestions(null)} />;
+        return <GrammarExamQuiz questions={questions} ruleKeys={selectedRuleKeys} onChangeRules={() => setQuestions(null)} />;
     }
 
     return <RulePicker rules={rules} onStart={handleStart} pending={pending} />;
