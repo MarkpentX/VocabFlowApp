@@ -7,6 +7,7 @@ import { accounts, sessions, usersTable, verificationTokens } from "@/infrastruc
 import { db } from "@/infrastructure/db/client";
 import { drizzleUserRepository } from "@/infrastructure/repositories/drizzle-user-repository";
 import { hashPassword, verifyPassword } from "@/infrastructure/auth/password-hasher";
+import { getPostHogServerClient } from "@/infrastructure/analytics/posthog-server";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     adapter: DrizzleAdapter(db, {
@@ -87,6 +88,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             }
 
             return session
+        },
+    },
+
+    events: {
+        async signIn({ user, account, isNewUser }) {
+            const posthogClient = getPostHogServerClient();
+            if (!posthogClient || !user.id) {
+                return
+            }
+
+            posthogClient.capture({
+                distinctId: user.id,
+                event: isNewUser ? "user_signed_up" : "user_signed_in",
+                properties: {
+                    email: user.email,
+                    username: (user as { username?: string }).username,
+                    provider: account?.provider,
+                },
+            })
+
+            await posthogClient.flush()
         },
     },
 })

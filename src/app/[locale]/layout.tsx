@@ -9,6 +9,7 @@ import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import PostHogProvider from "@/presentation/providers/PostHogProvider";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -58,13 +59,15 @@ export default async function RootLayout({ children, params }: LayoutProps) {
     return (
         <html lang={locale} className={cn(spaceGrotesk.className, dMSans.className, "font-sans", geist.variable)}>
         <body className="bg-[rgb(248,249,245)]">
-        <NextIntlClientProvider>
-            <Toaster
-                position="top-center"
-                reverseOrder={true}
-            />
-            {children}
-        </NextIntlClientProvider>
+        <PostHogProvider>
+            <NextIntlClientProvider>
+                <Toaster
+                    position="top-center"
+                    reverseOrder={true}
+                />
+                {children}
+            </NextIntlClientProvider>
+        </PostHogProvider>
         <Analytics/>
         <SpeedInsights/>
         </body>
