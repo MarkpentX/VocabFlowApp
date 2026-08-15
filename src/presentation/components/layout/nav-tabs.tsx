@@ -1,11 +1,12 @@
 import React from "react";
 
-export type TabKey = "home" | "dictionaries" | "practice" | "shop";
+export type TabKey = "home" | "dictionaries" | "practice" | "grammar" | "shop";
 
 export const TABS: { key: TabKey; href: string }[] = [
     { key: "home", href: "/dashboard" },
     { key: "dictionaries", href: "/dictionary" },
     { key: "practice", href: "/practice" },
+    { key: "grammar", href: "/grammar" },
     { key: "shop", href: "/shop" },
 ];
 
@@ -56,6 +57,14 @@ export function TabIcon({ tab, className }: { tab: TabKey; className?: string })
                     <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"></path>
                     <path d="M2 7h20"></path>
                     <path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"></path>
+                </svg>
+            );
+        case "grammar":
+            return (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                    <path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"></path>
                 </svg>
             );
     }

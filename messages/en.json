@@ -9,7 +9,8 @@
     "dictionaries": "Words",
     "add": "Add",
     "practice": "Practice",
-    "shop": "Shop"
+    "shop": "Shop",
+    "grammar": "Grammar"
   },
   "common": {
     "appName": "VocabFlow",
@@ -31,9 +32,18 @@
     "startLearning": "Start Learning",
     "featuresTitle": "Features",
     "advantages": {
-      "saveWords": { "title": "Save Words", "desc": "Build your personal vocabulary with words and translations." },
-      "organizeDictionaries": { "title": "Organize into Dictionaries", "desc": "Group words by topic — food, travel, business, and more." },
-      "practiceLearn": { "title": "Practice & Learn", "desc": "Test yourself with interactive quizzes and track progress." }
+      "saveWords": {
+        "title": "Save Words",
+        "desc": "Build your personal vocabulary with words and translations."
+      },
+      "organizeDictionaries": {
+        "title": "Organize into Dictionaries",
+        "desc": "Group words by topic — food, travel, business, and more."
+      },
+      "practiceLearn": {
+        "title": "Practice & Learn",
+        "desc": "Test yourself with interactive quizzes and track progress."
+      }
     }
   },
   "dashboard": {
@@ -48,6 +58,10 @@
     },
     "coins": {
       "label": "coins"
+    },
+    "grammarCard": {
+      "title": "Grammar",
+      "subtitle": "Free lessons & endless practice"
     }
   },
   "words": {
@@ -64,7 +78,11 @@
     "createdSuccess": "The word has been created!",
     "createdError": "An error occurred",
     "translationError": "Could not translate this word. You can still type the meaning manually.",
-    "languages": { "en": "English", "ru": "Russian", "uk": "Ukrainian" }
+    "languages": {
+      "en": "English",
+      "ru": "Russian",
+      "uk": "Ukrainian"
+    }
   },
   "dictionaries": {
     "pageTitle": "Dictionaries",
@@ -82,9 +100,18 @@
     "practiceTitle": "Practice",
     "loadWordsError": "Failed to load words for this dictionary.",
     "modes": {
-      "byTranslate": { "title": "By translate", "description": "Write the translation of the words" },
-      "byEar": { "title": "By ear", "description": "Hear and write the word" },
-      "quiz": { "title": "Choice", "description": "Choose the correct answer" }
+      "byTranslate": {
+        "title": "By translate",
+        "description": "Write the translation of the words"
+      },
+      "byEar": {
+        "title": "By ear",
+        "description": "Hear and write the word"
+      },
+      "quiz": {
+        "title": "Choice",
+        "description": "Choose the correct answer"
+      }
     },
     "listenAndWrite": "Listen and write the word",
     "writeTranslationPlaceholder": "Write a translation:",
@@ -137,12 +164,30 @@
     "breakdownTitle": "Level breakdown",
     "retake": "Retake test",
     "levels": {
-      "A1": { "title": "Beginner", "description": "You know basic words and phrases. Keep building your foundation!" },
-      "A2": { "title": "Elementary", "description": "You can handle simple everyday conversations." },
-      "B1": { "title": "Intermediate", "description": "You can talk about familiar topics with confidence." },
-      "B2": { "title": "Upper Intermediate", "description": "You express yourself clearly on a wide range of topics." },
-      "C1": { "title": "Advanced", "description": "You use English fluently and precisely, even in complex situations." },
-      "C2": { "title": "Proficient", "description": "You use English at a near-native level, even in nuanced and demanding contexts." }
+      "A1": {
+        "title": "Beginner",
+        "description": "You know basic words and phrases. Keep building your foundation!"
+      },
+      "A2": {
+        "title": "Elementary",
+        "description": "You can handle simple everyday conversations."
+      },
+      "B1": {
+        "title": "Intermediate",
+        "description": "You can talk about familiar topics with confidence."
+      },
+      "B2": {
+        "title": "Upper Intermediate",
+        "description": "You express yourself clearly on a wide range of topics."
+      },
+      "C1": {
+        "title": "Advanced",
+        "description": "You use English fluently and precisely, even in complex situations."
+      },
+      "C2": {
+        "title": "Proficient",
+        "description": "You use English at a near-native level, even in nuanced and demanding contexts."
+      }
     }
   },
   "auth": {
@@ -170,5 +215,157 @@
   },
   "tts": {
     "noVoiceAvailable": "Pronunciation isn't available for this language on your device."
+  },
+  "grammar": {
+    "subtitle": "Learn grammar rules for free, then drill them with exercises that are always different.",
+    "takeExam": "Take a mixed exam",
+    "mastered": "Mastered",
+    "notStarted": "Not started yet",
+    "loading": "Loading exercises...",
+    "loadError": "Couldn't load exercises. Please try again.",
+    "backToLesson": "Back to lesson",
+    "stats": {
+      "mastered": "Rules mastered",
+      "accuracy": "Overall accuracy",
+      "exercisesDone": "Exercises done",
+      "ruleAccuracy": "{accuracy}% correct"
+    },
+    "exam": {
+      "pickerTitle": "Choose rules for the exam",
+      "minRules": "Choose at least {count} rules",
+      "start": "Start exam",
+      "changeRules": "Change rules",
+      "loadError": "Couldn't load the exam. Please try again."
+    },
+    "lesson": {
+      "startPractice": "Start practice",
+      "examplesTitle": "Examples",
+      "attempts": "{count} exercises done",
+      "accuracy": "{accuracy}% accuracy"
+    },
+    "rules": {
+      "present-simple": {
+        "title": "Present Simple",
+        "description": "Habits, routines, and facts — I work, she works."
+      },
+      "present-continuous": {
+        "title": "Present Continuous",
+        "description": "Actions happening right now — I am working."
+      },
+      "past-simple": {
+        "title": "Past Simple",
+        "description": "Finished actions in the past — I worked, she went."
+      },
+      "present-perfect": {
+        "title": "Present Perfect",
+        "description": "Past actions linked to now — I have finished."
+      },
+      "future-will-going-to": {
+        "title": "Future: will & going to",
+        "description": "Talking about the future — I will call, I am going to travel."
+      },
+      "articles": {
+        "title": "Articles: a / an / the",
+        "description": "Choosing between a, an, and the correctly."
+      },
+      "comparatives-superlatives": {
+        "title": "Comparatives & Superlatives",
+        "description": "Comparing things — taller, more beautiful, the best."
+      },
+      "modal-verbs": {
+        "title": "Modal Verbs",
+        "description": "Can, must, should, have to — ability, obligation, advice."
+      },
+      "prepositions-time-place": {
+        "title": "Prepositions of Time & Place",
+        "description": "At, on, in — for times and places."
+      },
+      "conditionals-zero-first": {
+        "title": "Conditionals: Zero & First",
+        "description": "General truths and real future possibilities."
+      }
+    },
+    "lessons": {
+      "present-simple": {
+        "explanation": "Use the Present Simple for habits, routines, and facts that are generally true. Add -s or -es to the verb when the subject is he, she, or it.",
+        "examples": [
+          "I work every day.",
+          "She works in a hospital.",
+          "The sun rises in the east."
+        ]
+      },
+      "present-continuous": {
+        "explanation": "Use the Present Continuous (am/is/are + verb-ing) for actions happening right now or around this time.",
+        "examples": [
+          "I am working right now.",
+          "She is reading a book.",
+          "They are watching a movie tonight."
+        ]
+      },
+      "past-simple": {
+        "explanation": "Use the Past Simple for actions that started and finished in the past. Regular verbs add -ed; irregular verbs have their own past form.",
+        "examples": [
+          "I worked yesterday.",
+          "She went to Paris last year.",
+          "They watched a film last night."
+        ]
+      },
+      "present-perfect": {
+        "explanation": "Use the Present Perfect (have/has + past participle) for past actions that connect to the present — experiences, changes, or things not yet finished.",
+        "examples": [
+          "I have finished my homework.",
+          "She has visited Japan twice.",
+          "We have already eaten."
+        ]
+      },
+      "future-will-going-to": {
+        "explanation": "Use 'will' for spontaneous decisions and predictions, and 'going to' for plans and intentions you've already decided on.",
+        "examples": [
+          "I will call you tomorrow.",
+          "She is going to travel next month.",
+          "It will probably rain later."
+        ]
+      },
+      "articles": {
+        "explanation": "Use 'a' before consonant sounds and 'an' before vowel sounds for something mentioned for the first time. Use 'the' for something specific or already mentioned.",
+        "examples": [
+          "I saw a dog in the park.",
+          "She ate an apple.",
+          "I have a car. The car is red."
+        ]
+      },
+      "comparatives-superlatives": {
+        "explanation": "Use comparatives (-er / more) to compare two things, and superlatives (-est / most) to compare three or more things.",
+        "examples": [
+          "A car is faster than a bicycle.",
+          "This is the most beautiful city I know.",
+          "Today is better than yesterday."
+        ]
+      },
+      "modal-verbs": {
+        "explanation": "Use 'can' for ability, 'must' for strong obligation, 'should' for advice, and 'have to' for necessity.",
+        "examples": [
+          "I can swim very well.",
+          "You must wear a seatbelt.",
+          "You should see a doctor."
+        ]
+      },
+      "prepositions-time-place": {
+        "explanation": "Use 'at' for exact times and points, 'on' for days and surfaces, and 'in' for months, years, and enclosed spaces.",
+        "examples": [
+          "I'll see you at 5 o'clock.",
+          "The meeting is on Monday.",
+          "The keys are in the box."
+        ]
+      },
+      "conditionals-zero-first": {
+        "explanation": "Use the Zero Conditional (if + present, present) for general truths, and the First Conditional (if + present, will + verb) for real future possibilities.",
+        "examples": [
+          "If you heat ice, it melts.",
+          "If it rains tomorrow, I will stay home.",
+          "If you study hard, you will pass."
+        ]
+      }
+    }
   }
 }

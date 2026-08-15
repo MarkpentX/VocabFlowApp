@@ -2,6 +2,7 @@ import React from 'react';
 import { getSessionUser } from "@/infrastructure/auth/session";
 import { getUserStatsAction } from "@/presentation/actions/user-actions";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import TextWriter from "@/presentation/components/features/dashboard/TextWriter";
 import StreakBadge from "@/presentation/components/features/dashboard/StreakBadge";
 import CoinBadge from "@/presentation/components/features/dashboard/CoinBadge";
@@ -54,6 +55,22 @@ async function DashboardStatistics() {
                     <p className="text-[rgb(103,126,119)] font-dMSans text-sm">{t("totalDictionaries")}</p>
                 </article>
             </div>
+
+            <Link
+                href="/grammar"
+                className="mt-4 flex items-center justify-between gap-3 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 border border-emerald-100 drop-shadow-sm px-5 py-4 rounded-xl transition-transform duration-150 hover:scale-[1.01] active:scale-[0.99]"
+            >
+                <div>
+                    <p className="font-spaceGrotesk font-bold text-[rgb(18,33,28)]">{t("grammarCard.title")}</p>
+                    <p className="text-[rgb(103,126,119)] font-dMSans text-sm">{t("grammarCard.subtitle")}</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                     className="w-5 h-5 shrink-0 text-[rgb(37,177,95)]">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </Link>
         </>
     );
 }

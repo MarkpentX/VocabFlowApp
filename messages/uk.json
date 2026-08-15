@@ -9,7 +9,8 @@
     "dictionaries": "Слова",
     "add": "Додати",
     "practice": "Практика",
-    "shop": "Магазин"
+    "shop": "Магазин",
+    "grammar": "Граматика"
   },
   "common": {
     "appName": "VocabFlow",
@@ -31,9 +32,18 @@
     "startLearning": "Почати навчання",
     "featuresTitle": "Можливості",
     "advantages": {
-      "saveWords": { "title": "Зберігайте слова", "desc": "Формуйте особистий словник зі слів та їхніх перекладів." },
-      "organizeDictionaries": { "title": "Організуйте за словниками", "desc": "Групуйте слова за темами — їжа, подорожі, бізнес та інші." },
-      "practiceLearn": { "title": "Практикуйтеся", "desc": "Перевіряйте себе в інтерактивних тестах і стежте за прогресом." }
+      "saveWords": {
+        "title": "Зберігайте слова",
+        "desc": "Формуйте особистий словник зі слів та їхніх перекладів."
+      },
+      "organizeDictionaries": {
+        "title": "Організуйте за словниками",
+        "desc": "Групуйте слова за темами — їжа, подорожі, бізнес та інші."
+      },
+      "practiceLearn": {
+        "title": "Практикуйтеся",
+        "desc": "Перевіряйте себе в інтерактивних тестах і стежте за прогресом."
+      }
     }
   },
   "dashboard": {
@@ -48,6 +58,10 @@
     },
     "coins": {
       "label": "монет"
+    },
+    "grammarCard": {
+      "title": "Граматика",
+      "subtitle": "Безкоштовні уроки та практика"
     }
   },
   "words": {
@@ -64,7 +78,11 @@
     "createdSuccess": "Слово додано!",
     "createdError": "Сталася помилка",
     "translationError": "Не вдалося перекласти слово. Ви можете ввести переклад вручну.",
-    "languages": { "en": "Англійська", "ru": "Російська", "uk": "Українська" }
+    "languages": {
+      "en": "Англійська",
+      "ru": "Російська",
+      "uk": "Українська"
+    }
   },
   "dictionaries": {
     "pageTitle": "Словники",
@@ -82,9 +100,18 @@
     "practiceTitle": "Практика",
     "loadWordsError": "Не вдалося завантажити слова для цього словника.",
     "modes": {
-      "byTranslate": { "title": "За перекладом", "description": "Напишіть переклад слова" },
-      "byEar": { "title": "На слух", "description": "Прослухайте і напишіть слово" },
-      "quiz": { "title": "Вибір відповіді", "description": "Виберіть правильний варіант" }
+      "byTranslate": {
+        "title": "За перекладом",
+        "description": "Напишіть переклад слова"
+      },
+      "byEar": {
+        "title": "На слух",
+        "description": "Прослухайте і напишіть слово"
+      },
+      "quiz": {
+        "title": "Вибір відповіді",
+        "description": "Виберіть правильний варіант"
+      }
     },
     "listenAndWrite": "Прослухайте і напишіть слово",
     "writeTranslationPlaceholder": "Введіть переклад:",
@@ -137,12 +164,30 @@
     "breakdownTitle": "Результати за рівнями",
     "retake": "Пройти ще раз",
     "levels": {
-      "A1": { "title": "Початковий", "description": "Ви знаєте базові слова та фрази. Продовжуйте зміцнювати основу!" },
-      "A2": { "title": "Елементарний", "description": "Ви справляєтеся з простими повсякденними розмовами." },
-      "B1": { "title": "Середній", "description": "Ви впевнено говорите на знайомі теми." },
-      "B2": { "title": "Вище середнього", "description": "Ви чітко висловлюєтеся на найрізноманітніші теми." },
-      "C1": { "title": "Просунутий", "description": "Ви вільно й точно використовуєте англійську навіть у складних ситуаціях." },
-      "C2": { "title": "Досконалий", "description": "Ви використовуєте англійську майже як носій мови, навіть у складних і тонких ситуаціях." }
+      "A1": {
+        "title": "Початковий",
+        "description": "Ви знаєте базові слова та фрази. Продовжуйте зміцнювати основу!"
+      },
+      "A2": {
+        "title": "Елементарний",
+        "description": "Ви справляєтеся з простими повсякденними розмовами."
+      },
+      "B1": {
+        "title": "Середній",
+        "description": "Ви впевнено говорите на знайомі теми."
+      },
+      "B2": {
+        "title": "Вище середнього",
+        "description": "Ви чітко висловлюєтеся на найрізноманітніші теми."
+      },
+      "C1": {
+        "title": "Просунутий",
+        "description": "Ви вільно й точно використовуєте англійську навіть у складних ситуаціях."
+      },
+      "C2": {
+        "title": "Досконалий",
+        "description": "Ви використовуєте англійську майже як носій мови, навіть у складних і тонких ситуаціях."
+      }
     }
   },
   "auth": {
@@ -170,5 +215,157 @@
   },
   "tts": {
     "noVoiceAvailable": "Озвучення для цієї мови поки що недоступне на вашому пристрої."
+  },
+  "grammar": {
+    "subtitle": "Вивчайте правила граматики безкоштовно, а потім закріплюйте їх вправами, які завжди різні.",
+    "takeExam": "Пройти змішаний іспит",
+    "mastered": "Опановано",
+    "notStarted": "Ще не розпочато",
+    "loading": "Завантажуємо вправи...",
+    "loadError": "Не вдалося завантажити вправи. Спробуйте ще раз.",
+    "backToLesson": "До уроку",
+    "stats": {
+      "mastered": "Правил опановано",
+      "accuracy": "Загальна точність",
+      "exercisesDone": "Вправ виконано",
+      "ruleAccuracy": "{accuracy}% правильно"
+    },
+    "exam": {
+      "pickerTitle": "Оберіть правила для іспиту",
+      "minRules": "Оберіть щонайменше {count} правила",
+      "start": "Почати іспит",
+      "changeRules": "Змінити правила",
+      "loadError": "Не вдалося завантажити іспит. Спробуйте ще раз."
+    },
+    "lesson": {
+      "startPractice": "Почати практику",
+      "examplesTitle": "Приклади",
+      "attempts": "Виконано вправ: {count}",
+      "accuracy": "Точність: {accuracy}%"
+    },
+    "rules": {
+      "present-simple": {
+        "title": "Present Simple",
+        "description": "Звички, розпорядок дня та факти — I work, she works."
+      },
+      "present-continuous": {
+        "title": "Present Continuous",
+        "description": "Дії, що відбуваються прямо зараз — I am working."
+      },
+      "past-simple": {
+        "title": "Past Simple",
+        "description": "Завершені дії в минулому — I worked, she went."
+      },
+      "present-perfect": {
+        "title": "Present Perfect",
+        "description": "Минулі дії, пов'язані із теперішнім — I have finished."
+      },
+      "future-will-going-to": {
+        "title": "Майбутній час: will і going to",
+        "description": "Розмова про майбутнє — I will call, I am going to travel."
+      },
+      "articles": {
+        "title": "Артиклі: a / an / the",
+        "description": "Правильний вибір між a, an і the."
+      },
+      "comparatives-superlatives": {
+        "title": "Ступені порівняння прикметників",
+        "description": "Порівняння предметів — taller, more beautiful, the best."
+      },
+      "modal-verbs": {
+        "title": "Модальні дієслова",
+        "description": "Can, must, should, have to — здатність, обов'язок, порада."
+      },
+      "prepositions-time-place": {
+        "title": "Прийменники часу та місця",
+        "description": "At, on, in — для часу та місця."
+      },
+      "conditionals-zero-first": {
+        "title": "Умовні речення: нульовий і перший тип",
+        "description": "Загальні істини та реальні можливості в майбутньому."
+      }
+    },
+    "lessons": {
+      "present-simple": {
+        "explanation": "Present Simple використовується для звичок, розпорядку дня та фактів, які завжди правдиві. До дієслова додається -s або -es, якщо підмет he, she або it.",
+        "examples": [
+          "I work every day.",
+          "She works in a hospital.",
+          "The sun rises in the east."
+        ]
+      },
+      "present-continuous": {
+        "explanation": "Present Continuous (am/is/are + дієслово-ing) використовується для дій, що відбуваються прямо зараз або в поточний період часу.",
+        "examples": [
+          "I am working right now.",
+          "She is reading a book.",
+          "They are watching a movie tonight."
+        ]
+      },
+      "past-simple": {
+        "explanation": "Past Simple використовується для дій, які почалися і закінчилися в минулому. У правильних дієслів додається -ed, у неправильних — своя форма минулого часу.",
+        "examples": [
+          "I worked yesterday.",
+          "She went to Paris last year.",
+          "They watched a film last night."
+        ]
+      },
+      "present-perfect": {
+        "explanation": "Present Perfect (have/has + дієприкметник минулого часу) використовується для дій із минулого, які пов'язані з теперішнім моментом — досвід, зміни або ще не завершені дії.",
+        "examples": [
+          "I have finished my homework.",
+          "She has visited Japan twice.",
+          "We have already eaten."
+        ]
+      },
+      "future-will-going-to": {
+        "explanation": "'Will' використовується для спонтанних рішень і прогнозів, а 'going to' — для планів і намірів, які вже прийняті заздалегідь.",
+        "examples": [
+          "I will call you tomorrow.",
+          "She is going to travel next month.",
+          "It will probably rain later."
+        ]
+      },
+      "articles": {
+        "explanation": "Артикль 'a' ставиться перед словами, що починаються з приголосного звуку, а 'an' — перед словами з голосного звуку, якщо предмет згадується вперше. 'The' використовується для чогось конкретного або вже згаданого.",
+        "examples": [
+          "I saw a dog in the park.",
+          "She ate an apple.",
+          "I have a car. The car is red."
+        ]
+      },
+      "comparatives-superlatives": {
+        "explanation": "Вищий ступінь (-er / more) використовується для порівняння двох предметів, а найвищий (-est / most) — для порівняння трьох і більше.",
+        "examples": [
+          "A car is faster than a bicycle.",
+          "This is the most beautiful city I know.",
+          "Today is better than yesterday."
+        ]
+      },
+      "modal-verbs": {
+        "explanation": "'Can' використовується для здатності, 'must' — для суворого обов'язку, 'should' — для поради, а 'have to' — для необхідності.",
+        "examples": [
+          "I can swim very well.",
+          "You must wear a seatbelt.",
+          "You should see a doctor."
+        ]
+      },
+      "prepositions-time-place": {
+        "explanation": "'At' використовується для точного часу і точок, 'on' — для днів тижня і поверхонь, а 'in' — для місяців, років і замкнених просторів.",
+        "examples": [
+          "I'll see you at 5 o'clock.",
+          "The meeting is on Monday.",
+          "The keys are in the box."
+        ]
+      },
+      "conditionals-zero-first": {
+        "explanation": "Нульовий тип умовних речень (if + present, present) використовується для загальних істин, а перший тип (if + present, will + дієслово) — для реальних можливостей у майбутньому.",
+        "examples": [
+          "If you heat ice, it melts.",
+          "If it rains tomorrow, I will stay home.",
+          "If you study hard, you will pass."
+        ]
+      }
+    }
   }
 }
