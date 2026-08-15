@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -65,6 +66,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
             {children}
         </NextIntlClientProvider>
         <Analytics/>
+        <SpeedInsights/>
         </body>
         </html>
     );
