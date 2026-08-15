@@ -118,6 +118,7 @@
     "buy": "Buy",
     "open": "Open",
     "owned": "Owned",
+    "free": "Free",
     "insufficientFunds": "Not enough coins yet",
     "purchaseSuccess": "Purchased! It's unlocked now."
   },

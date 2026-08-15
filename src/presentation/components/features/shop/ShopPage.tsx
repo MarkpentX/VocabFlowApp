@@ -25,7 +25,12 @@ const ITEM_OPEN_HREFS: Record<ShopItemKey, string> = {
 function ShopPage({ initialCoins, initialOwned }: ShopPageProps) {
     const t = useTranslations("shop");
     const [coins, setCoins] = useState(initialCoins);
-    const [owned, setOwned] = useState<Set<ShopItemKey>>(new Set(initialOwned));
+    const [owned, setOwned] = useState<Set<ShopItemKey>>(
+        new Set([
+            ...initialOwned,
+            ...Object.values(SHOP_CATALOG).filter((item) => item.price === 0).map((item) => item.key),
+        ])
+    );
 
     function handlePurchased(itemKey: ShopItemKey, newCoins: number) {
         setCoins(newCoins);

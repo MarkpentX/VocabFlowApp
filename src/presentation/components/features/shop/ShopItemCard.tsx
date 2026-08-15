@@ -65,7 +65,7 @@ function ShopItemCard({ itemKey, imageSrc, price, coins, owned, openHref, onPurc
             >
                 {owned && (
                     <span className="absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide text-white bg-gradient-to-br from-emerald-400 to-green-600 shadow-sm shadow-emerald-900/20">
-                        {t("owned")}
+                        {price === 0 ? t("free") : t("owned")}
                     </span>
                 )}
 

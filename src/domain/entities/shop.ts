@@ -9,7 +9,7 @@ export interface ShopCatalogItem {
 
 export const SHOP_CATALOG: Record<ShopItemKey, ShopCatalogItem> = {
     customExam: { key: "customExam", price: 149 },
-    levelTest: { key: "levelTest", price: 99 },
+    levelTest: { key: "levelTest", price: 0 },
 };
 
 export interface Purchase {

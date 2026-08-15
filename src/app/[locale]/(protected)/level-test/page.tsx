@@ -1,19 +1,13 @@
 import React from 'react';
-import { getLocale, getTranslations } from "next-intl/server";
-import { redirect } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import HeaderBackArrow from "@/presentation/components/features/dictionaries/HeaderBackArrow";
 import LevelTestQuiz from "@/presentation/components/features/level-test/LevelTestQuiz";
-import { getShopStatusAction } from "@/presentation/actions/shop-actions";
 import { getLevelTestQuestionsAction } from "@/presentation/actions/level-test-actions";
+import { getSessionUser } from "@/infrastructure/auth/session";
 
 async function Page() {
+    await getSessionUser();
     const t = await getTranslations("levelTest");
-    const locale = await getLocale();
-
-    const status = await getShopStatusAction();
-    if (!status.isSuccess || !status.data.owned.includes("levelTest")) {
-        redirect({ href: "/shop", locale });
-    }
 
     const questions = await getLevelTestQuestionsAction();
 
