@@ -24,19 +24,19 @@ async function DashboardStatistics() {
             </h1>
 
             {actionResult.isSuccess && (
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     <div
                         className={
                             actionResult.data.currentStreak > 0
-                                ? "flex items-center bg-gradient-to-br from-orange-50 to-red-50 border border-orange-100 drop-shadow-sm px-5 py-4 rounded-xl w-fit"
-                                : "flex items-center bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black px-5 py-4 rounded-xl w-fit"
+                                ? "flex items-center min-w-0 bg-gradient-to-br from-orange-50 to-red-50 border border-orange-100 drop-shadow-sm px-3 py-3 sm:px-5 sm:py-4 rounded-xl"
+                                : "flex items-center min-w-0 bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black px-3 py-3 sm:px-5 sm:py-4 rounded-xl"
                         }
                     >
-                        <StreakBadge currentStreak={actionResult.data.currentStreak}/>
+                        <StreakBadge currentStreak={actionResult.data.currentStreak} size={52}/>
                     </div>
 
-                    <div className="flex items-center bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100 drop-shadow-sm px-5 py-4 rounded-xl w-fit">
-                        <CoinBadge coins={actionResult.data.coins}/>
+                    <div className="flex items-center min-w-0 justify-self-end w-full justify-end bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100 drop-shadow-sm px-3 py-3 sm:px-5 sm:py-4 rounded-xl">
+                        <CoinBadge coins={actionResult.data.coins} size={52}/>
                     </div>
                 </div>
             )}

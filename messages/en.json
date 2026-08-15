@@ -3,6 +3,14 @@
     "title": "VocabFlow — Vocabulary Trainer for Language Learning",
     "description": "Learn languages faster with VocabFlow. Save vocabulary, organize words into dictionaries, and practice with quizzes to remember new words easily."
   },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "dictionaries": "Words",
+    "add": "Add",
+    "practice": "Practice",
+    "shop": "Shop"
+  },
   "common": {
     "appName": "VocabFlow",
     "loading": "Loading...",

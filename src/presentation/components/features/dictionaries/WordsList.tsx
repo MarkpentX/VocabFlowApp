@@ -16,7 +16,7 @@ function WordsList({words}: WordsListProps) {
     const t = useTranslations("dashboard");
 
     return (
-        <main className="flex flex-col gap-3 px-6 py-4 mt-1.5 max-w-5xl h-dvh mx-auto">
+        <main className="flex flex-col gap-3 px-6 py-4 mt-1.5 max-w-5xl min-h-dvh mx-auto">
             <div className="items-start justify-start">
                 <nav>
                     <ul className="w-full flex flex-col sm:flex-row justify-start items-stretch sm:items-start gap-3 mt-3">

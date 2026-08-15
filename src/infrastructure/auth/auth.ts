@@ -59,6 +59,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         strategy: "jwt",
     },
 
+    // Without this, Auth.js rejects the OAuth callback with an "UntrustedHost" error whenever
+    // the app is reached through a host it didn't expect (any deploy target other than Vercel,
+    // a custom domain, a proxy, etc.) — this is the most common cause of "Google sign-in silently
+    // fails" in self-hosted Auth.js v5 apps.
+    trustHost: true,
+
     callbacks: {
         async jwt({ token, user }) {
             if (user) {

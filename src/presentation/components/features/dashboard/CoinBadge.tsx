@@ -32,7 +32,7 @@ function CoinBadge({ coins, size = 64, showLabel = true }: CoinBadgeProps) {
     }, [bump]);
 
     return (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 min-w-0">
             <div className="relative shrink-0 flex items-center justify-center" style={{ width: size, height: size }}>
                 <motion.div
                     aria-hidden
@@ -65,14 +65,14 @@ function CoinBadge({ coins, size = 64, showLabel = true }: CoinBadgeProps) {
                 </motion.div>
             </div>
 
-            <div className="flex flex-col leading-tight">
+            <div className="flex flex-col leading-tight min-w-0">
                 <span
                     className="font-spaceGrotesk font-extrabold tabular-nums bg-gradient-to-br from-[#FFD75E] via-[#FFC220] to-[#E8901A] bg-clip-text text-transparent drop-shadow-sm"
                     style={{ fontSize: size * 0.4 }}
                 >
                     {displayedCoins}
                 </span>
-                {showLabel && <span className="text-xs text-[rgb(103,126,119)] font-medium">{t("label")}</span>}
+                {showLabel && <span className="text-xs text-[rgb(103,126,119)] font-medium truncate">{t("label")}</span>}
             </div>
         </div>
     );

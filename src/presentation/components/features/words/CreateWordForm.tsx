@@ -103,7 +103,7 @@ function CreateWordForm() {
             <p className="flex flex-col">
                 <label className="text-sm font-bold mb-1">{t("translateToLabel")}</label>
                 <select
-                    className="h-10 border border-[rgb(226,229,220)] bg-[rgb(248,249,245)] rounded-md px-3"
+                    className="h-11 border border-[rgb(226,229,220)] bg-[rgb(248,249,245)] rounded-md px-3 text-base"
                     {...register("meaningLang")}
                 >
                     {WORD_LANGUAGES.map((lang) => (
@@ -115,10 +115,11 @@ function CreateWordForm() {
             <p className="flex flex-col">
                 <label className="text-sm font-bold mb-1" htmlFor="infinitive">{t("wordLabel")}</label>
                 <input
-                    className="h-10 border border-[rgb(226,229,220)] text-sm text-[rgb(18,33,28)] bg-[rgb(248,249,245)] px-3 py-2 rounded-md"
+                    className="h-11 border border-[rgb(226,229,220)] text-base text-[rgb(18,33,28)] bg-[rgb(248,249,245)] px-3 py-2 rounded-md"
                     placeholder={t("wordPlaceholder")}
                     id="infinitive"
                     type="text"
+                    autoComplete="off"
                     {...register("infinitive")}
                 />
                 <span className="text-red-500 text-xs">{formState.errors.infinitive?.message}</span>
@@ -127,10 +128,11 @@ function CreateWordForm() {
             <p className="flex flex-col relative">
                 <label className="text-sm font-bold mb-1" htmlFor="meaning">{t("meaningLabel")}</label>
                 <input
-                    className="h-10 border border-[rgb(226,229,220)] text-sm text-[rgb(18,33,28)] bg-[rgb(248,249,245)] px-3 py-2 rounded-md"
+                    className="h-11 border border-[rgb(226,229,220)] text-base text-[rgb(18,33,28)] bg-[rgb(248,249,245)] px-3 py-2 rounded-md"
                     placeholder={translationStatus === "loading" ? t("translatingPlaceholder") : t("meaningPlaceholder")}
                     id="meaning"
                     type="text"
+                    autoComplete="off"
                     {...register("meaning")}
                 />
                 {translationStatus === "error" && (
@@ -142,10 +144,11 @@ function CreateWordForm() {
             <p className="flex flex-col">
                 <label className="text-sm font-bold mb-1" htmlFor="dictionary">{t("dictionaryLabel")}</label>
                 <input
-                    className="h-10 border border-[rgb(226,229,220)] text-sm text-[rgb(18,33,28)] bg-[rgb(248,249,245)] px-3 py-2 rounded-md"
+                    className="h-11 border border-[rgb(226,229,220)] text-base text-[rgb(18,33,28)] bg-[rgb(248,249,245)] px-3 py-2 rounded-md"
                     id="dictionary"
                     placeholder={t("dictionaryPlaceholder")}
                     type="text"
+                    autoComplete="off"
                     {...register("dictionary")}
                 />
                 <span className="text-red-500 text-xs">{formState.errors.dictionary?.message}</span>

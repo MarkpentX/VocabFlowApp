@@ -9,7 +9,7 @@ function Page() {
     return (
         <>
             <HeaderBackArrow title={t("pageTitle")} href="/dashboard"/>
-            <main className="flex flex-col gap-3 px-6 py-4 mt-1.5 max-w-5xl h-dvh mx-auto">
+            <main className="flex flex-col gap-3 px-6 py-4 mt-1.5 max-w-5xl min-h-dvh mx-auto">
                 <ShowDictionaries/>
             </main>
         </>

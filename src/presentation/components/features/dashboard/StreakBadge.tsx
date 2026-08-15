@@ -65,7 +65,7 @@ function StreakBadge({ currentStreak, previousStreak, streakIncreased = false, s
     );
 
     return (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 min-w-0">
             <div className="relative flex items-center justify-center shrink-0" style={{ width: size, height: size }}>
                 <motion.div
                     aria-hidden
@@ -105,7 +105,7 @@ function StreakBadge({ currentStreak, previousStreak, streakIncreased = false, s
                 </motion.span>
             </div>
 
-            <div className="flex flex-col leading-tight">
+            <div className="flex flex-col leading-tight min-w-0">
                 <span
                     className={cn(
                         "font-spaceGrotesk font-extrabold tabular-nums",
@@ -117,7 +117,7 @@ function StreakBadge({ currentStreak, previousStreak, streakIncreased = false, s
                 >
                     {displayedStreak}
                 </span>
-                <span className="text-xs text-[rgb(103,126,119)] font-medium">
+                <span className="text-xs text-[rgb(103,126,119)] font-medium truncate">
                     {t("daysLabel", { count: displayedStreak })}
                 </span>
             </div>

@@ -1,7 +1,7 @@
 import "../globals.css";
 import { Toaster } from "react-hot-toast";
 import { Space_Grotesk, DM_Sans, Geist } from "next/font/google";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -35,6 +35,12 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
         },
     };
 }
+
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover",
+};
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));

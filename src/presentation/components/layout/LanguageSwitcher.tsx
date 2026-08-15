@@ -33,7 +33,7 @@ function LanguageSwitcher() {
                 value={locale}
                 disabled={isPending}
                 onChange={onChange}
-                className="h-8 rounded-md border border-gray-200 bg-transparent px-2 text-sm font-dMSans cursor-pointer disabled:opacity-60"
+                className="h-9 rounded-md border border-gray-200 bg-transparent px-2 text-base sm:text-sm font-dMSans cursor-pointer disabled:opacity-60"
             >
                 {routing.locales.map((loc) => (
                     <option key={loc} value={loc}>
