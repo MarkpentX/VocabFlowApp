@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { LevelTestQuestion, scoreLevelTest } from "@/domain/entities/level-test";
+import { LevelTestAnswer, LevelTestQuestion, scoreLevelTest } from "@/domain/entities/level-test";
 import QuizItem from "@/presentation/components/features/practice/QuizItem";
 import LevelResult from "@/presentation/components/features/level-test/LevelResult";
 
@@ -11,13 +11,12 @@ interface LevelTestQuizProps {
 
 function LevelTestQuiz({ questions }: LevelTestQuizProps) {
     const [index, setIndex] = useState(0);
-    const [correctCount, setCorrectCount] = useState(0);
+    const [answers, setAnswers] = useState<LevelTestAnswer[]>([]);
     const [isFinished, setIsFinished] = useState(false);
 
     function handleAnswer(isCorrect: boolean) {
-        if (isCorrect) {
-            setCorrectCount((c) => c + 1);
-        }
+        const nextAnswers = [...answers, { level: questions[index].level, isCorrect }];
+        setAnswers(nextAnswers);
 
         if (index === questions.length - 1) {
             setIsFinished(true);
@@ -28,12 +27,12 @@ function LevelTestQuiz({ questions }: LevelTestQuizProps) {
 
     function handleRetake() {
         setIndex(0);
-        setCorrectCount(0);
+        setAnswers([]);
         setIsFinished(false);
     }
 
     if (isFinished) {
-        return <LevelResult score={scoreLevelTest(correctCount, questions.length)} onRetake={handleRetake}/>;
+        return <LevelResult score={scoreLevelTest(answers)} onRetake={handleRetake}/>;
     }
 
     const progress = (index / questions.length) * 100;

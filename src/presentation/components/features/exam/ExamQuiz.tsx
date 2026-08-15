@@ -16,7 +16,7 @@ interface ExamQuizProps {
 
 function ExamQuiz({ words, onChangeDictionaries }: ExamQuizProps) {
     const t = useTranslations("exam");
-    const session = usePracticeSession(words, { awardsCoins: false });
+    const session = usePracticeSession(words, { awardsCoins: false, maxHearts: 5 });
 
     const quizData: QuizQuestion[] = words.map((word) => {
         const otherMeanings = words
@@ -57,7 +57,7 @@ function ExamQuiz({ words, onChangeDictionaries }: ExamQuizProps) {
             >
                 {t("changeDictionaries")}
             </button>
-            <HeartsBar hearts={session.hearts}/>
+            <HeartsBar hearts={session.hearts} maxHearts={session.maxHearts}/>
             <div className="bg-[rgb(236,239,231)] rounded-xl h-2 my-8">
                 <div
                     className="bg-green-500 h-2 rounded-xl transition-all duration-300"

@@ -17,6 +17,7 @@ const LEVEL_COLORS: Record<string, string> = {
     B1: "from-emerald-400 to-green-500",
     B2: "from-amber-400 to-orange-500",
     C1: "from-fuchsia-500 to-purple-600",
+    C2: "from-rose-500 to-red-600",
 };
 
 function LevelResult({ score, onRetake }: LevelResultProps) {
@@ -43,6 +44,27 @@ function LevelResult({ score, onRetake }: LevelResultProps) {
             <span className="text-center text-sm text-[rgb(103,126,119)] mb-6 tabular-nums">
                 {t("scoreLabel", { correct: score.correctCount, total: score.total })}
             </span>
+
+            <div className="w-full max-w-xs mb-6">
+                <p className="text-center text-xs font-semibold text-[rgb(103,126,119)] uppercase tracking-wide mb-2">
+                    {t("breakdownTitle")}
+                </p>
+                <div className="flex flex-col gap-1.5">
+                    {score.breakdown.map((entry) => (
+                        <div key={entry.level} className="flex items-center gap-2">
+                            <span className="w-7 shrink-0 text-xs font-bold text-[rgb(18,33,28)]">{entry.level}</span>
+                            <div className="flex-1 h-2 rounded-full bg-[rgb(236,239,231)] overflow-hidden">
+                                <div
+                                    className={`h-full rounded-full bg-gradient-to-r ${LEVEL_COLORS[entry.level]}`}
+                                    style={{ width: `${entry.accuracy}%` }}
+                                >
+                                </div>
+                            </div>
+                            <span className="w-9 shrink-0 text-right text-xs tabular-nums text-[rgb(103,126,119)]">{entry.correct}/{entry.total}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
             <button
                 type="button"

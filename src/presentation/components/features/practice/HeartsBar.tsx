@@ -6,15 +6,16 @@ import { MAX_HEARTS } from "@/presentation/hooks/use-practice-session";
 
 interface HeartsBarProps {
     hearts: number;
+    maxHearts?: number;
 }
 
-function HeartsBar({ hearts }: HeartsBarProps) {
+function HeartsBar({ hearts, maxHearts = MAX_HEARTS }: HeartsBarProps) {
     return (
         <div
             className="flex items-center justify-center gap-2.5 mx-auto w-fit px-4 py-2 mb-6 rounded-full bg-[rgb(248,249,245)] border border-[rgb(226,229,220)]"
-            aria-label={`${hearts}/${MAX_HEARTS}`}
+            aria-label={`${hearts}/${maxHearts}`}
         >
-            {Array.from({ length: MAX_HEARTS }, (_, i) => {
+            {Array.from({ length: maxHearts }, (_, i) => {
                 const filled = i < hearts;
                 return (
                     <motion.span

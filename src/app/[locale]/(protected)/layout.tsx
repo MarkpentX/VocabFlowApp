@@ -1,13 +1,8 @@
 import React from "react";
-import BottomNav from "@/presentation/components/layout/BottomNav";
+import AppChrome from "@/presentation/components/layout/AppChrome";
 
 function ProtectedLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <div className="pb-24">
-            {children}
-            <BottomNav/>
-        </div>
-    );
+    return <AppChrome>{children}</AppChrome>;
 }
 
 export default ProtectedLayout;

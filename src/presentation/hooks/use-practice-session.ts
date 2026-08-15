@@ -18,6 +18,7 @@ export interface PracticeSession {
     isFinished: boolean;
     failed: boolean;
     hearts: number;
+    maxHearts: number;
     combo: number;
     maxCombo: number;
     correctCount: number;
@@ -30,17 +31,18 @@ export interface PracticeSession {
 
 interface UsePracticeSessionOptions {
     awardsCoins?: boolean;
+    maxHearts?: number;
 }
 
 export function usePracticeSession(words: Word[], options: UsePracticeSessionOptions = {}): PracticeSession {
-    const { awardsCoins = true } = options;
+    const { awardsCoins = true, maxHearts = MAX_HEARTS } = options;
     const t = useTranslations("practice");
 
     const [index, setIndex] = useState(0);
     const [correctCount, setCorrectCount] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
     const [failed, setFailed] = useState(false);
-    const [hearts, setHearts] = useState(MAX_HEARTS);
+    const [hearts, setHearts] = useState(maxHearts);
     const [combo, setCombo] = useState(0);
     const [maxCombo, setMaxCombo] = useState(0);
     const [streakResult, setStreakResult] = useState<StreakUpdateResult | null>(null);
@@ -115,7 +117,7 @@ export function usePracticeSession(words: Word[], options: UsePracticeSessionOpt
         setCorrectCount(0);
         setIsFinished(false);
         setFailed(false);
-        setHearts(MAX_HEARTS);
+        setHearts(maxHearts);
         setCombo(0);
         setMaxCombo(0);
         setStreakResult(null);
@@ -132,6 +134,7 @@ export function usePracticeSession(words: Word[], options: UsePracticeSessionOpt
         isFinished,
         failed,
         hearts,
+        maxHearts,
         combo,
         maxCombo,
         correctCount,

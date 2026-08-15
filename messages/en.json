@@ -42,9 +42,7 @@
     "totalWords": "Total Words",
     "totalDictionaries": "Total dictionaries",
     "addWord": "Add Word",
-    "viewDictionaries": "View Dictionaries",
     "startPractice": "Start Practice",
-    "shop": "Shop",
     "streak": {
       "daysLabel": "{count, plural, one {day} other {days}} streak"
     },
@@ -114,7 +112,7 @@
       },
       "levelTest": {
         "title": "English Level Test",
-        "description": "Find out your English level from A1 to C1 with a quick vocabulary test."
+        "description": "Find out your English level from A1 to C2 with an in-depth grammar and vocabulary test."
       }
     },
     "buy": "Buy",
@@ -135,13 +133,15 @@
     "title": "English Level Test",
     "resultIntro": "Your estimated English level is",
     "scoreLabel": "{correct} / {total} correct",
+    "breakdownTitle": "Level breakdown",
     "retake": "Retake test",
     "levels": {
       "A1": { "title": "Beginner", "description": "You know basic words and phrases. Keep building your foundation!" },
       "A2": { "title": "Elementary", "description": "You can handle simple everyday conversations." },
       "B1": { "title": "Intermediate", "description": "You can talk about familiar topics with confidence." },
       "B2": { "title": "Upper Intermediate", "description": "You express yourself clearly on a wide range of topics." },
-      "C1": { "title": "Advanced", "description": "You use English fluently and precisely, even in complex situations." }
+      "C1": { "title": "Advanced", "description": "You use English fluently and precisely, even in complex situations." },
+      "C2": { "title": "Proficient", "description": "You use English at a near-native level, even in nuanced and demanding contexts." }
     }
   },
   "auth": {
