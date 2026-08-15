@@ -1,5 +1,4 @@
 import Header from "@/presentation/components/layout/Header";
-import AddWordsBtn from "@/presentation/components/features/dashboard/AddWordsBtn";
 import DashboardStatistics from "@/presentation/components/features/dashboard/DashboardStatistics";
 import { Suspense } from "react";
 import StudyingAnim from "@/presentation/components/features/dashboard/StudyingAnim";
@@ -15,9 +14,6 @@ function Page() {
                 <Suspense fallback={<div>{tCommon("loading")}</div>}>
                     <DashboardStatistics/>
                 </Suspense>
-                <div className="mt-8 max-w-xs">
-                    <AddWordsBtn/>
-                </div>
             </section>
             <StudyingAnim/>
         </>

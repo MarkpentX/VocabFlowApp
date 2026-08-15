@@ -35,7 +35,7 @@ async function DashboardStatistics() {
                         <StreakBadge currentStreak={actionResult.data.currentStreak} size={52}/>
                     </div>
 
-                    <div className="flex items-center min-w-0 justify-self-end w-full justify-end bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100 drop-shadow-sm px-3 py-3 sm:px-5 sm:py-4 rounded-xl">
+                    <div className="flex items-center min-w-0 bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100 drop-shadow-sm px-3 py-3 sm:px-5 sm:py-4 rounded-xl">
                         <CoinBadge coins={actionResult.data.coins} size={52}/>
                     </div>
                 </div>
