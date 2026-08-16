@@ -1,4 +1,4 @@
-import { CEFR_LEVELS, LevelTestQuestion } from "@/domain/entities/level-test";
+import { LevelTestQuestion, LevelTestSection } from "@/domain/entities/level-test";
 
 function shuffle<T>(items: T[]): T[] {
     const result = [...items];
@@ -9,11 +9,15 @@ function shuffle<T>(items: T[]): T[] {
     return result;
 }
 
+// Writing isn't included here — it's a single free-text prompt handled by its own
+// use-case/action, not part of this shuffled multiple-choice question stream.
+const SECTION_ORDER: LevelTestSection[] = ["useOfEnglish", "reading", "listening"];
+
 export function createGetLevelTestQuestionsUseCase(questions: LevelTestQuestion[]) {
     return async function getLevelTestQuestions(): Promise<LevelTestQuestion[]> {
-        return CEFR_LEVELS.flatMap((level) => {
-            const levelQuestions = questions.filter((question) => question.level === level);
-            return shuffle(levelQuestions).map((question) => ({ ...question, answers: shuffle(question.answers) }));
+        return SECTION_ORDER.flatMap((section) => {
+            const sectionQuestions = questions.filter((question) => question.section === section);
+            return shuffle(sectionQuestions).map((question) => ({ ...question, answers: shuffle(question.answers) }));
         });
     };
 }

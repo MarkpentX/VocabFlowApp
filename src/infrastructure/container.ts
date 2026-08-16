@@ -3,6 +3,9 @@ import { drizzleDictionaryRepository } from "@/infrastructure/repositories/drizz
 import { drizzleUserRepository } from "@/infrastructure/repositories/drizzle-user-repository";
 import { drizzleShopRepository } from "@/infrastructure/repositories/drizzle-shop-repository";
 import { LEVEL_TEST_QUESTIONS } from "@/infrastructure/data/level-test-questions";
+import { LEVEL_TEST_READING_QUESTIONS } from "@/infrastructure/data/level-test-reading";
+import { LEVEL_TEST_LISTENING_QUESTIONS } from "@/infrastructure/data/level-test-listening";
+import { LEVEL_TEST_WRITING_PROMPT } from "@/infrastructure/data/level-test-writing-prompts";
 import { mymemoryTranslationService } from "@/infrastructure/services/mymemory-translation-service";
 import { googleTranslationService } from "@/infrastructure/services/google-translation-service";
 import { createCompositeTranslationService } from "@/infrastructure/services/composite-translation-service";
@@ -31,6 +34,7 @@ import { createGetShopStatusUseCase } from "@/application/use-cases/shop/get-sho
 import { createPurchaseItemUseCase } from "@/application/use-cases/shop/purchase-item";
 import { createGetExamWordsUseCase } from "@/application/use-cases/words/get-exam-words";
 import { createGetLevelTestQuestionsUseCase } from "@/application/use-cases/level-test/get-level-test-questions";
+import { createScoreLevelTestWritingUseCase } from "@/application/use-cases/level-test/score-level-test-writing";
 import { createGetGrammarRulesUseCase } from "@/application/use-cases/grammar/get-grammar-rules";
 import { createGetGrammarStatsUseCase } from "@/application/use-cases/grammar/get-grammar-stats";
 import { createGenerateGrammarSessionUseCase } from "@/application/use-cases/grammar/generate-grammar-session";
@@ -75,7 +79,15 @@ export const purchaseItem = createPurchaseItemUseCase(drizzleShopRepository);
 
 export const getExamWords = createGetExamWordsUseCase(drizzleWordRepository);
 
-export const getLevelTestQuestions = createGetLevelTestQuestionsUseCase(LEVEL_TEST_QUESTIONS);
+const ALL_LEVEL_TEST_QUESTIONS = [
+    ...LEVEL_TEST_QUESTIONS.map((question) => ({ ...question, section: "useOfEnglish" as const })),
+    ...LEVEL_TEST_READING_QUESTIONS,
+    ...LEVEL_TEST_LISTENING_QUESTIONS,
+];
+
+export const getLevelTestQuestions = createGetLevelTestQuestionsUseCase(ALL_LEVEL_TEST_QUESTIONS);
+export const getLevelTestWritingPrompt = async () => LEVEL_TEST_WRITING_PROMPT;
+export const scoreLevelTestWriting = createScoreLevelTestWritingUseCase();
 
 export const registerUser = createRegisterUserUseCase({
     authService: nextAuthService,

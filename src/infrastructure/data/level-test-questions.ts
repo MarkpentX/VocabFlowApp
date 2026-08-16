@@ -1,6 +1,9 @@
 import { LevelTestQuestion } from "@/domain/entities/level-test";
 
-export const LEVEL_TEST_QUESTIONS: LevelTestQuestion[] = [
+// This bank predates the "section" concept — every question here belongs to the
+// "useOfEnglish" section, tagged onto each entry where the sections are assembled
+// (see container.ts) rather than repeating it 48 times by hand.
+export const LEVEL_TEST_QUESTIONS: Omit<LevelTestQuestion, "section">[] = [
     { level: "A1", question: "She ___ a doctor.", correct: "is", answers: ["is", "are", "be", "am"] },
     { level: "A1", question: "What is the opposite of 'big'?", correct: "small", answers: ["small", "tall", "long", "heavy"] },
     { level: "A1", question: "I ___ breakfast at 8 am every day.", correct: "have", answers: ["have", "having", "has", "haves"] },

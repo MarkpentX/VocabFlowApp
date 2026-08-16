@@ -142,7 +142,7 @@
       },
       "levelTest": {
         "title": "English Level Test",
-        "description": "Find out your English level from A1 to C2 with an in-depth grammar and vocabulary test."
+        "description": "Find out your English level from A1 to C2 with a full IELTS-style test — grammar, reading, listening, and writing."
       }
     },
     "buy": "Buy",
@@ -163,7 +163,6 @@
   "levelTest": {
     "title": "English Level Test",
     "resultIntro": "Your estimated English level is",
-    "scoreLabel": "{correct} / {total} correct",
     "breakdownTitle": "Level breakdown",
     "retake": "Retake test",
     "levels": {
@@ -191,6 +190,27 @@
         "title": "Proficient",
         "description": "You use English at a near-native level, even in nuanced and demanding contexts."
       }
+    },
+    "sections": {
+      "useOfEnglish": "Use of English",
+      "reading": "Reading",
+      "listening": "Listening",
+      "writing": "Writing"
+    },
+    "listenPrompt": "Listen to the recording and answer the question",
+    "overallBand": "Overall band: {band} of 9",
+    "writing": {
+      "minWords": "At least {count} words",
+      "placeholder": "Start typing here...",
+      "wordCount": "{count} words",
+      "disclaimer": "This score is generated automatically from length, structure, and vocabulary variety — it is not a real grammar or content review by a human or AI.",
+      "skip": "Skip",
+      "submit": "Submit",
+      "breakdownTitle": "Writing breakdown",
+      "taskResponse": "Task Response",
+      "coherence": "Coherence & Cohesion",
+      "lexicalResource": "Lexical Resource",
+      "accuracy": "Accuracy (approximate)"
     }
   },
   "auth": {
