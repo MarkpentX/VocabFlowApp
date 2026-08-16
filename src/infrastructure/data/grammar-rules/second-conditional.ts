@@ -1,8 +1,10 @@
 import { GrammarRuleMeta } from "@/domain/entities/grammar";
 import { buildQuestion, generateBatch, pickOne } from "@/infrastructure/data/grammar-rules/helpers";
 
-const CONDITION_SUBJECTS = ["I", "you", "we", "they", "he", "she", "it", "my friend"];
-const RESULT_SUBJECTS = ["I", "you", "we", "they", "he", "she", "it", "my friend"];
+// Every complement below is a person-only action (win the lottery, get the job...),
+// so both subject pools stay human — "it" doesn't win lotteries or get jobs.
+const CONDITION_SUBJECTS = ["I", "you", "we", "they", "he", "she", "my friend", "my sister"];
+const RESULT_SUBJECTS = ["I", "you", "we", "they", "he", "she", "my friend", "my sister"];
 
 const CONDITION_PAIRS: { verbPast: string; complement: string }[] = [
     { verbPast: "had", complement: "more time" },

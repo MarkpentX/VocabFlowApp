@@ -14,23 +14,29 @@ const SUBJECTS: Subject[] = [
     { text: "They", be: "are", wasWere: "were" },
     { text: "He", be: "is", wasWere: "was" },
     { text: "She", be: "is", wasWere: "was" },
-    { text: "It", be: "is", wasWere: "was" },
     { text: "My sister", be: "is", wasWere: "was" },
-    { text: "The dog", be: "is", wasWere: "was" },
+    { text: "My brother", be: "is", wasWere: "was" },
+    { text: "Our teacher", be: "is", wasWere: "was" },
     { text: "Tom", be: "is", wasWere: "was" },
 ];
 
-const VERBS: { base: string; ing: string }[] = [
-    { base: "work", ing: "working" },
-    { base: "play", ing: "playing" },
-    { base: "read", ing: "reading" },
-    { base: "watch", ing: "watching" },
-    { base: "cook", ing: "cooking" },
-    { base: "run", ing: "running" },
-    { base: "swim", ing: "swimming" },
-    { base: "sit", ing: "sitting" },
-    { base: "write", ing: "writing" },
-    { base: "make", ing: "making" },
+interface Verb {
+    base: string;
+    ing: string;
+    object: string;
+}
+
+const VERBS: Verb[] = [
+    { base: "work", ing: "working", object: "on a report" },
+    { base: "play", ing: "playing", object: "video games" },
+    { base: "read", ing: "reading", object: "a magazine" },
+    { base: "watch", ing: "watching", object: "a film" },
+    { base: "cook", ing: "cooking", object: "dinner" },
+    { base: "write", ing: "writing", object: "an email" },
+    { base: "make", ing: "making", object: "coffee" },
+    { base: "clean", ing: "cleaning", object: "the kitchen" },
+    { base: "wash", ing: "washing", object: "the dishes" },
+    { base: "study", ing: "studying", object: "for an exam" },
 ];
 
 const TIME_EXPRESSIONS = [
@@ -42,7 +48,6 @@ const TIME_EXPRESSIONS = [
     "today",
     "at present",
     "just now",
-    "still",
 ];
 
 export const presentContinuousRule: GrammarRuleMeta = {
@@ -64,7 +69,7 @@ export const presentContinuousRule: GrammarRuleMeta = {
                 `${subject.wasWere} ${verb.ing}`,
             ];
 
-            return buildQuestion(`${subject.text} ___ (${verb.base}) ${time}.`, correct, distractors);
+            return buildQuestion(`${subject.text} ___ (${verb.base}) ${verb.object} ${time}.`, correct, distractors);
         });
     },
 };

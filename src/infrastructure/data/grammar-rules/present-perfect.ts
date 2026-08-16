@@ -13,23 +13,29 @@ const SUBJECTS: Subject[] = [
     { text: "They", have: "have" },
     { text: "He", have: "has" },
     { text: "She", have: "has" },
-    { text: "It", have: "has" },
     { text: "My sister", have: "has" },
     { text: "The team", have: "has" },
     { text: "Tom", have: "has" },
 ];
 
-const VERBS: { base: string; past: string; participle: string }[] = [
-    { base: "finish", past: "finished", participle: "finished" },
-    { base: "clean", past: "cleaned", participle: "cleaned" },
-    { base: "visit", past: "visited", participle: "visited" },
-    { base: "watch", past: "watched", participle: "watched" },
-    { base: "eat", past: "ate", participle: "eaten" },
-    { base: "see", past: "saw", participle: "seen" },
-    { base: "do", past: "did", participle: "done" },
-    { base: "write", past: "wrote", participle: "written" },
-    { base: "go", past: "went", participle: "gone" },
-    { base: "break", past: "broke", participle: "broken" },
+interface Verb {
+    base: string;
+    past: string;
+    participle: string;
+    object: string;
+}
+
+const VERBS: Verb[] = [
+    { base: "finish", past: "finished", participle: "finished", object: "the project" },
+    { base: "clean", past: "cleaned", participle: "cleaned", object: "the flat" },
+    { base: "visit", past: "visited", participle: "visited", object: "Paris" },
+    { base: "watch", past: "watched", participle: "watched", object: "that series" },
+    { base: "buy", past: "bought", participle: "bought", object: "a new phone" },
+    { base: "see", past: "saw", participle: "seen", object: "that film" },
+    { base: "write", past: "wrote", participle: "written", object: "the email" },
+    { base: "try", past: "tried", participle: "tried", object: "sushi" },
+    { base: "lose", past: "lost", participle: "lost", object: "the keys" },
+    { base: "win", past: "won", participle: "won", object: "the match" },
 ];
 
 const TIME_MARKERS = [
@@ -39,7 +45,6 @@ const TIME_MARKERS = [
     "recently",
     "so far",
     "lately",
-    "before",
     "twice",
     "many times",
     "this year",
@@ -64,7 +69,11 @@ export const presentPerfectRule: GrammarRuleMeta = {
                 verb.past !== verb.participle ? verb.past : otherVerbB.participle,
             ];
 
-            return buildQuestion(`${subject.text} ${subject.have} ___ (${verb.base}) ${marker}.`, correct, distractors);
+            return buildQuestion(
+                `${subject.text} ${subject.have} ___ (${verb.base}) ${verb.object} ${marker}.`,
+                correct,
+                distractors
+            );
         });
     },
 };

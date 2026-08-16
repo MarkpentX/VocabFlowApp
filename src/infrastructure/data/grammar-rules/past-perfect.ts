@@ -1,19 +1,26 @@
 import { GrammarRuleMeta } from "@/domain/entities/grammar";
 import { buildQuestion, generateBatch, pickOne } from "@/infrastructure/data/grammar-rules/helpers";
 
-const SUBJECTS = ["I", "You", "We", "They", "He", "She", "It", "My sister", "The team", "Tom"];
+const SUBJECTS = ["I", "You", "We", "They", "He", "She", "My sister", "The team", "Tom"];
 
-const VERBS: { base: string; past: string; participle: string }[] = [
-    { base: "finish", past: "finished", participle: "finished" },
-    { base: "clean", past: "cleaned", participle: "cleaned" },
-    { base: "leave", past: "left", participle: "left" },
-    { base: "arrive", past: "arrived", participle: "arrived" },
-    { base: "eat", past: "ate", participle: "eaten" },
-    { base: "see", past: "saw", participle: "seen" },
-    { base: "write", past: "wrote", participle: "written" },
-    { base: "go", past: "went", participle: "gone" },
-    { base: "lose", past: "lost", participle: "lost" },
-    { base: "break", past: "broke", participle: "broken" },
+interface Verb {
+    base: string;
+    past: string;
+    participle: string;
+    object: string;
+}
+
+const VERBS: Verb[] = [
+    { base: "finish", past: "finished", participle: "finished", object: "the report" },
+    { base: "clean", past: "cleaned", participle: "cleaned", object: "the house" },
+    { base: "leave", past: "left", participle: "left", object: "the office" },
+    { base: "eat", past: "ate", participle: "eaten", object: "dinner" },
+    { base: "see", past: "saw", participle: "seen", object: "the message" },
+    { base: "write", past: "wrote", participle: "written", object: "the letter" },
+    { base: "check", past: "checked", participle: "checked", object: "the instructions" },
+    { base: "lose", past: "lost", participle: "lost", object: "the tickets" },
+    { base: "book", past: "booked", participle: "booked", object: "the hotel" },
+    { base: "pack", past: "packed", participle: "packed", object: "the bags" },
 ];
 
 const TIME_CLAUSES = [
@@ -48,7 +55,7 @@ export const pastPerfectRule: GrammarRuleMeta = {
                 verb.past !== verb.participle ? verb.past : otherVerbB.participle,
             ];
 
-            return buildQuestion(`${subject} had ___ (${verb.base}) before ${time}.`, correct, distractors);
+            return buildQuestion(`${subject} had ___ (${verb.base}) ${verb.object} before ${time}.`, correct, distractors);
         });
     },
 };

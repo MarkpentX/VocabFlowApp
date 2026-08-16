@@ -17,16 +17,16 @@ const CONSONANT_SOUND_NOUNS = [
     "garden",
 ];
 
+// Kept to nouns every adjective below can plausibly describe — people-nouns
+// like "teacher"/"student" paired badly with several (e.g. "crowded", "expensive").
 const SECOND_MENTION_NOUNS = [
     "dog",
     "cat",
     "book",
     "car",
     "house",
-    "teacher",
     "chair",
     "table",
-    "student",
     "phone",
     "garden",
     "bike",
@@ -49,7 +49,6 @@ const ADJECTIVES = [
     "amazing",
     "modern",
     "quiet",
-    "crowded",
     "beautiful",
 ];
 
@@ -60,7 +59,7 @@ function aAnExercise() {
     const noun = useVowel ? pickOne(VOWEL_SOUND_NOUNS) : pickOne(CONSONANT_SOUND_NOUNS);
     const correct = useVowel ? "an" : "a";
     const distractors = [useVowel ? "a" : "an", "the", "some"];
-    return buildQuestion(`I saw ___ ${noun} in the park.`, correct, distractors);
+    return buildQuestion(`It's ___ ${noun}.`, correct, distractors);
 }
 
 function secondMentionExercise() {

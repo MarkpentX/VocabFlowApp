@@ -3,6 +3,8 @@ import { buildQuestion, generateBatch, pickOne } from "@/infrastructure/data/gra
 
 const SPEAKERS = ["He", "She", "They"];
 
+// Every verb below is transitive, so it can take any object from the shared
+// pool below and still read as a complete, natural sentence.
 const VERBS: { base: string; third: string; past: string }[] = [
     { base: "like", third: "likes", past: "liked" },
     { base: "love", third: "loves", past: "loved" },
@@ -10,10 +12,10 @@ const VERBS: { base: string; third: string; past: string }[] = [
     { base: "need", third: "needs", past: "needed" },
     { base: "enjoy", third: "enjoys", past: "enjoyed" },
     { base: "hate", third: "hates", past: "hated" },
-    { base: "know", third: "knows", past: "knew" },
+    { base: "prefer", third: "prefers", past: "preferred" },
     { base: "have", third: "has", past: "had" },
-    { base: "live", third: "lives", past: "lived" },
-    { base: "work", third: "works", past: "worked" },
+    { base: "choose", third: "chooses", past: "chose" },
+    { base: "remember", third: "remembers", past: "remembered" },
 ];
 
 const OBJECTS = [
@@ -25,7 +27,7 @@ const OBJECTS = [
     "coffee",
     "the book",
     "this song",
-    "the weather here",
+    "a new job",
     "her new phone",
 ];
 

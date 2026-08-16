@@ -1,19 +1,25 @@
 import { GrammarRuleMeta } from "@/domain/entities/grammar";
 import { buildQuestion, generateBatch, pickOne } from "@/infrastructure/data/grammar-rules/helpers";
 
-const SUBJECTS = ["I", "You", "We", "They", "He", "She", "It", "My sister", "The dog", "Tom"];
+const SUBJECTS = ["I", "You", "We", "They", "He", "She", "My sister", "My brother", "Our teacher", "Tom"];
 
-const VERBS: { base: string; past: string }[] = [
-    { base: "play", past: "played" },
-    { base: "work", past: "worked" },
-    { base: "watch", past: "watched" },
-    { base: "live", past: "lived" },
-    { base: "study", past: "studied" },
-    { base: "go", past: "went" },
-    { base: "do", past: "did" },
-    { base: "have", past: "had" },
-    { base: "eat", past: "ate" },
-    { base: "see", past: "saw" },
+interface Verb {
+    base: string;
+    past: string;
+    object: string;
+}
+
+const VERBS: Verb[] = [
+    { base: "play", past: "played", object: "tennis" },
+    { base: "work", past: "worked", object: "late" },
+    { base: "watch", past: "watched", object: "a documentary" },
+    { base: "visit", past: "visited", object: "her grandmother" },
+    { base: "study", past: "studied", object: "for the test" },
+    { base: "go", past: "went", object: "to the cinema" },
+    { base: "do", past: "did", object: "the homework" },
+    { base: "have", past: "had", object: "lunch" },
+    { base: "eat", past: "ate", object: "a sandwich" },
+    { base: "see", past: "saw", object: "an old friend" },
 ];
 
 const TIME_EXPRESSIONS = [
@@ -21,12 +27,10 @@ const TIME_EXPRESSIONS = [
     "last night",
     "last week",
     "last month",
-    "last year",
     "two days ago",
     "a week ago",
     "in 2015",
     "last summer",
-    "when she was a child",
 ];
 
 export const pastSimpleRule: GrammarRuleMeta = {
@@ -45,7 +49,7 @@ export const pastSimpleRule: GrammarRuleMeta = {
 
             const distractors = [verb.base, otherVerbA.past, otherVerbB.past];
 
-            return buildQuestion(`${subject} ___ (${verb.base}) ${time}.`, correct, distractors);
+            return buildQuestion(`${subject} ___ (${verb.base}) ${verb.object} ${time}.`, correct, distractors);
         });
     },
 };

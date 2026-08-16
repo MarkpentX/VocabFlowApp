@@ -11,14 +11,31 @@ function distractorsFor(correct: RelativeWord): string[] {
 const PEOPLE = ["The man", "The woman", "The teacher", "My friend", "The doctor", "The student", "My neighbor", "The boy", "The girl", "The manager"];
 const PEOPLE_ACTIONS = ["lives next door", "helped me", "teaches math", "called yesterday", "works here", "won the prize", "wrote this book", "answered the question", "fixed my car", "sang the song"];
 
-const THINGS = ["The car", "The book", "The movie", "The house", "The phone", "The restaurant", "The picture", "The song", "The laptop", "The bridge"];
-const THING_CLAUSES = ["I bought", "she wrote", "we watched", "he built", "I lost", "they opened", "I painted", "we love", "I fixed", "they designed"];
+interface Thing {
+    text: string;
+    clauses: string[];
+}
+
+// Each thing only pairs with clauses that make sense for it — a song can be
+// written or sung, but never "built"; a bridge can be designed, but never "lost".
+const THINGS: Thing[] = [
+    { text: "The car", clauses: ["I bought", "I fixed", "we love", "I lost", "she sold"] },
+    { text: "The book", clauses: ["I bought", "she wrote", "I lost", "we love", "I recommended"] },
+    { text: "The movie", clauses: ["we watched", "we love", "she directed", "I recommended"] },
+    { text: "The house", clauses: ["he built", "I painted", "we love", "they designed", "I bought"] },
+    { text: "The phone", clauses: ["I bought", "I lost", "I fixed", "we love"] },
+    { text: "The restaurant", clauses: ["they opened", "we love", "I recommended", "she owns"] },
+    { text: "The picture", clauses: ["I painted", "we love", "I found", "I took"] },
+    { text: "The song", clauses: ["she wrote", "we love", "I heard", "he sang"] },
+    { text: "The laptop", clauses: ["I bought", "I lost", "I fixed", "we love"] },
+    { text: "The bridge", clauses: ["they designed", "he built", "we love", "I photographed"] },
+];
 
 const PLACES = ["The city", "The restaurant", "The school", "The park", "The hotel", "The village", "The office", "The beach", "The store", "The café"];
 const PLACE_CLAUSES = ["we met", "I grew up", "she works", "we had dinner", "he studied", "they live", "I was born", "we stayed", "she teaches", "he plays football"];
 
 const OWNERS = ["The man", "The woman", "The student", "My neighbor", "The boy", "The writer", "The artist", "The driver", "The girl", "The scientist"];
-const POSSESSED_CLAUSES = ["car is red", "book became famous", "phone rang", "house burned down", "dog barks a lot", "painting sold for millions", "bike was stolen", "sister called me", "daughter won the race", "research changed everything"];
+const POSSESSED_CLAUSES = ["car is red", "book became famous", "phone rang", "house burned down", "dog barks a lot", "painting sold for millions", "bike was stolen", "sister called me", "brother won the race", "research changed everything"];
 
 function whoExercise() {
     const person = pickOne(PEOPLE);
@@ -28,8 +45,8 @@ function whoExercise() {
 
 function whichExercise() {
     const thing = pickOne(THINGS);
-    const clause = pickOne(THING_CLAUSES);
-    return buildQuestion(`${thing} ___ ${clause} is very popular.`, "which", distractorsFor("which"));
+    const clause = pickOne(thing.clauses);
+    return buildQuestion(`${thing.text} ___ ${clause} is very popular.`, "which", distractorsFor("which"));
 }
 
 function whereExercise() {
