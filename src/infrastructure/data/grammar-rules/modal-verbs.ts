@@ -34,13 +34,6 @@ const ACTIONS = [
 
 type ModalType = "ability" | "obligation" | "advice" | "necessity";
 
-const MODAL_LABELS: Record<ModalType, string> = {
-    ability: "ability",
-    obligation: "obligation",
-    advice: "advice",
-    necessity: "necessity",
-};
-
 function modalFor(type: ModalType, subject: Subject): string {
     switch (type) {
         case "ability":
@@ -53,6 +46,17 @@ function modalFor(type: ModalType, subject: Subject): string {
             return subject.haveTo;
     }
 }
+
+// Each type gets its own sentence frame with a strong contextual cue, so the
+// intended modal is the single defensible answer — "must" (personal/internal
+// obligation) and "have to" (external rule) are otherwise genuinely fuzzy in
+// real usage, and a bare template made both readings arguable.
+const FRAMES: Record<ModalType, (subject: string, action: string) => string> = {
+    ability: (subject, action) => `${subject} ___ ${action}. (ability)`,
+    advice: (subject, action) => `${subject} probably ___ ${action}. (advice)`,
+    obligation: (subject, action) => `${subject} really ___ ${action} right now. (obligation)`,
+    necessity: (subject, action) => `${subject} ___ ${action}, according to the rules. (necessity)`,
+};
 
 const ALL_TYPES: ModalType[] = ["ability", "obligation", "advice", "necessity"];
 
@@ -69,11 +73,7 @@ export const modalVerbsRule: GrammarRuleMeta = {
             const otherTypes = ALL_TYPES.filter((t) => t !== type);
             const distractors = otherTypes.map((t) => modalFor(t, subject));
 
-            return buildQuestion(
-                `${subject.text} ___ ${action}. (${MODAL_LABELS[type]})`,
-                correct,
-                distractors
-            );
+            return buildQuestion(FRAMES[type](subject.text, action), correct, distractors);
         });
     },
 };

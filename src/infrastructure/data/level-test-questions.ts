@@ -7,7 +7,7 @@ export const LEVEL_TEST_QUESTIONS: LevelTestQuestion[] = [
     { level: "A1", question: "Choose the correct word: 'a ___ of water'", correct: "glass", answers: ["glass", "piece", "slice", "pair"] },
     { level: "A1", question: "They ___ to school by bus.", correct: "go", answers: ["go", "goes", "going", "went to"] },
     { level: "A1", question: "___ you like coffee?", correct: "Do", answers: ["Do", "Does", "Is", "Are"] },
-    { level: "A1", question: "This is ___ apple.", correct: "an", answers: ["an", "a", "the", "some"] },
+    { level: "A1", question: "This is ___ apple.", correct: "an", answers: ["an", "a", "some", "many"] },
     { level: "A1", question: "My brother ___ two dogs.", correct: "has", answers: ["has", "have", "having", "haves"] },
 
     { level: "A2", question: "Yesterday I ___ a movie with my friends.", correct: "watched", answers: ["watched", "watch", "watching", "watches"] },
@@ -44,7 +44,7 @@ export const LEVEL_TEST_QUESTIONS: LevelTestQuestion[] = [
     { level: "C1", question: "Despite the setbacks, she remained remarkably ___.", correct: "resilient", answers: ["resilient", "fragile", "indifferent", "hesitant"] },
     { level: "C1", question: "Only after the meeting ___ the real issue.", correct: "did we discuss", answers: ["did we discuss", "we discussed", "we did discuss", "discussed we"] },
     { level: "C1", question: "His speech was riddled ___ inconsistencies.", correct: "with", answers: ["with", "by", "for", "at"] },
-    { level: "C1", question: "The negotiations reached a(n) ___ after months of talks.", correct: "impasse", answers: ["impasse", "consensus", "outset", "decline"] },
+    { level: "C1", question: "The negotiations reached a(n) ___ after months of fruitless talks.", correct: "impasse", answers: ["impasse", "consensus", "outset", "decline"] },
 
     { level: "C2", question: "What does 'to be inundated with' mean?", correct: "to receive an overwhelming amount of something", answers: ["to receive an overwhelming amount of something", "to be flooded by water", "to ignore something completely", "to celebrate an achievement"] },
     { level: "C2", question: "Choose the word closest in meaning to 'ubiquitous'.", correct: "omnipresent", answers: ["omnipresent", "rare", "controversial", "outdated"] },

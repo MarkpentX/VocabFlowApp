@@ -61,6 +61,10 @@
     "grammarCard": {
       "title": "Grammar",
       "subtitle": "Free lessons & endless practice"
+    },
+    "aiWeakSpots": {
+      "title": "Find weak spots",
+      "subtitle": "AI-powered grammar check"
     }
   },
   "words": {
@@ -464,6 +468,22 @@
       "bestCombo": "Best combo: ×{count}",
       "rulesPracticed": "Rules practiced",
       "tryVocabFlow": "Try VocabFlow"
+    },
+    "diagnostic": {
+      "title": "Find your weak spots",
+      "dontKnowLevel": "Not sure of your English level?",
+      "findOutLevel": "Find out here",
+      "pickLevel": "Pick your English level",
+      "pickLevelHint": "We'll build a big test just for that level to pinpoint exactly what needs work.",
+      "start": "Start the test",
+      "loadError": "Couldn't load the test. Please try again.",
+      "resultTitle": "Your {level} grammar check",
+      "noWeakSpots": "No weak spots found — great job! Keep practicing to stay sharp.",
+      "weakSpotsTitle": "Needs reinforcement",
+      "needsPractice": "{accuracy}% correct — practice this more",
+      "practiceNow": "Practice",
+      "fullBreakdown": "Full breakdown",
+      "retake": "Take again"
     }
   }
 }

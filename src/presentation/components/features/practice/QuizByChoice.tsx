@@ -18,7 +18,7 @@ function QuizByChoice({ words, dictionaryName }: QuizByChoiceProps) {
     const quizData: QuizQuestion[] = words
         .map((word) => {
             const otherMeanings = words
-                .filter((w) => w.id !== word.id)
+                .filter((w) => w.id !== word.id && w.meaning !== word.meaning && w.infinitive !== word.infinitive)
                 .map((w) => w.infinitive)
                 .sort(() => Math.random() - 0.5)
                 .slice(0, 3);

@@ -4,6 +4,7 @@ import {
     getGrammarRules,
     getGrammarStats,
     generateGrammarSession,
+    generateGrammarDiagnostic,
     recordGrammarAttempt,
     createSharedGrammarResult,
     getSharedGrammarResult,
@@ -16,6 +17,7 @@ import { GrammarRuleSummary } from "@/application/use-cases/grammar/get-grammar-
 import { GrammarSessionResult } from "@/domain/repositories/grammar-repository";
 import { QuizQuestion } from "@/domain/entities/quiz";
 import { CreateSharedResultInput, SharedGrammarResult } from "@/domain/entities/grammar-shared-result";
+import { DiagnosticLevel, GrammarDiagnosticQuestion, RuleBreakdown } from "@/domain/entities/grammar-diagnostic";
 
 export async function getGrammarRulesAction(): Promise<ControllerResult<GrammarRuleSummary[]>> {
     try {
@@ -43,6 +45,37 @@ export async function generateGrammarSessionAction(
     try {
         const exercises = await generateGrammarSession(ruleKeys, countPerRule);
         return handleActionSuccess(exercises);
+    } catch (error) {
+        return handleActionError(error);
+    }
+}
+
+export async function generateGrammarDiagnosticAction(
+    level: DiagnosticLevel
+): Promise<ControllerResult<GrammarDiagnosticQuestion[]>> {
+    try {
+        await getSessionUser();
+        const questions = await generateGrammarDiagnostic(level);
+        return handleActionSuccess(questions);
+    } catch (error) {
+        return handleActionError(error);
+    }
+}
+
+export async function recordGrammarDiagnosticResultAction(allRules: RuleBreakdown[]): Promise<ControllerResult> {
+    try {
+        const user = await getSessionUser();
+        await Promise.all(
+            allRules.map((rule) =>
+                recordGrammarAttempt(user.id, {
+                    ruleKey: rule.ruleKey,
+                    attempts: rule.total,
+                    correct: rule.correct,
+                    bestStreak: 0,
+                })
+            )
+        );
+        return handleActionSuccess();
     } catch (error) {
         return handleActionError(error);
     }

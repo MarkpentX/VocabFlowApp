@@ -38,7 +38,10 @@ export const reportedSpeechRule: GrammarRuleMeta = {
             const verb = pickOne(VERBS);
             const object = pickOne(OBJECTS);
             const correct = verb.past;
-            const distractors = [verb.base, verb.third, `will ${verb.base}`];
+            // "verb.third" is deliberately excluded from distractors — backshift is
+            // optional in real English for still-true statements, so the present-tense
+            // form would also be a defensible answer here and made the question ambiguous.
+            const distractors = [verb.base, `will ${verb.base}`, `would ${verb.base}`];
 
             return buildQuestion(
                 `${speaker} said (that) ${speaker.toLowerCase()} ___ (${verb.base}) ${object}.`,

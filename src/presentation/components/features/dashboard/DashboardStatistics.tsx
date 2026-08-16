@@ -57,6 +57,34 @@ async function DashboardStatistics() {
             </div>
 
             <Link
+                href="/grammar/diagnostic"
+                className="relative mt-4 overflow-hidden flex items-center justify-between gap-3 bg-gradient-to-br from-violet-600 via-fuchsia-600 to-purple-600 drop-shadow-sm px-5 py-4 rounded-xl transition-transform duration-150 hover:scale-[1.01] active:scale-[0.99]"
+            >
+                <div
+                    aria-hidden
+                    className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-white/10 blur-2xl"
+                ></div>
+                <div className="relative flex items-center gap-3 min-w-0">
+                    <span className="shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-white/15 text-xl">
+                        ✨
+                    </span>
+                    <div className="min-w-0">
+                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider text-violet-900 bg-white mb-1">
+                            AI
+                        </span>
+                        <p className="font-spaceGrotesk font-bold text-white truncate">{t("aiWeakSpots.title")}</p>
+                        <p className="text-white/80 font-dMSans text-sm truncate">{t("aiWeakSpots.subtitle")}</p>
+                    </div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                     className="relative w-5 h-5 shrink-0 text-white">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </Link>
+
+            <Link
                 href="/grammar"
                 className="mt-4 flex items-center justify-between gap-3 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 border border-emerald-100 drop-shadow-sm px-5 py-4 rounded-xl transition-transform duration-150 hover:scale-[1.01] active:scale-[0.99]"
             >
