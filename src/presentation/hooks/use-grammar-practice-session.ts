@@ -7,7 +7,7 @@ import { QuizQuestion } from "@/domain/entities/quiz";
 import { StreakUpdateResult } from "@/domain/entities/streak";
 import { PracticeCoinsAward } from "@/domain/entities/coins";
 import { recordPracticeCompletionAction } from "@/presentation/actions/streak-actions";
-import { awardPracticeCoinsAction } from "@/presentation/actions/coin-actions";
+import { startPracticeSessionAction, completePracticeSessionAction } from "@/presentation/actions/practice-session-actions";
 import { recordGrammarAttemptAction } from "@/presentation/actions/grammar-actions";
 
 export const MAX_HEARTS = 3;
@@ -26,6 +26,7 @@ export interface GrammarPracticeSession {
     questionsCount: number;
     streakResult: StreakUpdateResult | null;
     coinsAward: PracticeCoinsAward | null;
+    sessionId: string | null;
     onAnswer: (isCorrect: boolean) => void;
     resetSession: () => void;
 }
@@ -55,6 +56,27 @@ export function useGrammarPracticeSession(
 
     const prevComboRef = useRef(0);
     const recordedRef = useRef(false);
+    const sessionIdRef = useRef<string | null>(null);
+
+    // Server-issued proof that a round with this many questions actually started —
+    // required to redeem coins on completion, so the award endpoint can't be farmed
+    // by calling it directly without ever playing.
+    function startSession() {
+        sessionIdRef.current = null;
+        if (questions.length === 0) {
+            return;
+        }
+        startPracticeSessionAction(questions.length).then((result) => {
+            if (result.isSuccess) {
+                sessionIdRef.current = result.data.id;
+            }
+        });
+    }
+
+    useEffect(() => {
+        startSession();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [questions]);
 
     useEffect(() => {
         if (combo >= COMBO_TOAST_THRESHOLD && combo > prevComboRef.current) {
@@ -70,6 +92,7 @@ export function useGrammarPracticeSession(
         recordedRef.current = true;
 
         const isPerfect = !failed && questions.length > 0 && correctCount === questions.length;
+        const sessionId = sessionIdRef.current;
 
         if (ruleKeyForProgress) {
             recordGrammarAttemptAction({
@@ -86,8 +109,8 @@ export function useGrammarPracticeSession(
             }
             setStreakResult(result.data);
 
-            if (awardsCoins && isPerfect) {
-                awardPracticeCoinsAction(result.data.currentStreak).then((coinsResult) => {
+            if (awardsCoins && isPerfect && sessionId) {
+                completePracticeSessionAction(sessionId, result.data.currentStreak).then((coinsResult) => {
                     if (coinsResult.isSuccess) {
                         setCoinsAward(coinsResult.data);
                     }
@@ -138,6 +161,7 @@ export function useGrammarPracticeSession(
         setCoinsAward(null);
         prevComboRef.current = 0;
         recordedRef.current = false;
+        startSession();
     }
 
     const progress = questions.length === 0 ? 0 : (index / questions.length) * 100;
@@ -155,6 +179,7 @@ export function useGrammarPracticeSession(
         questionsCount: questions.length,
         streakResult,
         coinsAward,
+        sessionId: sessionIdRef.current,
         onAnswer,
         resetSession,
     };

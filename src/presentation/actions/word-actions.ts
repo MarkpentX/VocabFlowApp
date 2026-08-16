@@ -18,8 +18,8 @@ export async function createWordAction(data: NewWordInput): Promise<ControllerRe
 
 export async function deleteWordAction(id: string): Promise<ControllerResult> {
     try {
-        await getSessionUser();
-        await deleteWord(id);
+        const user = await getSessionUser();
+        await deleteWord(id, user.id);
         return handleActionSuccess();
     } catch (error) {
         return handleActionError(error);

@@ -8,10 +8,11 @@ import GrammarDiagnosticResult from "@/presentation/components/features/grammar/
 interface GrammarDiagnosticQuizProps {
     questions: GrammarDiagnosticQuestion[];
     level: DiagnosticLevel;
+    sessionId: string | null;
     onRetake: () => void;
 }
 
-function GrammarDiagnosticQuiz({ questions, level, onRetake }: GrammarDiagnosticQuizProps) {
+function GrammarDiagnosticQuiz({ questions, level, sessionId, onRetake }: GrammarDiagnosticQuizProps) {
     const [index, setIndex] = useState(0);
     const [answers, setAnswers] = useState<GrammarDiagnosticAnswer[]>([]);
     const [isFinished, setIsFinished] = useState(false);
@@ -28,7 +29,13 @@ function GrammarDiagnosticQuiz({ questions, level, onRetake }: GrammarDiagnostic
     }
 
     if (isFinished) {
-        return <GrammarDiagnosticResult result={scoreGrammarDiagnostic(answers, level)} onRetake={onRetake} />;
+        return (
+            <GrammarDiagnosticResult
+                result={scoreGrammarDiagnostic(answers, level)}
+                sessionId={sessionId}
+                onRetake={onRetake}
+            />
+        );
     }
 
     const progress = (index / questions.length) * 100;

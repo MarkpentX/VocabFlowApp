@@ -7,7 +7,7 @@ import { Word } from "@/domain/entities/word";
 import { StreakUpdateResult } from "@/domain/entities/streak";
 import { PracticeCoinsAward } from "@/domain/entities/coins";
 import { recordPracticeCompletionAction } from "@/presentation/actions/streak-actions";
-import { awardPracticeCoinsAction } from "@/presentation/actions/coin-actions";
+import { startPracticeSessionAction, completePracticeSessionAction } from "@/presentation/actions/practice-session-actions";
 
 export const MAX_HEARTS = 3;
 const COMBO_TOAST_THRESHOLD = 3;
@@ -50,6 +50,27 @@ export function usePracticeSession(words: Word[], options: UsePracticeSessionOpt
 
     const prevComboRef = useRef(0);
     const recordedRef = useRef(false);
+    const sessionIdRef = useRef<string | null>(null);
+
+    // Server-issued proof that a round with this many questions actually started —
+    // required to redeem coins on completion, so the award endpoint can't be farmed
+    // by calling it directly without ever playing.
+    function startSession() {
+        sessionIdRef.current = null;
+        if (words.length === 0) {
+            return;
+        }
+        startPracticeSessionAction(words.length).then((result) => {
+            if (result.isSuccess) {
+                sessionIdRef.current = result.data.id;
+            }
+        });
+    }
+
+    useEffect(() => {
+        startSession();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [words]);
 
     useEffect(() => {
         if (combo >= COMBO_TOAST_THRESHOLD && combo > prevComboRef.current) {
@@ -65,6 +86,7 @@ export function usePracticeSession(words: Word[], options: UsePracticeSessionOpt
         recordedRef.current = true;
 
         const isPerfect = !failed && words.length > 0 && correctCount === words.length;
+        const sessionId = sessionIdRef.current;
 
         recordPracticeCompletionAction().then((result) => {
             if (!result.isSuccess) {
@@ -72,8 +94,8 @@ export function usePracticeSession(words: Word[], options: UsePracticeSessionOpt
             }
             setStreakResult(result.data);
 
-            if (awardsCoins && isPerfect) {
-                awardPracticeCoinsAction(result.data.currentStreak).then((coinsResult) => {
+            if (awardsCoins && isPerfect && sessionId) {
+                completePracticeSessionAction(sessionId, result.data.currentStreak).then((coinsResult) => {
                     if (coinsResult.isSuccess) {
                         setCoinsAward(coinsResult.data);
                     }
@@ -124,6 +146,7 @@ export function usePracticeSession(words: Word[], options: UsePracticeSessionOpt
         setCoinsAward(null);
         prevComboRef.current = 0;
         recordedRef.current = false;
+        startSession();
     }
 
     const progress = (index / words.length) * 100;

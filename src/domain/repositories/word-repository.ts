@@ -5,5 +5,5 @@ export interface WordRepository {
     findByDictionaryIds(dictionaryIds: string[]): Promise<Word[]>;
     findByUserAndDictionaryName(userId: string, dictionaryName: string): Promise<Word[]>;
     findByUserAndDictionaryIds(userId: string, dictionaryIds: string[]): Promise<Word[]>;
-    delete(id: string): Promise<void>;
+    delete(id: string, userId: string): Promise<void>;
 }

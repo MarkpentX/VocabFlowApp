@@ -1,4 +1,5 @@
 export interface CreateSharedResultInput {
+    sessionId: string;
     ruleKeys: string[];
     questionsCount: number;
     correctCount: number;

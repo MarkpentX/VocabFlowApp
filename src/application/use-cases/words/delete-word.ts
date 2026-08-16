@@ -2,9 +2,9 @@ import { WordRepository } from "@/domain/repositories/word-repository";
 import { errors } from "@/domain/errors/factory";
 
 export function createDeleteWordUseCase(wordRepository: WordRepository) {
-    return async function deleteWord(id: string): Promise<void> {
+    return async function deleteWord(id: string, userId: string): Promise<void> {
         try {
-            await wordRepository.delete(id);
+            await wordRepository.delete(id, userId);
         } catch {
             throw errors.db();
         }

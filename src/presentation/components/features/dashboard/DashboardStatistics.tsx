@@ -10,7 +10,7 @@ import { getTranslations } from "next-intl/server";
 
 async function DashboardStatistics() {
     const user = await getSessionUser();
-    const actionResult = await getUserStatsAction(user.id);
+    const actionResult = await getUserStatsAction();
     const t = await getTranslations("dashboard");
     const helloText = user.name
         ? t("helloNamed", { name: user.name })

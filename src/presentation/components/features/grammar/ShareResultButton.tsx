@@ -6,21 +6,27 @@ import toast from "react-hot-toast";
 import { createSharedGrammarResultAction } from "@/presentation/actions/grammar-actions";
 
 interface ShareResultButtonProps {
+    sessionId: string | null;
     ruleKeys: string[];
     questionsCount: number;
     correctCount: number;
     maxCombo: number;
 }
 
-function ShareResultButton({ ruleKeys, questionsCount, correctCount, maxCombo }: ShareResultButtonProps) {
+function ShareResultButton({ sessionId, ruleKeys, questionsCount, correctCount, maxCombo }: ShareResultButtonProps) {
     const t = useTranslations("grammar");
     const locale = useLocale();
     const [pending, setPending] = useState(false);
     const [shared, setShared] = useState(false);
 
     async function handleShare() {
+        if (!sessionId) {
+            toast.error(t("share.error"));
+            return;
+        }
+
         setPending(true);
-        const result = await createSharedGrammarResultAction({ ruleKeys, questionsCount, correctCount, maxCombo });
+        const result = await createSharedGrammarResultAction({ sessionId, ruleKeys, questionsCount, correctCount, maxCombo });
         setPending(false);
 
         if (!result.isSuccess) {
@@ -52,7 +58,7 @@ function ShareResultButton({ ruleKeys, questionsCount, correctCount, maxCombo }:
     return (
         <button
             type="button"
-            disabled={pending}
+            disabled={pending || !sessionId}
             onClick={handleShare}
             className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-[rgb(37,177,95)] border border-[rgb(37,177,95)] bg-white cursor-pointer w-full transition-transform duration-150 hover:scale-[1.02] hover:bg-green-50 active:scale-95 disabled:opacity-60"
         >

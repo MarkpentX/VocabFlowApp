@@ -66,6 +66,7 @@ function GrammarPractice({ ruleKey, ruleTitle }: GrammarPracticeProps) {
                     backLabel={t("backToLesson")}
                 />
                 <ShareResultButton
+                    sessionId={session.sessionId}
                     ruleKeys={[ruleKey]}
                     questionsCount={session.questionsCount}
                     correctCount={session.correctCount}

@@ -2,9 +2,9 @@ import { signIn } from "@/infrastructure/auth/auth";
 import { AuthService, CredentialsSignInResult } from "@/domain/services/auth-service";
 
 export const nextAuthService: AuthService = {
-    async signInWithCredentials(username: string, password: string): Promise<CredentialsSignInResult> {
+    async signInWithCredentials(username: string, password: string, captchaToken: string): Promise<CredentialsSignInResult> {
         try {
-            await signIn("credentials", { username, password, redirect: false });
+            await signIn("credentials", { username, password, captchaToken, redirect: false });
             return { ok: true };
         } catch (err) {
             // Auth.js wraps whatever `authorize()` throws into a `CallbackRouteError`
@@ -13,10 +13,11 @@ export const nextAuthService: AuthService = {
             const cause = err instanceof Error ? (err.cause as { err?: Error } | undefined) : undefined;
             const originalMessage = cause?.err?.message ?? (err instanceof Error ? err.message : "");
             const isIncorrectPassword = originalMessage.includes("Incorrect password");
+            const isCaptchaFailed = originalMessage.includes("Captcha verification failed");
 
             return {
                 ok: false,
-                error: isIncorrectPassword ? "incorrect_password" : "auth_failed",
+                error: isCaptchaFailed ? "captcha_failed" : isIncorrectPassword ? "incorrect_password" : "auth_failed",
             };
         }
     },

@@ -10,10 +10,11 @@ import ShareResultButton from "@/presentation/components/features/grammar/ShareR
 
 interface GrammarDiagnosticResultProps {
     result: GrammarDiagnosticResultType;
+    sessionId: string | null;
     onRetake: () => void;
 }
 
-function GrammarDiagnosticResult({ result, onRetake }: GrammarDiagnosticResultProps) {
+function GrammarDiagnosticResult({ result, sessionId, onRetake }: GrammarDiagnosticResultProps) {
     const t = useTranslations("grammar");
     const recordedRef = useRef(false);
 
@@ -108,6 +109,7 @@ function GrammarDiagnosticResult({ result, onRetake }: GrammarDiagnosticResultPr
                     {t("diagnostic.retake")}
                 </button>
                 <ShareResultButton
+                    sessionId={sessionId}
                     ruleKeys={result.allRules.map((rule) => rule.ruleKey)}
                     questionsCount={result.total}
                     correctCount={result.correctCount}

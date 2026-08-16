@@ -8,6 +8,7 @@ import { db } from "@/infrastructure/db/client";
 import { drizzleUserRepository } from "@/infrastructure/repositories/drizzle-user-repository";
 import { hashPassword, verifyPassword } from "@/infrastructure/auth/password-hasher";
 import { getPostHogServerClient } from "@/infrastructure/analytics/posthog-server";
+import { turnstileService } from "@/infrastructure/captcha/turnstile-service";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     adapter: DrizzleAdapter(db, {
@@ -24,11 +25,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             credentials: {
                 username: {},
                 password: {},
+                captchaToken: {},
             },
 
+            // This is the one true entry point for credentials sign-in, regardless of
+            // whether the caller went through the app's UI or hit /api/auth/callback/credentials
+            // directly — so the captcha check MUST live here, not just in the registerUser
+            // use-case (which a direct API call bypasses entirely).
             async authorize(credentials) {
                 if (!credentials?.username || !credentials?.password) {
                     throw new Error("Missing credentials")
+                }
+
+                const captchaOk = await turnstileService.verify((credentials.captchaToken as string) ?? "")
+                if (!captchaOk) {
+                    throw new Error("Captcha verification failed")
                 }
 
                 let user = await drizzleUserRepository.findByUsername(credentials.username as string)

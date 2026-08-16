@@ -4,5 +4,5 @@ export interface CredentialsSignInResult {
 }
 
 export interface AuthService {
-    signInWithCredentials(username: string, password: string): Promise<CredentialsSignInResult>;
+    signInWithCredentials(username: string, password: string, captchaToken: string): Promise<CredentialsSignInResult>;
 }

@@ -68,7 +68,17 @@ export const drizzleWordRepository: WordRepository = {
         return rows.map(toDomain);
     },
 
-    async delete(id: string) {
+    async delete(id: string, userId: string) {
+        const [owned] = await db
+            .select({ id: wordsTable.id })
+            .from(wordsTable)
+            .innerJoin(dictionariesTable, eq(wordsTable.dictionaryId, dictionariesTable.id))
+            .where(and(eq(wordsTable.id, id), eq(dictionariesTable.user_id, userId)));
+
+        if (!owned) {
+            return;
+        }
+
         await db.delete(wordsTable).where(eq(wordsTable.id, id));
     },
 };

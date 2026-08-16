@@ -39,7 +39,7 @@ export const drizzleDictionaryRepository: DictionaryRepository = {
             .where(eq(dictionariesTable.user_id, userId));
     },
 
-    async delete(id: string) {
-        await db.delete(dictionariesTable).where(eq(dictionariesTable.id, id));
+    async delete(id: string, userId: string) {
+        await db.delete(dictionariesTable).where(and(eq(dictionariesTable.id, id), eq(dictionariesTable.user_id, userId)));
     },
 };

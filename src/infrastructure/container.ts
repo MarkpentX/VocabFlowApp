@@ -7,9 +7,9 @@ import { mymemoryTranslationService } from "@/infrastructure/services/mymemory-t
 import { googleTranslationService } from "@/infrastructure/services/google-translation-service";
 import { createCompositeTranslationService } from "@/infrastructure/services/composite-translation-service";
 import { nextAuthService } from "@/infrastructure/auth/next-auth-service";
-import { turnstileService } from "@/infrastructure/captcha/turnstile-service";
 import { drizzleGrammarRepository } from "@/infrastructure/repositories/drizzle-grammar-repository";
 import { drizzleGrammarSharedResultRepository } from "@/infrastructure/repositories/drizzle-grammar-shared-result-repository";
+import { drizzlePracticeSessionRepository } from "@/infrastructure/repositories/drizzle-practice-session-repository";
 import { GRAMMAR_RULES } from "@/infrastructure/data/grammar-rules";
 
 import { createCreateWordUseCase } from "@/application/use-cases/words/create-word";
@@ -38,6 +38,8 @@ import { createGenerateGrammarDiagnosticUseCase } from "@/application/use-cases/
 import { createRecordGrammarAttemptUseCase } from "@/application/use-cases/grammar/record-grammar-attempt";
 import { createCreateSharedGrammarResultUseCase } from "@/application/use-cases/grammar/create-shared-grammar-result";
 import { createGetSharedGrammarResultUseCase } from "@/application/use-cases/grammar/get-shared-grammar-result";
+import { createStartPracticeSessionUseCase } from "@/application/use-cases/practice/start-practice-session";
+import { createCompletePracticeSessionUseCase } from "@/application/use-cases/practice/complete-practice-session";
 
 export const createWord = createCreateWordUseCase({
     wordRepository: drizzleWordRepository,
@@ -58,6 +60,9 @@ export const recordPracticeCompletion = createRecordPracticeCompletionUseCase(dr
 export const getCoins = createGetCoinsUseCase(drizzleUserRepository);
 export const awardPracticeCoins = createAwardPracticeCoinsUseCase(drizzleUserRepository);
 
+export const startPracticeSession = createStartPracticeSessionUseCase(drizzlePracticeSessionRepository);
+export const completePracticeSession = createCompletePracticeSessionUseCase(drizzlePracticeSessionRepository, awardPracticeCoins);
+
 export const getUserStats = createGetUserStatsUseCase({ getUserDictionaries, getUserWords, getStreak, getCoins });
 
 export const getUsers = createGetUsersUseCase(drizzleUserRepository);
@@ -74,7 +79,6 @@ export const getLevelTestQuestions = createGetLevelTestQuestionsUseCase(LEVEL_TE
 
 export const registerUser = createRegisterUserUseCase({
     authService: nextAuthService,
-    captchaService: turnstileService,
 });
 
 export const getGrammarRules = createGetGrammarRulesUseCase(GRAMMAR_RULES);
@@ -82,7 +86,10 @@ export const getGrammarStats = createGetGrammarStatsUseCase(drizzleGrammarReposi
 export const generateGrammarSession = createGenerateGrammarSessionUseCase(GRAMMAR_RULES);
 export const generateGrammarDiagnostic = createGenerateGrammarDiagnosticUseCase(GRAMMAR_RULES);
 export const recordGrammarAttempt = createRecordGrammarAttemptUseCase(drizzleGrammarRepository);
-export const createSharedGrammarResult = createCreateSharedGrammarResultUseCase(drizzleGrammarSharedResultRepository);
+export const createSharedGrammarResult = createCreateSharedGrammarResultUseCase(
+    drizzleGrammarSharedResultRepository,
+    drizzlePracticeSessionRepository
+);
 export const getSharedGrammarResult = createGetSharedGrammarResultUseCase(drizzleGrammarSharedResultRepository);
 
 const translationService = createCompositeTranslationService([

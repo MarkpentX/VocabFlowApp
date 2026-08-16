@@ -5,5 +5,5 @@ export interface DictionaryRepository {
     findByUserAndName(userId: string, name: string): Promise<Dictionary | null>;
     findAllByUser(userId: string): Promise<Dictionary[]>;
     findAllWithWordsCount(userId: string): Promise<DictionaryWithWordsCount[]>;
-    delete(id: string): Promise<void>;
+    delete(id: string, userId: string): Promise<void>;
 }

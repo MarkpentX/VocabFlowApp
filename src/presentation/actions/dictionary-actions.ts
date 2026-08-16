@@ -18,8 +18,8 @@ export async function getDictionariesAction(): Promise<ControllerResult<Dictiona
 
 export async function deleteDictionaryAction(id: string): Promise<ControllerResult> {
     try {
-        await getSessionUser();
-        await deleteDictionary(id);
+        const user = await getSessionUser();
+        await deleteDictionary(id, user.id);
         return handleActionSuccess();
     } catch (error) {
         return handleActionError(error);

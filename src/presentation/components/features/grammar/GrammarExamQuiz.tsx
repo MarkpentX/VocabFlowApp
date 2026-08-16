@@ -34,6 +34,7 @@ function GrammarExamQuiz({ questions, ruleKeys, onChangeRules }: GrammarExamQuiz
                     backLabel={t("exam.changeRules")}
                 />
                 <ShareResultButton
+                    sessionId={session.sessionId}
                     ruleKeys={ruleKeys}
                     questionsCount={session.questionsCount}
                     correctCount={session.correctCount}
