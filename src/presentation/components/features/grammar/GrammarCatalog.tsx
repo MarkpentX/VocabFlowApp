@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { GrammarRuleSummary } from "@/application/use-cases/grammar/get-grammar-rules";
 import { GrammarStats } from "@/domain/entities/grammar";
+import FeatureDuck from "@/presentation/components/features/practice/FeatureDuck";
 
 interface GrammarCatalogProps {
     rules: GrammarRuleSummary[];
@@ -31,6 +32,10 @@ function GrammarCatalog({ rules, stats }: GrammarCatalogProps) {
                     animate={{ x: [0, -12, 0], y: [0, -8, 0] }}
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 />
+
+                <div className="pointer-events-none absolute top-1 right-2 w-16 h-16 sm:w-20 sm:h-20">
+                    <FeatureDuck src="/duck_inside.lottie" className="w-full h-full" />
+                </div>
 
                 <p className="relative text-[rgb(103,126,119)] font-dMSans text-sm mb-4 max-w-sm">{t("subtitle")}</p>
 

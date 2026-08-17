@@ -4,6 +4,7 @@ import { DeleteForm } from "@/presentation/components/features/dictionaries/Dele
 import { slugEncode } from "@/lib/slug-utils";
 import { getDictionariesAction, deleteDictionaryAction } from "@/presentation/actions/dictionary-actions";
 import { getTranslations } from "next-intl/server";
+import FeatureDuck from "@/presentation/components/features/practice/FeatureDuck";
 
 async function ShowDictionaries() {
     const t = await getTranslations("dictionaries");
@@ -19,12 +20,7 @@ async function ShowDictionaries() {
         return (
             <>
                 <div className="flex flex-col gap-4 py-16 justify-center items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                         className="lucide lucide-folder-open text-[rgb(103,126,119)] w-12 h-12 text-muted-foreground mx-auto">
-                        <path
-                            d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"></path>
-                    </svg>
+                    <FeatureDuck src="/duck_with_kids.lottie" size={112} />
 
                     <p className="text-md text-[rgb(103,126,119)]">{t("noDictionariesYet")}</p>
 

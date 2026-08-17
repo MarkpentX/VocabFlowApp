@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { DIAGNOSTIC_LEVELS, DiagnosticLevel } from "@/domain/entities/grammar-diagnostic";
+import FeatureDuck from "@/presentation/components/features/practice/FeatureDuck";
 
 interface GrammarDiagnosticStartProps {
     onStart: (level: DiagnosticLevel) => void;
@@ -16,6 +17,10 @@ function GrammarDiagnosticStart({ onStart, pending }: GrammarDiagnosticStartProp
 
     return (
         <div className="max-w-md mx-auto w-full">
+            <div className="flex justify-center mb-2">
+                <FeatureDuck src="/ai_duck.lottie" size={128} />
+            </div>
+
             <p className="text-center text-[rgb(103,126,119)] font-dMSans text-sm mb-1">
                 {t("diagnostic.dontKnowLevel")}
             </p>

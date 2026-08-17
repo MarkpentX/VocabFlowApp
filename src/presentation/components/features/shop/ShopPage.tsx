@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import CoinBadge from "@/presentation/components/features/dashboard/CoinBadge";
 import ShopItemCard from "@/presentation/components/features/shop/ShopItemCard";
+import FeatureDuck from "@/presentation/components/features/practice/FeatureDuck";
 import { SHOP_CATALOG, ShopItemKey } from "@/domain/entities/shop";
 
 interface ShopPageProps {
@@ -52,6 +53,10 @@ function ShopPage({ initialCoins, initialOwned }: ShopPageProps) {
                     animate={{ x: [0, -12, 0], y: [0, -8, 0] }}
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 />
+
+                <div className="pointer-events-none absolute -bottom-3 right-2 w-20 h-20 sm:w-24 sm:h-24">
+                    <FeatureDuck src="/money_duck.lottie" className="w-full h-full" />
+                </div>
 
                 <div className="relative flex items-center justify-between gap-4">
                     <p className="text-[rgb(103,126,119)] font-dMSans text-sm max-w-sm">{t("subtitle")}</p>

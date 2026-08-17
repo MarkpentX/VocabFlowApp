@@ -7,6 +7,7 @@ import QuizItem from "@/presentation/components/features/practice/QuizItem";
 import SoundButton from "@/presentation/components/features/words/SoundButton";
 import WritingTask from "@/presentation/components/features/level-test/WritingTask";
 import LevelResult from "@/presentation/components/features/level-test/LevelResult";
+import FeatureDuck from "@/presentation/components/features/practice/FeatureDuck";
 
 interface LevelTestQuizProps {
     questions: LevelTestQuestion[];
@@ -68,6 +69,12 @@ function LevelTestQuiz({ questions, writingPrompt }: LevelTestQuizProps) {
 
     return (
         <>
+            {index === 0 && (
+                <div className="flex justify-center mb-1">
+                    <FeatureDuck src="/duck_looking_for.lottie" size={104} />
+                </div>
+            )}
+
             <p className="text-center text-xs font-semibold text-[rgb(103,126,119)] uppercase tracking-wide mb-2">
                 {t(`sections.${question.section}`)}
             </p>
