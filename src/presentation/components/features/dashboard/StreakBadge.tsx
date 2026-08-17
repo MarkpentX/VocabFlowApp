@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useCountUp } from "@/presentation/hooks/use-count-up";
 import FireLottie from "@/presentation/components/features/dashboard/FireLottie";
+import { formatCompactCount } from "@/lib/format-number";
 
 interface StreakBadgeProps {
     currentStreak: number;
@@ -108,14 +109,14 @@ function StreakBadge({ currentStreak, previousStreak, streakIncreased = false, s
             <div className="flex flex-col leading-tight min-w-0">
                 <span
                     className={cn(
-                        "font-spaceGrotesk font-extrabold tabular-nums",
+                        "block truncate font-spaceGrotesk font-extrabold tabular-nums",
                         phase === "idle"
                             ? "text-[rgb(180,186,180)]"
                             : "bg-gradient-to-br from-[#FFB23D] via-[#FF7A1F] to-[#FF3D3D] bg-clip-text text-transparent drop-shadow-sm"
                     )}
                     style={{ fontSize: size * 0.4 }}
                 >
-                    {displayedStreak}
+                    {formatCompactCount(displayedStreak)}
                 </span>
                 <span className="text-xs text-[rgb(103,126,119)] font-medium truncate">
                     {t("daysLabel", { count: displayedStreak })}

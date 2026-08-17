@@ -25,23 +25,23 @@
     "deleteError": "Failed to delete!"
   },
   "home": {
-    "heroTitlePrefix": "Learn languages by",
-    "heroTitleHighlight": "practicing vocabulary",
-    "heroSubtitle": "Save words, organize them into dictionaries, and practice with interactive quizzes. Your personal vocabulary trainer — simple and effective.",
-    "startLearning": "Start Learning",
-    "featuresTitle": "Features",
+    "heroTitlePrefix": "Learn English ",
+    "heroTitleHighlight": "without a tutor",
+    "heroSubtitle": "Words, grammar, and AI-powered tests in one app. Start free in 10 seconds.",
+    "startLearning": "Start for free",
+    "featuresTitle": "Why it works",
     "advantages": {
       "saveWords": {
-        "title": "Save Words",
-        "desc": "Build your personal vocabulary with words and translations."
+        "title": "Your own word bank",
+        "desc": "Save words and drill them with interactive quizzes."
       },
-      "organizeDictionaries": {
-        "title": "Organize into Dictionaries",
-        "desc": "Group words by topic — food, travel, business, and more."
+      "grammar": {
+        "title": "Grammar, free",
+        "desc": "A1 to B2 rules with unlimited, always-fresh practice."
       },
-      "practiceLearn": {
-        "title": "Practice & Learn",
-        "desc": "Test yourself with interactive quizzes and track progress."
+      "aiDiagnostics": {
+        "title": "AI finds the gaps",
+        "desc": "Take a quick diagnostic and see exactly what to fix first."
       }
     }
   },

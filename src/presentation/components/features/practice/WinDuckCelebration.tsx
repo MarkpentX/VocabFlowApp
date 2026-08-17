@@ -16,7 +16,7 @@ function WinDuckCelebration() {
             transition={{ type: "spring", stiffness: 220, damping: 16 }}
             className="flex justify-center w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 -mt-4 mb-1"
         >
-            <DotLottieReact src="/duck_win.lottie" autoplay loop={false} className="w-full h-full" />
+            <DotLottieReact src="/duck_win.lottie" autoplay loop className="w-full h-full" />
         </motion.div>
     );
 }

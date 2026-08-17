@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { CreateWordSchema } from "@/domain/validation/word.schema";
 import { NewWordInput, WORD_LANGUAGES } from "@/domain/entities/word";
 import { createWordAction } from "@/presentation/actions/word-actions";
+import FeatureDuck from "@/presentation/components/features/practice/FeatureDuck";
 
 type TranslationStatus = "idle" | "loading" | "success" | "error";
 
@@ -97,9 +98,12 @@ function CreateWordForm() {
 
     return (
         <form
-            className="mt-10 flex flex-col gap-4 bg-white border border-[rgb(226,229,220)] drop-shadow-sm rounded-xl p-6 w-full max-w-md mx-auto"
+            className="mt-6 flex flex-col gap-4 bg-white border border-[rgb(226,229,220)] drop-shadow-sm rounded-xl p-6 w-full max-w-md mx-auto"
             onSubmit={handleSubmit(onSubmit)}
         >
+            <div className="flex justify-center -mt-2 mb-1">
+                <FeatureDuck src="/duck_with_kids.lottie" className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32" />
+            </div>
             <p className="flex flex-col">
                 <label className="text-sm font-bold mb-1">{t("translateToLabel")}</label>
                 <select

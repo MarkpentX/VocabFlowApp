@@ -4,6 +4,7 @@ import StartLearning from "@/presentation/components/features/home/StartLearning
 import { TextAnimate } from "@/presentation/components/ui/text-animate";
 import { HyperText } from "@/presentation/components/ui/hyper-text";
 import { ReviewsList } from "@/presentation/components/features/home/ReviewsList";
+import FeatureDuck from "@/presentation/components/features/practice/FeatureDuck";
 import { useTranslations } from "next-intl";
 
 export default function Home() {
@@ -11,19 +12,23 @@ export default function Home() {
 
     const advantages = [
         { icon: "/book.svg", key: "saveWords" },
-        { icon: "/tag.svg", key: "organizeDictionaries" },
-        { icon: "/brain.svg", key: "practiceLearn" },
+        { icon: "/exam.svg", key: "grammar" },
+        { icon: "/brain.svg", key: "aiDiagnostics" },
     ] as const;
 
   return (
       <>
           <Header/>
           <main>
-              <section className="max-w-2xl text-center mx-auto px-4 pt-10 pb-6 mt-24 mb-8 max-md:my-12 max-md:py-[26px]">
+              <section className="max-w-2xl text-center mx-auto px-4 pt-10 pb-6 mt-16 mb-8 max-md:my-8 max-md:py-[26px]">
+                  <div className="flex justify-center mb-2">
+                      <FeatureDuck src="/duck_looking_for.lottie" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36" />
+                  </div>
+
                   <h1 className="animate-[fadeInUp_0.6s_ease-out_forwards] font-spaceGrotesk text-[3.75rem] tracking-[-0.025em] font-bold leading-[1] animate-fade-up opacity-0 max-md:text-[2.75rem] max-sm:text-[2.25rem]">{t("heroTitlePrefix")}
                       <span className="text-green-600"> {t("heroTitleHighlight")}</span>
                   </h1>
-                      <TextAnimate className="font-dMSans text-[rgb(103,126,119)] text-lg my-[1.5rem] max-w-lg mx-auto animate-[fadeInUp_0.6s_ease-out_forwards] max-md:text-sm" animation="blurIn" as="p">
+                      <TextAnimate className="font-dMSans text-[rgb(103,126,119)] text-base my-[1.5rem] max-w-md mx-auto animate-[fadeInUp_0.6s_ease-out_forwards] max-md:text-sm" animation="blurIn" as="p">
                           {t("heroSubtitle")}
                       </TextAnimate>
                   <StartLearning/>

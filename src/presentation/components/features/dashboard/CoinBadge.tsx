@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useCountUp } from "@/presentation/hooks/use-count-up";
 import CoinLottie from "@/presentation/components/features/dashboard/CoinLottie";
+import { formatCompactCount } from "@/lib/format-number";
 
 interface CoinBadgeProps {
     coins: number;
@@ -67,10 +68,10 @@ function CoinBadge({ coins, size = 64, showLabel = true }: CoinBadgeProps) {
 
             <div className="flex flex-col leading-tight min-w-0">
                 <span
-                    className="font-spaceGrotesk font-extrabold tabular-nums bg-gradient-to-br from-[#FFD75E] via-[#FFC220] to-[#E8901A] bg-clip-text text-transparent drop-shadow-sm"
+                    className="block truncate font-spaceGrotesk font-extrabold tabular-nums bg-gradient-to-br from-[#FFD75E] via-[#FFC220] to-[#E8901A] bg-clip-text text-transparent drop-shadow-sm"
                     style={{ fontSize: size * 0.4 }}
                 >
-                    {displayedCoins}
+                    {formatCompactCount(displayedCoins)}
                 </span>
                 {showLabel && <span className="text-xs text-[rgb(103,126,119)] font-medium truncate">{t("label")}</span>}
             </div>
