@@ -18,7 +18,7 @@ function GrammarDiagnosticStart({ onStart, pending }: GrammarDiagnosticStartProp
     return (
         <div className="max-w-md mx-auto w-full">
             <div className="flex justify-center mb-2">
-                <FeatureDuck src="/ai_duck.lottie" size={128} />
+                <FeatureDuck src="/ai_duck.lottie" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36" />
             </div>
 
             <p className="text-center text-[rgb(103,126,119)] font-dMSans text-sm mb-1">

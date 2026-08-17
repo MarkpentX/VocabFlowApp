@@ -33,7 +33,7 @@ function GrammarCatalog({ rules, stats }: GrammarCatalogProps) {
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 />
 
-                <div className="pointer-events-none absolute top-1 right-2 w-16 h-16 sm:w-20 sm:h-20">
+                <div className="pointer-events-none absolute top-1 right-2 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24">
                     <FeatureDuck src="/duck_inside.lottie" className="w-full h-full" />
                 </div>
 

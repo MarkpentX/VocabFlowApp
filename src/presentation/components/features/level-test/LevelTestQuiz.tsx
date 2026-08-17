@@ -71,7 +71,7 @@ function LevelTestQuiz({ questions, writingPrompt }: LevelTestQuizProps) {
         <>
             {index === 0 && (
                 <div className="flex justify-center mb-1">
-                    <FeatureDuck src="/duck_looking_for.lottie" size={104} />
+                    <FeatureDuck src="/duck_looking_for.lottie" className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32" />
                 </div>
             )}
 

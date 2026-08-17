@@ -19,7 +19,7 @@ interface OnboardingStepIconProps {
 
 function OnboardingStepIcon({ kind }: OnboardingStepIconProps) {
     return (
-        <div className="flex items-center justify-center w-56 h-56 sm:w-64 sm:h-64">
+        <div className="flex items-center justify-center w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72">
             <DotLottieReact src={LOTTIE_SRC[kind]} loop autoplay className="w-full h-full" />
         </div>
     );

@@ -20,7 +20,7 @@ async function ShowDictionaries() {
         return (
             <>
                 <div className="flex flex-col gap-4 py-16 justify-center items-center">
-                    <FeatureDuck src="/duck_with_kids.lottie" size={112} />
+                    <FeatureDuck src="/duck_with_kids.lottie" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36" />
 
                     <p className="text-md text-[rgb(103,126,119)]">{t("noDictionariesYet")}</p>
 
