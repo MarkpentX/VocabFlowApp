@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import ConfettiEffect from "@/presentation/components/features/practice/ConfettiEffect";
+import WinDuckCelebration from "@/presentation/components/features/practice/WinDuckCelebration";
 import { IeltsLevelTestResult } from "@/domain/entities/level-test";
 
 interface LevelResultProps {
@@ -22,11 +22,13 @@ const LEVEL_COLORS: Record<string, string> = {
 
 function LevelResult({ result, onRetake }: LevelResultProps) {
     const t = useTranslations("levelTest");
-    const isGreat = result.overallBand >= 7;
+    // 4.5 of 9 is the midpoint of the band scale — "more than half correct" in
+    // the same sense as every other result screen's win-duck threshold.
+    const didWell = result.overallBand >= 4.5;
 
     return (
         <article className="relative mt-6 p-7 flex flex-col items-center animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black rounded-2xl">
-            {isGreat && <ConfettiEffect />}
+            {didWell && <WinDuckCelebration />}
 
             <p className="text-center text-[rgb(103,126,119)] mb-3">{t("resultIntro")}</p>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "@/i18n/navigation";
 import { slugEncode } from "@/lib/slug-utils";
 import { useTranslations } from "next-intl";
-import ConfettiEffect from "@/presentation/components/features/practice/ConfettiEffect";
+import WinDuckCelebration from "@/presentation/components/features/practice/WinDuckCelebration";
 import CoinBurst from "@/presentation/components/features/practice/CoinBurst";
 import StreakBadge from "@/presentation/components/features/dashboard/StreakBadge";
 import CoinBadge from "@/presentation/components/features/dashboard/CoinBadge";
@@ -26,11 +26,12 @@ function PracticeResult({ onPlayAgain, correctCount, questionsCount, failed, max
     const t = useTranslations("practice");
     const encodedDictionaryName = dictionaryName ? slugEncode(dictionaryName) : null;
     const isPerfect = !failed && questionsCount > 0 && correctCount === questionsCount;
+    const didWell = !failed && questionsCount > 0 && correctCount / questionsCount > 0.5;
     const resultIcon = failed ? "💔" : isPerfect ? "🏆" : "✨";
 
     return (
         <article className="relative mt-6 p-7 flex flex-col items-center animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black rounded-2xl">
-            {isPerfect && <ConfettiEffect/>}
+            {didWell && <WinDuckCelebration/>}
             {coinsAward && coinsAward.earned > 0 && <CoinBurst amount={coinsAward.earned}/>}
 
             <span className="text-5xl mb-2">{resultIcon}</span>

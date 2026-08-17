@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import toast from "react-hot-toast";
-import CoinIcon from "@/presentation/components/features/dashboard/CoinIcon";
+import CoinLottie from "@/presentation/components/features/dashboard/CoinLottie";
 import { ShopItemKey } from "@/domain/entities/shop";
 import { purchaseItemAction } from "@/presentation/actions/shop-actions";
 
@@ -128,7 +128,7 @@ function ShopItemCard({ itemKey, imageSrc, price, coins, owned, openHref, onPurc
                         onClick={handleBuy}
                         className="relative w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-[rgb(120,74,10)] bg-gradient-to-br from-amber-100 via-amber-50 to-yellow-100 border border-amber-200 shadow-sm cursor-pointer transition-all duration-150 hover:scale-[1.03] hover:shadow-md hover:border-amber-300 active:scale-95 disabled:opacity-60 overflow-hidden"
                     >
-                        <CoinIcon size={18} />
+                        <CoinLottie size={18} />
                         {price} · {t("buy")}
                     </button>
                 )}

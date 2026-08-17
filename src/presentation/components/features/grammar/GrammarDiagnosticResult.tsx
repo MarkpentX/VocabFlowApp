@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { GrammarDiagnosticResult as GrammarDiagnosticResultType } from "@/domain/entities/grammar-diagnostic";
 import { recordGrammarDiagnosticResultAction } from "@/presentation/actions/grammar-actions";
 import ShareResultButton from "@/presentation/components/features/grammar/ShareResultButton";
+import WinDuckCelebration from "@/presentation/components/features/practice/WinDuckCelebration";
 
 interface GrammarDiagnosticResultProps {
     result: GrammarDiagnosticResultType;
@@ -28,9 +29,12 @@ function GrammarDiagnosticResult({ result, sessionId, onRetake }: GrammarDiagnos
     }, []);
 
     const isPerfect = result.weakRules.length === 0;
+    const didWell = result.total > 0 && result.correctCount / result.total > 0.5;
 
     return (
         <article className="relative mt-6 p-7 flex flex-col items-center animate-[fadeInUp_0.6s_ease-out_forwards] bg-[rgb(255,255,255)] border-[rgb(226,229,220)] drop-shadow-sm shadow-black rounded-2xl">
+            {didWell && <WinDuckCelebration/>}
+
             <span className="text-5xl mb-2">{isPerfect ? "🏆" : "🔍"}</span>
 
             <h2 className="text-xl font-bold text-center mb-1 font-spaceGrotesk">{t("diagnostic.resultTitle", { level: result.level })}</h2>

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useCountUp } from "@/presentation/hooks/use-count-up";
-import CoinIcon from "@/presentation/components/features/dashboard/CoinIcon";
+import CoinLottie from "@/presentation/components/features/dashboard/CoinLottie";
 
 interface CoinBadgeProps {
     coins: number;
@@ -61,7 +61,7 @@ function CoinBadge({ coins, size = 64, showLabel = true }: CoinBadgeProps) {
                     }
                     className="relative flex items-center justify-center"
                 >
-                    <CoinIcon size={size * 0.72} />
+                    <CoinLottie size={size * 0.72} />
                 </motion.div>
             </div>
 

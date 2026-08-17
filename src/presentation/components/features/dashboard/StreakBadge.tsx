@@ -5,7 +5,7 @@ import { motion, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useCountUp } from "@/presentation/hooks/use-count-up";
-import FireIcon from "@/presentation/components/features/dashboard/FireIcon";
+import FireLottie from "@/presentation/components/features/dashboard/FireLottie";
 
 interface StreakBadgeProps {
     currentStreak: number;
@@ -101,7 +101,7 @@ function StreakBadge({ currentStreak, previousStreak, streakIncreased = false, s
                     style={{ display: "flex" }}
                     className="select-none"
                 >
-                    <FireIcon size={size * 0.72} active={phase !== "idle"} />
+                    <FireLottie size={size * 0.72} active={phase !== "idle"} />
                 </motion.span>
             </div>
 
