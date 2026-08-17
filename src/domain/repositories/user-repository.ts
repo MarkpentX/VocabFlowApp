@@ -10,4 +10,6 @@ export interface UserRepository {
     recordPracticeCompletion(userId: string): Promise<StreakUpdateResult>;
     getCoins(userId: string): Promise<CoinsInfo>;
     awardCoins(userId: string, amount: number): Promise<PracticeCoinsAward>;
+    isNewUser(userId: string): Promise<boolean>;
+    markOnboardingComplete(userId: string): Promise<void>;
 }

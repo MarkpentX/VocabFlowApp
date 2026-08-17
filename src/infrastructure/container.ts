@@ -29,6 +29,8 @@ import { createGetUsersUseCase } from "@/application/use-cases/admin/get-users";
 import { createRegisterUserUseCase } from "@/application/use-cases/auth/register-user";
 import { createTranslateWordUseCase } from "@/application/use-cases/translation/translate-word";
 import { createGetCoinsUseCase } from "@/application/use-cases/users/get-coins";
+import { createGetOnboardingStatusUseCase } from "@/application/use-cases/users/get-onboarding-status";
+import { createCompleteOnboardingUseCase } from "@/application/use-cases/users/complete-onboarding";
 import { createAwardPracticeCoinsUseCase } from "@/application/use-cases/users/award-practice-coins";
 import { createGetShopStatusUseCase } from "@/application/use-cases/shop/get-shop-status";
 import { createPurchaseItemUseCase } from "@/application/use-cases/shop/purchase-item";
@@ -63,6 +65,9 @@ export const recordPracticeCompletion = createRecordPracticeCompletionUseCase(dr
 
 export const getCoins = createGetCoinsUseCase(drizzleUserRepository);
 export const awardPracticeCoins = createAwardPracticeCoinsUseCase(drizzleUserRepository);
+
+export const getOnboardingStatus = createGetOnboardingStatusUseCase(drizzleUserRepository);
+export const completeOnboarding = createCompleteOnboardingUseCase(drizzleUserRepository);
 
 export const startPracticeSession = createStartPracticeSessionUseCase(drizzlePracticeSessionRepository);
 export const completePracticeSession = createCompletePracticeSessionUseCase(drizzlePracticeSessionRepository, awardPracticeCoins);

@@ -20,7 +20,11 @@ export const usersTable = pgTable("users", {
     emailVerified: timestamp("emailVerified", { mode: "date" }),
     image: text("image"),
     createdAt: timestamp("created_at").defaultNow(),
-    isNew: boolean("isNew"),
+    // Drives the first-run onboarding flow. Defaults true so both signup paths
+    // (Credentials' explicit insert and the OAuth adapter's own insert, which we
+    // don't control) get it without extra wiring; flipped false once the user
+    // finishes or skips onboarding, or via one-time backfill for pre-existing rows.
+    isNew: boolean("isNew").default(true),
     currentStreak: integer("current_streak").notNull().default(0),
     longestStreak: integer("longest_streak").notNull().default(0),
     lastPracticeDate: text("last_practice_date"),

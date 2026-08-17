@@ -505,5 +505,18 @@
       "fullBreakdown": "Full breakdown",
       "retake": "Take again"
     }
+  },
+  "onboarding": {
+    "skip": "Skip",
+    "next": "Next",
+    "getStarted": "Get started",
+    "stepOf": "{current} of {total}",
+    "steps": {
+      "learn": "Learn English in 8 months without a teacher.",
+      "words": "Add dictionaries and learn new words every day.",
+      "grammar": "Take free grammar lessons from A1 to B2.",
+      "aiTest": "AI finds your weak spots and shows what to practice.",
+      "coins": "Earn coins and unlock rewards in the shop."
+    }
   }
 }

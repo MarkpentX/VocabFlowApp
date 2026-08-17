@@ -37,7 +37,7 @@ export const drizzleUserRepository: UserRepository = {
     async createWithPassword(username: string, passwordHash: string) {
         const [created] = await db
             .insert(usersTable)
-            .values({ username, passwordHash })
+            .values({ username, passwordHash, isNew: true })
             .returning();
         return toDomain(created);
     },
@@ -102,5 +102,14 @@ export const drizzleUserRepository: UserRepository = {
             .returning({ coins: usersTable.coins });
 
         return { earned: amount, coins: updated?.coins ?? 0 };
+    },
+
+    async isNewUser(userId: string): Promise<boolean> {
+        const [user] = await db.select({ isNew: usersTable.isNew }).from(usersTable).where(eq(usersTable.id, userId));
+        return user?.isNew ?? false;
+    },
+
+    async markOnboardingComplete(userId: string): Promise<void> {
+        await db.update(usersTable).set({ isNew: false }).where(eq(usersTable.id, userId));
     },
 };
