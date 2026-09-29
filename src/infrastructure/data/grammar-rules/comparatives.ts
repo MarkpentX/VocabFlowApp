@@ -1,77 +1,43 @@
 import { GrammarRuleMeta } from "@/domain/entities/grammar";
-import { buildQuestion, generateBatch, pickOne } from "@/infrastructure/data/grammar-rules/helpers";
+import { BankItem, generateFromBank } from "@/infrastructure/data/grammar-rules/helpers";
 
-const ADJECTIVES: { base: string; comparative: string; superlative: string }[] = [
-    { base: "tall", comparative: "taller", superlative: "tallest" },
-    { base: "big", comparative: "bigger", superlative: "biggest" },
-    { base: "happy", comparative: "happier", superlative: "happiest" },
-    { base: "beautiful", comparative: "more beautiful", superlative: "most beautiful" },
-    { base: "expensive", comparative: "more expensive", superlative: "most expensive" },
-    { base: "good", comparative: "better", superlative: "best" },
-    { base: "bad", comparative: "worse", superlative: "worst" },
-    { base: "fast", comparative: "faster", superlative: "fastest" },
-    { base: "easy", comparative: "easier", superlative: "easiest" },
-    { base: "interesting", comparative: "more interesting", superlative: "most interesting" },
-    { base: "hot", comparative: "hotter", superlative: "hottest" },
-    { base: "cheap", comparative: "cheaper", superlative: "cheapest" },
+const BANK: BankItem[] = [
+    // comparatives — two things, usually with "than"
+    ["An elephant is ___ (big) than a horse.", "bigger", "biger", "more big", "biggest"],
+    ["This book is ___ (interesting) than the film.", "more interesting", "interestinger", "most interesting", "more interestinger"],
+    ["Today is ___ (hot) than yesterday.", "hotter", "hoter", "more hot", "hottest"],
+    ["My English is ___ (good) now than last year.", "better", "gooder", "more good", "best"],
+    ["A plane is ___ (fast) than a train.", "faster", "more fast", "fastest", "fastter"],
+    ["Chess is ___ (difficult) than draughts.", "more difficult", "difficulter", "most difficult", "more difficulter"],
+    ["My bag is ___ (heavy) than yours.", "heavier", "heavyer", "more heavy", "heaviest"],
+    ["Walking is ___ (slow) than cycling.", "slower", "more slow", "slowest", "slowlier"],
+    ["This exercise is ___ (easy) than the last one.", "easier", "easyer", "more easy", "easiest"],
+    ["My flat is ___ (small) than my friend's.", "smaller", "more small", "smallest", "smaler"],
+    ["Gold is ___ (expensive) than silver.", "more expensive", "expensiver", "most expensive", "more expensiver"],
+    ["The weather today is ___ (bad) than yesterday.", "worse", "badder", "more bad", "worst"],
+    ["My sister is two years ___ (young) than me.", "younger", "more young", "youngest", "youngger"],
+    ["The second exam was much ___ (easy) than the first.", "easier", "more easy", "easiest", "easyer"],
+    // superlatives — one out of a group, with "the"
+    ["Mount Everest is the ___ (high) mountain in the world.", "highest", "higher", "most high", "more high"],
+    ["This is the ___ (bad) film I have ever seen.", "worst", "worse", "baddest", "most bad"],
+    ["She is the ___ (tall) girl in our class.", "tallest", "taller", "most tall", "more tall"],
+    ["This is the ___ (expensive) hotel in the city.", "most expensive", "expensivest", "more expensive", "most expensivest"],
+    ["It's the ___ (happy) day of my life!", "happiest", "happier", "happyest", "more happy"],
+    ["Who is the ___ (old) person in your family?", "oldest", "older", "most old", "elder"],
+    ["The Nile is the ___ (long) river in Africa.", "longest", "longer", "most long", "more long"],
+    ["This is the ___ (comfortable) chair in the house.", "most comfortable", "comfortablest", "more comfortable", "most comfortablest"],
+    ["It's the ___ (cold) winter for twenty years.", "coldest", "colder", "most cold", "more cold"],
+    ["Which is the ___ (beautiful) city you have ever visited?", "most beautiful", "beautifullest", "more beautiful", "most beautifulest"],
+    ["He is the ___ (good) player in the team.", "best", "better", "goodest", "most good"],
+    // as ... as — the adjective does not change
+    ["This test is not as ___ (hard) as the last one.", "hard", "harder", "hardest", "more hard"],
+    ["Tom is as ___ (tall) as his father.", "tall", "taller", "tallest", "more tall"],
 ];
-
-const COMPARISON_PAIRS = [
-    ["A car", "a bicycle"],
-    ["An elephant", "a mouse"],
-    ["Summer", "winter"],
-    ["This book", "that book"],
-    ["My phone", "your phone"],
-    ["The city", "the countryside"],
-    ["Gold", "silver"],
-    ["A plane", "a train"],
-    ["Coffee", "tea"],
-    ["This road", "that road"],
-    ["My house", "his house"],
-    ["This exam", "the last one"],
-];
-
-const SUPERLATIVE_SUBJECTS = [
-    "Everest",
-    "This building",
-    "My brother",
-    "That restaurant",
-    "The Nile",
-    "This exam",
-    "Her house",
-    "That movie",
-    "The Sahara",
-    "This road",
-    "Our team",
-    "This city",
-];
-
-function comparativeExercise() {
-    const adjective = pickOne(ADJECTIVES);
-    const [subjectA, subjectB] = pickOne(COMPARISON_PAIRS);
-    const otherAdjective = pickOne(ADJECTIVES.filter((a) => a.base !== adjective.base));
-
-    const correct = adjective.comparative;
-    const distractors = [adjective.base, adjective.superlative, otherAdjective.comparative];
-
-    return buildQuestion(`${subjectA} is ___ (${adjective.base}) than ${subjectB}.`, correct, distractors);
-}
-
-function superlativeExercise() {
-    const adjective = pickOne(ADJECTIVES);
-    const subject = pickOne(SUPERLATIVE_SUBJECTS);
-    const otherAdjective = pickOne(ADJECTIVES.filter((a) => a.base !== adjective.base));
-
-    const correct = adjective.superlative;
-    const distractors = [adjective.base, adjective.comparative, otherAdjective.superlative];
-
-    return buildQuestion(`${subject} is the ___ (${adjective.base}) one I know.`, correct, distractors);
-}
 
 export const comparativesRule: GrammarRuleMeta = {
     key: "comparatives-superlatives",
     level: "A2",
     generateExercises(count) {
-        return generateBatch(count, () => (Math.random() < 0.5 ? comparativeExercise() : superlativeExercise()));
+        return generateFromBank(BANK, count);
     },
 };

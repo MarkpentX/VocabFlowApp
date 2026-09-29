@@ -9,10 +9,6 @@ export function shuffle<T>(items: T[]): T[] {
     return result;
 }
 
-export function pickOne<T>(items: T[]): T {
-    return items[Math.floor(Math.random() * items.length)];
-}
-
 export function pickMany<T>(items: T[], count: number): T[] {
     return shuffle(items).slice(0, count);
 }
@@ -27,25 +23,16 @@ export function buildQuestion(question: string, correct: string, distractors: st
 }
 
 /**
- * Generates `count` exercises from a pool of item-producing thunks, deduping by
- * question text within the batch (retrying a bounded number of times) so a single
- * practice round rarely shows the same sentence twice, even for smaller rule pools.
+ * A hand-written exercise: [sentence with "___", correct answer, ...wrong answers].
+ *
+ * Every item is a complete, natural sentence whose context allows exactly one
+ * answer. Wrong answers are typical learner mistakes that are clearly incorrect
+ * in that context — any form a native speaker would also accept (e.g. "must"
+ * next to "have to", unshifted tenses in reported speech) is deliberately left
+ * out of the options so no question has two defensible answers.
  */
-export function generateBatch(count: number, produce: () => QuizQuestion): QuizQuestion[] {
-    const seen = new Set<string>();
-    const result: QuizQuestion[] = [];
-    let attempts = 0;
-    const maxAttempts = count * 20;
+export type BankItem = [question: string, correct: string, ...wrong: string[]];
 
-    while (result.length < count && attempts < maxAttempts) {
-        attempts++;
-        const exercise = produce();
-        if (seen.has(exercise.question)) {
-            continue;
-        }
-        seen.add(exercise.question);
-        result.push(exercise);
-    }
-
-    return result;
+export function generateFromBank(bank: BankItem[], count: number): QuizQuestion[] {
+    return pickMany(bank, count).map(([question, correct, ...wrong]) => buildQuestion(question, correct, wrong));
 }

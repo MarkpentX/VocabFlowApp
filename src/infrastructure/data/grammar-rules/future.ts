@@ -1,92 +1,43 @@
 import { GrammarRuleMeta } from "@/domain/entities/grammar";
-import { buildQuestion, generateBatch, pickOne } from "@/infrastructure/data/grammar-rules/helpers";
+import { BankItem, generateFromBank } from "@/infrastructure/data/grammar-rules/helpers";
 
-interface Subject {
-    text: string;
-    be: "am" | "is" | "are";
-}
-
-const SUBJECTS: Subject[] = [
-    { text: "I", be: "am" },
-    { text: "You", be: "are" },
-    { text: "We", be: "are" },
-    { text: "They", be: "are" },
-    { text: "He", be: "is" },
-    { text: "She", be: "is" },
-    { text: "My sister", be: "is" },
-    { text: "The team", be: "is" },
-    { text: "Tom", be: "is" },
+// Native speakers often accept both "will" and "going to" in the same sentence,
+// so the two are only offered side by side where the context makes one of them
+// clearly wrong. Otherwise the wrong options test the form itself
+// ("will going to", "going to" without "be", "will to").
+const BANK: BankItem[] = [
+    // going to — plans already made, predictions from what we can see
+    ["I've already bought the tickets. We ___ (fly) to Rome in May.", "are going to fly", "will going to fly", "are going fly", "going to fly"],
+    ["Look at those black clouds! It ___ (rain) soon.", "is going to rain", "is going rain", "will going to rain", "going to rain"],
+    ["Emma has made up her mind. She ___ (study) medicine.", "is going to study", "will going to study", "is going study", "going to study"],
+    ["Be careful! You ___ (fall)!", "are going to fall", "will going to fall", "are going fall", "going to fall"],
+    ["They've saved enough money. They ___ (buy) a house.", "are going to buy", "will going to buy", "are going buy", "going to buy"],
+    ["The car is making a strange noise. It ___ (break) down.", "is going to break", "is going break", "will going to break", "going to break"],
+    ["He ___ (not / come) to the party — he told me yesterday.", "isn't going to come", "won't going to come", "isn't going come", "not going to come"],
+    ["I ___ (visit) my aunt this weekend. I've already told her.", "am going to visit", "will going to visit", "am going visit", "going to visit"],
+    ["What ___ you going to do after school?", "are", "will", "do", "is"],
+    ["Where ___ you going to stay in London?", "are", "will", "do", "is"],
+    // will — decisions made at the moment of speaking, offers, promises, opinions
+    ["The phone is ringing. — Stay there, I ___ (get) it.", "will get", "will to get", "am get", "will gets"],
+    ["It's hot in here. — I ___ (open) the window for you.", "will open", "will to open", "am open", "will opens"],
+    ["I'm hungry. — Wait, I ___ (make) you a sandwich.", "will make", "will to make", "am make", "will makes"],
+    ["Don't worry about the dishes — I ___ (wash) them later.", "will wash", "will to wash", "am wash", "will washes"],
+    ["I promise I ___ (not / tell) anyone.", "won't tell", "don't going to tell", "will not to tell", "not will tell"],
+    ["I think it ___ (be) sunny tomorrow.", "will be", "will is", "is be", "will being"],
+    ["Perhaps people ___ (live) on Mars one day.", "will live", "will lives", "will to live", "living"],
+    ["I ___ (be) 18 next month.", "will be", "will is", "am be", "will being"],
+    ["Maybe I ___ (see) you at the party.", "will see", "will saw", "am see", "will to see"],
+    ["I'm sure you ___ (pass) the exam.", "will pass", "will passed", "will to pass", "passing"],
+    ["I don't think she ___ (like) this present.", "will like", "will likes", "will to like", "is like"],
+    ["Don't worry, she ___ (not / be) late.", "won't be", "won't is", "not will be", "doesn't going to be"],
+    ["___ you help me carry these bags, please?", "Will", "Are", "Going", "Does"],
+    ["The lift isn't working. — Then we ___ (take) the stairs.", "will take", "will to take", "are take", "will takes"],
 ];
-
-interface Verb {
-    base: string;
-    object: string;
-}
-
-const VERBS: Verb[] = [
-    { base: "call", object: "the dentist" },
-    { base: "visit", object: "her parents" },
-    { base: "buy", object: "a new laptop" },
-    { base: "watch", object: "the new series" },
-    { base: "cook", object: "a big dinner" },
-    { base: "clean", object: "the garage" },
-    { base: "meet", object: "the new clients" },
-    { base: "paint", object: "the fence" },
-    { base: "join", object: "a gym" },
-    { base: "finish", object: "the project" },
-];
-
-// Real exams never tell you which form to produce — they give a context (a
-// spontaneous reaction/promise vs. an already-made plan) and expect the
-// learner to infer will vs. going to from meaning. Each frame here embeds an
-// unambiguous cue as an independent lead-in sentence, so the subject always
-// stays sentence-initial (correct capitalization for both pronouns and names)
-// and the answer can't be read off a label.
-const WILL_FRAMES = [
-    (subject: string, verb: Verb) =>
-        `Nobody can know the future for certain. ${subject} ___ (${verb.base}) ${verb.object} eventually, I think.`,
-    (subject: string, verb: Verb) =>
-        `Here's my promise: ${subject} ___ (${verb.base}) ${verb.object} as soon as possible.`,
-];
-
-const GOING_TO_FRAMES = [
-    (subject: string, verb: Verb) =>
-        `Everything is already arranged. ${subject} ___ (${verb.base}) ${verb.object} next week.`,
-    (subject: string, verb: Verb) =>
-        `The decision is completely final. ${subject} ___ (${verb.base}) ${verb.object} next month.`,
-];
-
-function willExercise() {
-    const subject = pickOne(SUBJECTS);
-    const verb = pickOne(VERBS);
-    const frame = pickOne(WILL_FRAMES);
-
-    const correct = `will ${verb.base}`;
-    const distractors = [`will ${verb.base}s`, `${subject.be} going to ${verb.base}`, `${subject.be} going ${verb.base}`];
-
-    return buildQuestion(frame(subject.text, verb), correct, distractors);
-}
-
-function goingToExercise() {
-    const subject = pickOne(SUBJECTS);
-    const verb = pickOne(VERBS);
-    const frame = pickOne(GOING_TO_FRAMES);
-    const otherSubject = pickOne(SUBJECTS.filter((s) => s.be !== subject.be));
-
-    const correct = `${subject.be} going to ${verb.base}`;
-    const distractors = [
-        `will going to ${verb.base}`,
-        `${otherSubject.be} going to ${verb.base}`,
-        `${subject.be} going ${verb.base}`,
-    ];
-
-    return buildQuestion(frame(subject.text, verb), correct, distractors);
-}
 
 export const futureRule: GrammarRuleMeta = {
     key: "future-will-going-to",
     level: "A2",
     generateExercises(count) {
-        return generateBatch(count, () => (Math.random() < 0.5 ? willExercise() : goingToExercise()));
+        return generateFromBank(BANK, count);
     },
 };

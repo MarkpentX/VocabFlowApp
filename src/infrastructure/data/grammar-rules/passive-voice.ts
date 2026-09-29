@@ -1,79 +1,41 @@
 import { GrammarRuleMeta } from "@/domain/entities/grammar";
-import { buildQuestion, generateBatch, pickOne } from "@/infrastructure/data/grammar-rules/helpers";
+import { BankItem, generateFromBank } from "@/infrastructure/data/grammar-rules/helpers";
 
-interface Verb {
-    base: string;
-    participle: string;
-}
-
-const CLEAN: Verb = { base: "clean", participle: "cleaned" };
-const BUILD: Verb = { base: "build", participle: "built" };
-const WRITE: Verb = { base: "write", participle: "written" };
-const MAKE: Verb = { base: "make", participle: "made" };
-const SELL: Verb = { base: "sell", participle: "sold" };
-const BREAK: Verb = { base: "break", participle: "broken" };
-const PAINT: Verb = { base: "paint", participle: "painted" };
-const DELIVER: Verb = { base: "deliver", participle: "delivered" };
-const CLOSE: Verb = { base: "close", participle: "closed" };
-const REPAIR: Verb = { base: "repair", participle: "repaired" };
-const TRANSLATE: Verb = { base: "translate", participle: "translated" };
-
-interface Subject {
-    text: string;
-    be: "is" | "are";
-    was: "was" | "were";
-    verbs: Verb[];
-}
-
-// Every subject only pairs with verbs that make sense for it — a letter can be
-// written or delivered, but never "built"; a car can be built or sold, but
-// never "written". Real coursebook passive-voice drills always match the
-// object to a plausible action, so the cross-product is curated per subject
-// instead of pulling from one shared verb pool.
-const SUBJECTS: Subject[] = [
-    { text: "The car", be: "is", was: "was", verbs: [CLEAN, BUILD, SELL, REPAIR, MAKE] },
-    { text: "The cars", be: "are", was: "were", verbs: [CLEAN, BUILD, SELL, REPAIR, MAKE] },
-    { text: "The letter", be: "is", was: "was", verbs: [WRITE, DELIVER, TRANSLATE] },
-    { text: "The letters", be: "are", was: "were", verbs: [WRITE, DELIVER, TRANSLATE] },
-    { text: "This book", be: "is", was: "was", verbs: [WRITE, SELL, TRANSLATE] },
-    { text: "These books", be: "are", was: "were", verbs: [WRITE, SELL, TRANSLATE] },
-    { text: "The window", be: "is", was: "was", verbs: [CLEAN, BREAK, REPAIR, CLOSE, PAINT] },
-    { text: "The windows", be: "are", was: "were", verbs: [CLEAN, BREAK, REPAIR, CLOSE, PAINT] },
-    { text: "The house", be: "is", was: "was", verbs: [BUILD, CLEAN, SELL, PAINT, REPAIR] },
-    { text: "The doors", be: "are", was: "were", verbs: [CLOSE, REPAIR, PAINT, BUILD] },
+const BANK: BankItem[] = [
+    // present passive: am / is / are + past participle
+    ["English ___ (speak) in many countries.", "is spoken", "speaks", "is speaking", "is spoke"],
+    ["Cars ___ (make) in this factory.", "are made", "make", "are making", "is made"],
+    ["The letters ___ (deliver) every morning.", "are delivered", "deliver", "is delivered", "are deliver"],
+    ["Coffee ___ (grow) in Brazil and Colombia.", "is grown", "are grown", "is grew", "was grow"],
+    ["Breakfast ___ (serve) from 7 to 10 a.m.", "is served", "serves", "is serving", "are served"],
+    ["The room ___ (clean) every day.", "is cleaned", "cleans", "is cleaning", "are cleaned"],
+    ["Rice ___ (eat) all over the world.", "is eaten", "eats", "is eating", "is ate"],
+    ["Millions of emails ___ (send) every day.", "are sent", "send", "is sent", "are sending"],
+    ["The children ___ (take) to school by bus every day.", "are taken", "take", "are taking", "is taken"],
+    ["These phones ___ (not / make) in Europe.", "aren't made", "don't make", "isn't made", "aren't make"],
+    // past passive: was / were + past participle
+    ["This bridge ___ (build) in 1890.", "was built", "built", "is built", "was build"],
+    ["The Mona Lisa ___ (paint) by Leonardo da Vinci.", "was painted", "painted", "is painting", "was paint"],
+    ["My bike ___ (steal) last night.", "was stolen", "stole", "was stealed", "is stolen"],
+    ["The windows ___ (clean) yesterday.", "were cleaned", "was cleaned", "cleaned", "are cleaned"],
+    ["The thief ___ (arrest) by the police yesterday.", "was arrested", "arrested", "is arrested", "was arrest"],
+    ["Harry Potter ___ (write) by J. K. Rowling.", "was written", "wrote", "is writing", "was wrote"],
+    ["The telephone ___ (invent) in 1876.", "was invented", "invented", "is invented", "was invent"],
+    ["The meeting ___ (cancel) because the boss was ill.", "was cancelled", "cancelled", "is cancelled", "was cancel"],
+    ["Our car ___ (repair) yesterday, so we can use it again.", "was repaired", "repaired", "is repaired", "was repair"],
+    ["The new hospital ___ (open) by the mayor last week.", "was opened", "opened", "is opened", "was opening"],
+    ["___ this photo taken in Italy?", "Was", "Did", "Were", "Has"],
+    // future passive and passive after modals
+    ["The results ___ (announce) tomorrow.", "will be announced", "will announce", "are announce", "will announced"],
+    ["The film ___ (show) in cinemas next month.", "will be shown", "will show", "is show", "will shown"],
+    ["Tickets can ___ (buy) online.", "be bought", "buy", "bought", "be buy"],
+    ["This medicine must ___ (keep) in the fridge.", "be kept", "keep", "kept", "be keep"],
 ];
-
-const PRESENT_TIME = ["every week", "regularly", "often", "usually"];
-const PAST_TIME = ["last year", "yesterday", "last month", "in 2020", "last week"];
-
-function presentPassiveExercise() {
-    const subject = pickOne(SUBJECTS);
-    const verb = pickOne(subject.verbs);
-    const time = pickOne(PRESENT_TIME);
-    const otherSubject = pickOne(SUBJECTS.filter((s) => s.be !== subject.be));
-
-    const correct = `${subject.be} ${verb.participle}`;
-    const distractors = [`${subject.was} ${verb.participle}`, `${subject.be} ${verb.base}`, `${otherSubject.be} ${verb.participle}`];
-
-    return buildQuestion(`${subject.text} ___ (${verb.base}) ${time}.`, correct, distractors);
-}
-
-function pastPassiveExercise() {
-    const subject = pickOne(SUBJECTS);
-    const verb = pickOne(subject.verbs);
-    const time = pickOne(PAST_TIME);
-    const otherSubject = pickOne(SUBJECTS.filter((s) => s.was !== subject.was));
-
-    const correct = `${subject.was} ${verb.participle}`;
-    const distractors = [`${subject.be} ${verb.participle}`, `${subject.was} ${verb.base}`, `${otherSubject.was} ${verb.participle}`];
-
-    return buildQuestion(`${subject.text} ___ (${verb.base}) ${time}.`, correct, distractors);
-}
 
 export const passiveVoiceRule: GrammarRuleMeta = {
     key: "passive-voice",
     level: "B2",
     generateExercises(count) {
-        return generateBatch(count, () => (Math.random() < 0.5 ? presentPassiveExercise() : pastPassiveExercise()));
+        return generateFromBank(BANK, count);
     },
 };

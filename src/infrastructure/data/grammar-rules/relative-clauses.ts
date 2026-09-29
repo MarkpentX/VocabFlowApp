@@ -1,76 +1,47 @@
 import { GrammarRuleMeta } from "@/domain/entities/grammar";
-import { buildQuestion, generateBatch, pickOne } from "@/infrastructure/data/grammar-rules/helpers";
+import { BankItem, generateFromBank } from "@/infrastructure/data/grammar-rules/helpers";
 
-type RelativeWord = "who" | "which" | "where" | "whose";
-const ALL_RELATIVE_WORDS: RelativeWord[] = ["who", "which", "where", "whose"];
-
-function distractorsFor(correct: RelativeWord): string[] {
-    return ALL_RELATIVE_WORDS.filter((w) => w !== correct);
-}
-
-const PEOPLE = ["The man", "The woman", "The teacher", "My friend", "The doctor", "The student", "My neighbor", "The boy", "The girl", "The manager"];
-const PEOPLE_ACTIONS = ["lives next door", "helped me", "teaches math", "called yesterday", "works here", "won the prize", "wrote this book", "answered the question", "fixed my car", "sang the song"];
-
-interface Thing {
-    text: string;
-    clauses: string[];
-}
-
-// Each thing only pairs with clauses that make sense for it — a song can be
-// written or sung, but never "built"; a bridge can be designed, but never "lost".
-const THINGS: Thing[] = [
-    { text: "The car", clauses: ["I bought", "I fixed", "we love", "I lost", "she sold"] },
-    { text: "The book", clauses: ["I bought", "she wrote", "I lost", "we love", "I recommended"] },
-    { text: "The movie", clauses: ["we watched", "we love", "she directed", "I recommended"] },
-    { text: "The house", clauses: ["he built", "I painted", "we love", "they designed", "I bought"] },
-    { text: "The phone", clauses: ["I bought", "I lost", "I fixed", "we love"] },
-    { text: "The restaurant", clauses: ["they opened", "we love", "I recommended", "she owns"] },
-    { text: "The picture", clauses: ["I painted", "we love", "I found", "I took"] },
-    { text: "The song", clauses: ["she wrote", "we love", "I heard", "he sang"] },
-    { text: "The laptop", clauses: ["I bought", "I lost", "I fixed", "we love"] },
-    { text: "The bridge", clauses: ["they designed", "he built", "we love", "I photographed"] },
+// "that" is correct in most defining clauses, so it only appears as an option
+// in non-defining clauses (between commas), where it is always wrong.
+const BANK: BankItem[] = [
+    // who — people
+    ["The woman ___ lives next door is a nurse.", "who", "which", "where", "whose"],
+    ["Do you know anyone ___ can fix a computer?", "who", "which", "where", "whose"],
+    ["The students ___ passed the exam got a certificate.", "who", "which", "where", "whose"],
+    ["I don't like people ___ are always late.", "who", "which", "where", "whose"],
+    ["Do you remember the teacher ___ taught us English?", "who", "which", "where", "whose"],
+    // which — things
+    ["This is the book ___ I told you about.", "which", "who", "where", "whose"],
+    ["The phone ___ I bought last week has already broken.", "which", "who", "where", "whose"],
+    ["The bus ___ goes to the airport leaves every hour.", "which", "who", "where", "whose"],
+    ["Is this the key ___ opens the front door?", "which", "who", "where", "whose"],
+    ["The laptop ___ I use for work is very old.", "which", "who", "where", "whose"],
+    ["This is the restaurant ___ serves the best pizza in town.", "which", "where", "who", "whose"],
+    // where — places (followed by a full clause: subject + verb)
+    ["That's the café ___ we first met.", "where", "which", "who", "whose"],
+    ["Rome is the city ___ my parents got married.", "where", "which", "who", "whose"],
+    ["That's the hotel ___ we stayed last summer.", "where", "which", "who", "whose"],
+    ["This is the restaurant ___ we had dinner last night.", "where", "which", "who", "whose"],
+    ["The village ___ I grew up is much bigger now.", "where", "which", "who", "whose"],
+    // whose — possession
+    ["I have a friend ___ brother plays for a football team.", "whose", "who", "which", "where"],
+    ["The man ___ car was stolen called the police.", "whose", "who", "which", "where"],
+    ["She's the singer ___ songs are always on the radio.", "whose", "who", "which", "where"],
+    ["The girl ___ bag I found came to thank me.", "whose", "who", "which", "where"],
+    ["The boy ___ parents own the shop is in my class.", "whose", "who", "which", "where"],
+    // when — times
+    ["I'll never forget the day ___ I met you.", "when", "where", "which", "who"],
+    // non-defining clauses (with commas) — never "that"
+    ["The film, ___ lasted three hours, was really boring.", "which", "that", "who", "where"],
+    ["My grandfather, ___ is 90, still drives.", "who", "that", "which", "whose"],
+    ["Paris, ___ is the capital of France, is famous for its museums.", "which", "that", "where", "who"],
+    ["Anna, ___ sister is a doctor, wants to study medicine too.", "whose", "who", "that", "which"],
 ];
-
-const PLACES = ["The city", "The restaurant", "The school", "The park", "The hotel", "The village", "The office", "The beach", "The store", "The café"];
-const PLACE_CLAUSES = ["we met", "I grew up", "she works", "we had dinner", "he studied", "they live", "I was born", "we stayed", "she teaches", "he plays football"];
-
-const OWNERS = ["The man", "The woman", "The student", "My neighbor", "The boy", "The writer", "The artist", "The driver", "The girl", "The scientist"];
-const POSSESSED_CLAUSES = ["car is red", "book became famous", "phone rang", "house burned down", "dog barks a lot", "painting sold for millions", "bike was stolen", "sister called me", "brother won the race", "research changed everything"];
-
-function whoExercise() {
-    const person = pickOne(PEOPLE);
-    const action = pickOne(PEOPLE_ACTIONS);
-    return buildQuestion(`${person} ___ ${action} is well known.`, "who", distractorsFor("who"));
-}
-
-function whichExercise() {
-    const thing = pickOne(THINGS);
-    const clause = pickOne(thing.clauses);
-    return buildQuestion(`${thing.text} ___ ${clause} is very popular.`, "which", distractorsFor("which"));
-}
-
-function whereExercise() {
-    const place = pickOne(PLACES);
-    const clause = pickOne(PLACE_CLAUSES);
-    return buildQuestion(`${place} ___ ${clause} is beautiful.`, "where", distractorsFor("where"));
-}
-
-function whoseExercise() {
-    const owner = pickOne(OWNERS);
-    const clause = pickOne(POSSESSED_CLAUSES);
-    return buildQuestion(`${owner} ___ ${clause} is my friend.`, "whose", distractorsFor("whose"));
-}
 
 export const relativeClausesRule: GrammarRuleMeta = {
     key: "relative-clauses",
     level: "B2",
     generateExercises(count) {
-        return generateBatch(count, () => {
-            const roll = Math.random();
-            if (roll < 0.25) return whoExercise();
-            if (roll < 0.5) return whichExercise();
-            if (roll < 0.75) return whereExercise();
-            return whoseExercise();
-        });
+        return generateFromBank(BANK, count);
     },
 };
